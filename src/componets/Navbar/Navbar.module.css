@@ -9,14 +9,10 @@
     text-decoration: none;
 }
 
-.item {
-    color: rgb(184, 36, 197);
+.item a {
+    color: darkblue;
 }
 
-.item.active {
-    color: green;
-}
-
-.item.active a {
+.item a.activeLink {
     color: green;
 }
