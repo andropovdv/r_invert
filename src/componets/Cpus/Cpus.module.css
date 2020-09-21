@@ -4,8 +4,13 @@
     background-color: lightgray;
 }
 
-.cpu_items .active {
+.cpu_items a {
+    text-decoration: none;
+    color: darkblue;
+}
+
+.item a.activeLink {
     color: green;
 }
 
-.cpu_adds {}
+/* .cpu_adds {} */
