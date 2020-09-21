@@ -3,7 +3,7 @@ import s from './Vendor.module.css';
 
 const Vendor = (props) => {
     return (
-        <div className={s.content}>
+        <div>
             <div className={s.item}>
                 {props.name}, {props.fullName}
             </div>

@@ -4,7 +4,7 @@ import Vendor from './Vendor/Vendor';
 
 const MyVendor = () => {
     return (
-        <div className={s.content}>
+        <div>
             <div>
                 <h4>Данные:</h4>
                 <div>
@@ -19,7 +19,7 @@ const MyVendor = () => {
                 </div>
                 <div className={s.dates}>
                     <Vendor name='Asus' fullName='AsusTek Computer Inc.' />
-                    <Vendor name='Acer' fullName='Acer'/>
+                    <Vendor name='Acer' fullName='Acer' />
                 </div>
             </div>
         </div>
