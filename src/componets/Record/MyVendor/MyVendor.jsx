@@ -9,16 +9,17 @@ const MyVendor = () => {
                 <h4>Данные:</h4>
                 <div>
                     <textarea></textarea>
+
+                </div>
+                <div>
                     <button>Добавить производителя</button>
                 </div>
                 <div>
                     <i>Новые данные:</i>
                 </div>
                 <div className={s.dates}>
-                    <Vendor />
-                    <Vendor />
-                    <Vendor />
-                    <Vendor />
+                    <Vendor name='Asus' fullName='AsusTek Computer Inc.' />
+                    <Vendor name='Acer' fullName='Acer'/>
                 </div>
             </div>
         </div>
