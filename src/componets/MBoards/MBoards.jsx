@@ -27,13 +27,19 @@ const MBoards = (props) => {
             </div>
             <div className={s.mb_adds}>
                 <div className={s.item}>
-                    <b>Добавить</b>
+                    <h4>Разъемы:</h4>
                 </div>
                 <div className={s.item}>
-                    <textarea></textarea>
+                LGA 1700
                 </div>
                 <div className={s.item}>
-                    <button>Добавить</button>
+                LGA 1200
+                </div>
+                <div className={s.item}>
+                Socket R4 (LGA 2066)
+                </div>
+                <div className={s.item}>
+                Socket H4 (LGA 1151) 
                 </div>
             </div>
         </div>

@@ -1,0 +1,11 @@
+.cpus {
+    display: grid;
+    grid-template-columns: 9fr 3fr;
+    background-color: lightgray;
+}
+
+.cpu_items .active {
+    color: green;
+}
+
+.cpu_adds {}
