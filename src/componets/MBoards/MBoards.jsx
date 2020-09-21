@@ -1,10 +1,10 @@
 import React from 'react';
 //import s from './MBoards.module.css';
 
-const MBoard = (props) => {
+const MBoards = (props) => {
     return (
-        <div>Материские платы</div>
+        <div>Материнские платы</div>
     )
 }
 
-export default MBoard;
+export default MBoards;

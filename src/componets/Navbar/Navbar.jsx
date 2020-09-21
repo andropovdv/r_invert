@@ -8,19 +8,19 @@ const Navbar = () => {
                 <h3>Справочники:</h3>
             </div>
             <div className={`${s.item} ${s.active}`}>
-                <a href=" #top " >Производители</a>
+                <a href="/Record">Производители</a>
             </div>
             <div className={s.item}>
-                <a href="#top">Материнская плата</a>
+                <a href="/MBoards">Материнская плата</a>
             </div>
             <div className={s.item}>
-                <a href="#top">Оперативная память</a>
+                <a href="/Rams">Оперативная память</a>
             </div>
             <div className={s.item}>
-                <a href="#top">Жесткий диск</a>
+                <a href="/Hdds">Жесткий диск</a>
             </div>
             <div className={s.item}>
-                <a href="#top">Процессор</a>
+                <a href="/Cpus">Процессор</a>
             </div>
         </nav>
     )
