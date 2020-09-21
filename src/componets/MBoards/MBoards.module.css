@@ -1,0 +1,18 @@
+.mboards {
+    display: grid;
+    grid-template-columns: 9fr 3fr;
+    grid-gap: 5px;
+    background-color: lightgrey;
+}
+
+.mboard_items{}
+
+.mboard_items .active {
+    color: green;
+}
+
+.mb_adds {
+    text-align: left;
+}
+
+.mb_add {}
