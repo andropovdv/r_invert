@@ -1,23 +1,7 @@
 import React from 'react';
 import s from './MBoards.module.css';
-import { NavLink } from 'react-router-dom';
-
-const MBoardItem = (props) => {
-    let path = "/Mboards/" + props.id;
-    return (
-        <div className={s.item}>
-            <NavLink to={path} activeClassName={s.activeLink}>{props.vendor} {props.model}</NavLink>
-        </div>
-    )
-}
-
-const MBoardSoket = (props) => {
-    return (
-        <div className={s.item}>
-            {props.soket}
-        </div>
-    )
-}
+import MBoardItem from './MboardItem/MboardItem';
+import MBoardSoket from './MboardSoket/MboardSoket';
 
 const MBoards = (props) => {
 
@@ -34,7 +18,7 @@ const MBoards = (props) => {
         { id: 1, soket: 'LGA 1700' },
         { id: 2, soket: 'LGA 1200' },
         { id: 3, soket: 'Socket R4 (LGA 2066)' },
-        { id: 4, soket: 'Socket H4 (LGA 1151)' },
+        { id: 4, soket: 'Socket H4 (LGA 1151)' }
     ]
 
     // Если параметр один, скобки можно не ставить
