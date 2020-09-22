@@ -4,10 +4,16 @@ import Vendor from './Vendor/Vendor';
 
 const MyVendor = () => {
 
-    let vendorData = [
+    let vendors = [
         { id: 1, name: 'Asus', fullName: 'AsusTek Computer Inc.' },
         { id: 2, name: 'Acer', fullName: 'Acer' }
     ]
+
+    let vendorElements = vendors.map((v) => {
+        return (
+            <Vendor name={v.name} fullName={v.fullName} />
+        )
+    });
 
     return (
         <div>
@@ -22,8 +28,7 @@ const MyVendor = () => {
                     <i>Производители:</i>
                 </div>
                 <div className={s.dates}>
-                    <Vendor name={vendorData[0].name} fullName={vendorData[0].fullName} />
-                    <Vendor name={vendorData[1].name} fullName={vendorData[1].fullName} />
+                    {vendorElements}
                 </div>
             </div>
         </div>

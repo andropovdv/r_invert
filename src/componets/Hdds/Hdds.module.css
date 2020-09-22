@@ -1,0 +1,13 @@
+.hdds {
+    display: grid;
+    grid-template-columns: 9fr 3fr;
+}
+
+.hdd_items a{
+    text-decoration: none;
+    color: darkblue;
+}
+
+.item a.activeLink {
+    color: green;
+}
