@@ -6,16 +6,14 @@ const MyVendor = () => {
     return (
         <div>
             <div>
-                <h4>Данные:</h4>
                 <div>
                     <textarea></textarea>
-
                 </div>
                 <div>
                     <button>Добавить производителя</button>
                 </div>
                 <div>
-                    <i>Новые данные:</i>
+                    <i>Производители:</i>
                 </div>
                 <div className={s.dates}>
                     <Vendor name='Asus' fullName='AsusTek Computer Inc.' />
