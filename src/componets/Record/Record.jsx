@@ -4,11 +4,12 @@ import MyVendor from './MyVendor/MyVendor';
 import s from './Record.module.css';
 import VendorInfo from './VendorInfo/VendorInfo';
 
-const Record = () => {
+const Record = (props) => {
+
     return (
         <div className={s.content}>
             <VendorInfo />
-            <MyVendor />
+            <MyVendor vendors={props.vendors} />
         </div>
     )
 }

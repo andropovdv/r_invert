@@ -2,14 +2,10 @@ import React from 'react';
 import s from './MyVendor.module.css';
 import Vendor from './Vendor/Vendor';
 
-const MyVendor = () => {
+const MyVendor = (props) => {
 
-    let vendors = [
-        { id: 1, name: 'Asus', fullName: 'AsusTek Computer Inc.' },
-        { id: 2, name: 'Acer', fullName: 'Acer' }
-    ]
-
-    let vendorElements = vendors.map((v) => {
+    let vendorElements = props.vendors.map((v) => {
+        
         return (
             <Vendor name={v.name} fullName={v.fullName} />
         )

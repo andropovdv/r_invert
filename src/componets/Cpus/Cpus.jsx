@@ -13,16 +13,7 @@ const CpuItem = (props) => {
 
 const Cpus = (props) => {
 
-    let cpusData = [
-        { id: '1', vendor: 'AMD', model: 'Ryzen 5 2600' },
-        { id: '2', vendor: 'INTEL', model: 'Core i5 9400F' },
-        { id: '3', vendor: 'AMD', model: 'Ryzen 7 2700' },
-        { id: '4', vendor: 'AMD', model: 'Ryzen 5 3600' },
-        { id: '5', vendor: 'AMD', model: 'A8 9600' },
-        { id: '6', vendor: 'INTEL', model: 'Core i3 9100F' }
-    ]
-
-    let cpuElements = cpusData.map(c => <CpuItem vendor={c.vendor} model={c.model} id={c.id} />
+    let cpuElements = props.cpusData.map(c => <CpuItem vendor={c.vendor} model={c.model} id={c.id} />
 
     );
 

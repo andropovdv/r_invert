@@ -13,16 +13,7 @@ const HddItem = (props) => {
 
 const Hdds = (props) => {
 
-    let hdds = [
-        { id: '1', vendor: 'WD', model: 'Caviar Blue WD10EZEX' },
-        { id: '2', vendor: 'TOSHIBA', model: 'P300 HDWD110UZSVA' },
-        { id: '3', vendor: 'SEAGATE', model: 'Barracuda ST1000DM010' },
-        { id: '4', vendor: 'SEAGATE', model: 'Barracuda ST2000DM008' },
-        { id: '5', vendor: 'WD', model: 'Blue WD10EZRZ' },
-        { id: '6', vendor: 'WD', model: 'Blue WD20EZAZ' },
-    ]
-
-    let hddsElement = hdds.map((h) => {
+    let hddsElement = props.hdds.map((h) => {
         return (
             <HddItem id={h.id} vendor={h.vendor} model={h.model} />
         )

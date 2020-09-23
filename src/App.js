@@ -9,18 +9,19 @@ import Rams from './componets/Rams/Rams';
 import Hdds from './componets/Hdds/Hdds';
 import Cpus from './componets/Cpus/Cpus';
 
-const App = () => {
+const App = (props) => {
+
   return (
     <BrowserRouter>
       <div className='app-wrapper'>
         <Header />
         <Navbar />
         <div className='app-wrapper-content'>
-          <Route path='/record' component={Record} />
-          <Route path='/mboards' component={MBoards} />
+          <Route path='/record' render={ () => <Record vendors={props.vendors}/>}/>
+          <Route path='/mboards' render={ () => <MBoards mboards={props.mboards} sokets={props.sokets}/>} />
           <Route path='/rams' component={Rams} />
-          <Route path='/hdds' component={Hdds} />
-          <Route path='/cpus' component={Cpus} />
+          <Route path='/hdds' render={ () => <Hdds hdds={props.hdds}/>} />
+          <Route path='/cpus' render={ () => <Cpus cpusData={props.cpusData}/>} />
         </div>
       </div>
     </BrowserRouter>
