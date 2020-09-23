@@ -10,6 +10,16 @@ const Cpus = (props) => {
 
     );
 
+    let newVendor = React.createRef();
+    let newModel = React.createRef();
+
+    let addCpu = () => {
+        let textVendor = newVendor.current.value;
+        let textModel = newModel.current.value;
+        alert(textVendor + ' ' + textModel)
+    }
+
+
     return (
         <div className={s.cpus}>
             <div className={s.cpu_items}>
@@ -20,24 +30,17 @@ const Cpus = (props) => {
                 <div className={s.item}>
                     <b>Добавить</b>
                 </div>
-                <div className={s.item}>
-                    <textarea></textarea>
-                </div>
-                <div className={s.item}>
-                    <button>Добавить</button>
-                </div>
-                {/* TODO доработать добавление по полям state */}
                 <hr />
                 <div className={s.item}>
                     <label>Производитель</label>
-                    <input />
+                    <input ref={newVendor} />
                 </div>
                 <div className={s.item}>
                     <label>Модель</label><br />
-                    <input />
+                    <input ref={newModel} />
                 </div>
                 <div>
-                    <button>Добавить</button>
+                    <button onClick={addCpu}>Добавить</button>
                 </div>
 
             </div>

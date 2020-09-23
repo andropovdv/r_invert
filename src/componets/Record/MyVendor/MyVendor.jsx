@@ -5,20 +5,34 @@ import Vendor from './Vendor/Vendor';
 const MyVendor = (props) => {
 
     let vendorElements = props.vendors.map((v) => {
-        
+
         return (
             <Vendor name={v.name} fullName={v.fullName} />
         )
     });
 
+    let newVendorName = React.createRef();
+    let newVendorFullName = React.createRef();
+
+    let addMboard = () => {
+        let textName = newVendorName.current.value;
+        let textFullName = newVendorFullName.current.value;
+        alert(textName);
+    }
+
     return (
         <div>
             <div>
                 <div>
-                    <textarea></textarea>
+                    <label>Наименование: </label>
+                    <input ref={newVendorName} />
                 </div>
                 <div>
-                    <button>Добавить производителя</button>
+                    <label>Полное наименование: </label>
+                    <input ref={newVendorFullName} />
+                </div>
+                <div>
+                    <button onClick={addMboard}>Добавить производителя</button>
                 </div>
                 <div>
                     <i>Производители:</i>
