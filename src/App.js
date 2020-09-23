@@ -17,11 +17,11 @@ const App = (props) => {
         <Header />
         <Navbar />
         <div className='app-wrapper-content'>
-          <Route path='/record' render={ () => <Record vendors={props.vendors}/>}/>
-          <Route path='/mboards' render={ () => <MBoards mboards={props.mboards} sokets={props.sokets}/>} />
+          <Route path='/record' render={() => <Record vendors={props.state.vendorPage.vendors} />} />
+          <Route path='/mboards' render={() => <MBoards state={props.state.mboardPage} />} />
           <Route path='/rams' component={Rams} />
-          <Route path='/hdds' render={ () => <Hdds hdds={props.hdds}/>} />
-          <Route path='/cpus' render={ () => <Cpus cpusData={props.cpusData}/>} />
+          <Route path='/hdds' render={() => <Hdds hdds={props.state.hddPage.hdds} />} />
+          <Route path='/cpus' render={() => <Cpus cpusData={props.state.cpuPage.cpusData} />} />
         </div>
       </div>
     </BrowserRouter>

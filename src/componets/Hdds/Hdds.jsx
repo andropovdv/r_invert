@@ -1,15 +1,6 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import s from './Hdds.module.css';
-
-const HddItem = (props) => {
-    let path = "/Hdds/" + props.id;
-    return (
-        <div className={s.item}>
-            <NavLink to={path} activeClassName={s.activeLink}>{props.vendor} {props.model}</NavLink>
-        </div>
-    )
-}
+import HddItem from './HddItem/hddItem';
 
 const Hdds = (props) => {
 

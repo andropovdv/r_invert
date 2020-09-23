@@ -7,7 +7,3 @@
     text-decoration: none;
     color: darkblue;
 }
-
-.item a.activeLink {
-    color: green;
-}

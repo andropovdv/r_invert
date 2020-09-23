@@ -9,13 +9,13 @@ const MBoards = (props) => {
     // Если функция только возвращает значение, return и фигурные скобки можно не ставить
     // let mboardsElements = mboardsData
     //     .map((mboard) => <MBoardItem vendor={mboard.vendor} model={mboard.model} id={mboard.id} />);
-    let mboardsElements = props.mboards.map((m) => {
+    let mboardsElements = props.state.mboards.map((m) => {
         return (
             <MBoardItem vendor={m.vendor} model={m.model} id={m.id} />
         )
     });
 
-    let soketElements = props.sokets.map((s) => {
+    let soketElements = props.state.sokets.map((s) => {
         return (
             <MBoardSoket soket={s.soket} />
         )
