@@ -1,3 +1,4 @@
+import { rerenderEntireTree } from "../render";
 
 let state = {
     vendorPage: {
@@ -43,6 +44,26 @@ let state = {
         ]
     }
 
+}
+
+export let addVendor = (textName, textFullName) => {
+    let newVendor = {
+        id: 3,
+        name: textName,
+        fullName: textFullName
+    }
+    state.vendorPage.vendors.push(newVendor);
+    rerenderEntireTree(state)
+}
+
+export let addCpu = (textVendor, textModel) => {
+    let newCpu = {
+        id: 7,
+        vendor: textVendor,
+        model: textModel
+    }
+    state.cpuPage.cpusData.push(newCpu);
+    rerenderEntireTree(state)
 }
 
 export default state;

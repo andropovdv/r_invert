@@ -16,7 +16,7 @@ const Cpus = (props) => {
     let addCpu = () => {
         let textVendor = newVendor.current.value;
         let textModel = newModel.current.value;
-        alert(textVendor + ' ' + textModel)
+        props.addCpu(textVendor, textModel);
     }
 
 

@@ -10,17 +10,16 @@ import Hdds from './componets/Hdds/Hdds';
 import Cpus from './componets/Cpus/Cpus';
 
 const App = (props) => {
-
   return (
     <div className='app-wrapper'>
       <Header />
       <Navbar />
       <div className='app-wrapper-content'>
-        <Route path='/record' render={() => <Record vendors={props.state.vendorPage.vendors} />} />
+        <Route path='/record' render={() => <Record vendors={props.state.vendorPage.vendors} addVendor={props.addVendor}/>} />
         <Route path='/mboards' render={() => <MBoards state={props.state.mboardPage} />} />
         <Route path='/rams' component={Rams} />
         <Route path='/hdds' render={() => <Hdds hdds={props.state.hddPage.hdds} />} />
-        <Route path='/cpus' render={() => <Cpus cpusData={props.state.cpuPage.cpusData} />} />
+        <Route path='/cpus' render={() => <Cpus cpusData={props.state.cpuPage.cpusData} addCpu={props.addCpu}/>} />
       </div>
     </div>
   );

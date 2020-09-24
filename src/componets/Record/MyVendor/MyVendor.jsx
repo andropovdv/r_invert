@@ -14,31 +14,35 @@ const MyVendor = (props) => {
     let newVendorName = React.createRef();
     let newVendorFullName = React.createRef();
 
-    let addMboard = () => {
+    let addVendor = () => {
         let textName = newVendorName.current.value;
         let textFullName = newVendorFullName.current.value;
-        alert(textName);
+        props.addVendor(textName, textFullName);
+        newVendorName.current.value ='';
+        newVendorFullName.current.value = '';
     }
 
     return (
         <div>
             <div>
-                <div>
-                    <label>Наименование: </label>
-                    <input ref={newVendorName} />
-                </div>
-                <div>
-                    <label>Полное наименование: </label>
-                    <input ref={newVendorFullName} />
-                </div>
-                <div>
-                    <button onClick={addMboard}>Добавить производителя</button>
-                </div>
-                <div>
-                    <i>Производители:</i>
-                </div>
-                <div className={s.dates}>
-                    {vendorElements}
+                <div className={s.main}>
+                    <div className={s.item}>
+                        <label>Наименование:</label>
+                        <input ref={newVendorName} />
+                    </div>
+                    <div className={s.item}>
+                        <label>Полное наименование: </label>
+                        <input ref={newVendorFullName} />
+                    </div>
+                    <div>
+                        <button onClick={addVendor}>Добавить производителя</button>
+                    </div>
+                    <div>
+                        <i>Производители:</i>
+                    </div>
+                    <div className={s.dates}>
+                        {vendorElements}
+                    </div>
                 </div>
             </div>
         </div>

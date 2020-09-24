@@ -5,11 +5,11 @@ import s from './Record.module.css';
 import VendorInfo from './VendorInfo/VendorInfo';
 
 const Record = (props) => {
-
     return (
         <div className={s.content}>
             <VendorInfo />
-            <MyVendor vendors={props.vendors} />
+            
+            <MyVendor vendors={props.vendors} addVendor={props.addVendor}/>
         </div>
     )
 }
