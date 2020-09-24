@@ -3,12 +3,22 @@ import s from './Hdds.module.css';
 import HddItem from './HddItem/hddItem';
 
 const Hdds = (props) => {
-
     let hddsElement = props.hdds.map((h) => {
         return (
             <HddItem id={h.id} vendor={h.vendor} model={h.model} />
         )
     });
+
+    let newModel = React.createRef();
+    let newVendor = React.createRef();
+
+    let addHdd = () => {
+        let textVendor = newVendor.current.value;
+        let textModel = newModel.current.value;
+        props.addHdd(textVendor, textModel);
+        newVendor.current.value = '';
+        newModel.current.value = '';
+    }
 
     return (
         <div className={s.hdds}>
@@ -18,26 +28,19 @@ const Hdds = (props) => {
             </div>
             <div>
                 <div className={s.item}>
-                    <b>Добавить</b>
+                    <button><b>Добавить</b></button>
                 </div>
-                <div className={s.item}>
-                    <textarea></textarea>
-                </div>
-                <div className={s.item}>
-                    <button>Добавить</button>
-                </div>
-                {/* TODO доработать добавление по полям state */}
                 <hr />
                 <div className={s.item}>
                     <label>Производитель</label>
-                    <input />
+                    <input ref={newVendor} />
                 </div>
                 <div className={s.item}>
                     <label>Модель</label><br />
-                    <input />
+                    <input ref={newModel} />
                 </div>
                 <div>
-                    <button>Добавить</button>
+                    <button onClick={addHdd}>Добавить</button>
                 </div>
             </div>
         </div>

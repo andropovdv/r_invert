@@ -18,7 +18,7 @@ const MyVendor = (props) => {
         let textName = newVendorName.current.value;
         let textFullName = newVendorFullName.current.value;
         props.addVendor(textName, textFullName);
-        newVendorName.current.value ='';
+        newVendorName.current.value = '';
         newVendorFullName.current.value = '';
     }
 

@@ -21,11 +21,12 @@ const MBoards = (props) => {
         )
     })
 
-let newSoket = React.createRef();
-let addSoket = () => {
-    let textSoket = newSoket.current.value;
-    alert(textSoket)
-}
+    let newSoket = React.createRef();
+    let addSoket = () => {
+        let textSoket = newSoket.current.value;
+        props.addSoket(textSoket);
+        newSoket.current.value = '';
+    }
 
     return (
         <div className={s.mboards}>
@@ -41,8 +42,8 @@ let addSoket = () => {
                     {soketElements}
                 </div>
                 <div>
-                    <hr/>
-                    <input ref={newSoket}/>
+                    <hr />
+                    <input ref={newSoket} />
                 </div>
                 <div>
                     <button onClick={addSoket}>Добавить</button>

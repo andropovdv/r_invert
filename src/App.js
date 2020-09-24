@@ -15,11 +15,16 @@ const App = (props) => {
       <Header />
       <Navbar />
       <div className='app-wrapper-content'>
-        <Route path='/record' render={() => <Record vendors={props.state.vendorPage.vendors} addVendor={props.addVendor}/>} />
-        <Route path='/mboards' render={() => <MBoards state={props.state.mboardPage} />} />
-        <Route path='/rams' component={Rams} />
-        <Route path='/hdds' render={() => <Hdds hdds={props.state.hddPage.hdds} />} />
-        <Route path='/cpus' render={() => <Cpus cpusData={props.state.cpuPage.cpusData} addCpu={props.addCpu}/>} />
+        <Route path='/record' render={() =>
+          <Record vendors={props.state.vendorPage.vendors} addVendor={props.addVendor} />} />
+        <Route path='/mboards' render={() =>
+          <MBoards state={props.state.mboardPage} addSoket={props.addSoket} />} />
+        <Route path='/rams' render={() =>
+          <Rams rams={props.state.ramPage.rams} addRam={props.addRam} />} />
+        <Route path='/hdds' render={() =>
+          <Hdds hdds={props.state.hddPage.hdds} addHdd={props.addHdd} />} />
+        <Route path='/cpus' render={() =>
+          <Cpus cpusData={props.state.cpuPage.cpusData} addCpu={props.addCpu} />} />
       </div>
     </div>
   );

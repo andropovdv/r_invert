@@ -1,0 +1,9 @@
+.rams {
+    display: grid;
+    grid-template-columns: 9fr 3fr;
+}
+
+.ram_items a{
+    text-decoration: none;
+    color: darkblue;
+}
