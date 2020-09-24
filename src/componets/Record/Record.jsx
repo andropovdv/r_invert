@@ -8,8 +8,13 @@ const Record = (props) => {
     return (
         <div className={s.content}>
             <VendorInfo />
-            
-            <MyVendor vendors={props.vendors} addVendor={props.addVendor}/>
+
+            <MyVendor vendors={props.vendorPage.vendors}
+                newName={props.vendorPage.newName}
+                newFullName={props.vendorPage.newFullName}
+                addVendor={props.addVendor}
+                changeNewVendor={props.changeNewVendor}
+                changeNewFullVendors={props.changeNewFullVendors} />
         </div>
     )
 }

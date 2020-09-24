@@ -6,7 +6,9 @@ let state = {
         vendors: [
             { id: 1, name: 'Asus', fullName: 'AsusTek Computer Inc.' },
             { id: 2, name: 'Acer', fullName: 'Acer' }
-        ]
+        ],
+        newName: 'Inventor',
+        newFullName: 'Inventor'
     },
     cpuPage: {
         cpusData: [
@@ -20,14 +22,14 @@ let state = {
     },
     ramPage: {
         rams: [
-            {id: 1, vendor: 'KINGSTON', model: 'VALUERAM KVR26N19S8', volume: '8 Gb'},
-            {id: 2, vendor: 'CORSAIR', model: 'Vengeance LPX CMK16GX4M2A2666C16', volume: '8 Gb'},
-            {id: 3, vendor: 'AMD Radeon', model: 'R7 Performance Series R748G2606U2S-UO', volume: '8 Gb'},
-            {id: 4, vendor: 'CORSAIR', model: 'Vengeance LPX CMK16GX4M2B3200C16', volume: '8 Gb'},
-            {id: 5, vendor: 'CRUCIAL', model: 'CT4G4DFS8266', volume: '4 Gb'},
-            {id: 6, vendor: 'PATRIOT', model: 'Signature PSD48G266681', volume: '8 Gb'}
+            { id: 1, vendor: 'KINGSTON', model: 'VALUERAM KVR26N19S8', volume: '8 Gb' },
+            { id: 2, vendor: 'CORSAIR', model: 'Vengeance LPX CMK16GX4M2A2666C16', volume: '8 Gb' },
+            { id: 3, vendor: 'AMD Radeon', model: 'R7 Performance Series R748G2606U2S-UO', volume: '8 Gb' },
+            { id: 4, vendor: 'CORSAIR', model: 'Vengeance LPX CMK16GX4M2B3200C16', volume: '8 Gb' },
+            { id: 5, vendor: 'CRUCIAL', model: 'CT4G4DFS8266', volume: '4 Gb' },
+            { id: 6, vendor: 'PATRIOT', model: 'Signature PSD48G266681', volume: '8 Gb' }
         ]
-        
+
     },
     mboardPage: {
         mboards: [
@@ -56,15 +58,29 @@ let state = {
         ]
     }
 
+
+
 }
 
-export let addVendor = (textName, textFullName) => {
+export let changeNewVendors = (newText) => {
+    state.vendorPage.newName = newText;
+    rerenderEntireTree(state);
+}
+
+export let changeNewFullVendors =(newText) => {
+    state.vendorPage.newFullName = newText;
+    rerenderEntireTree(state);
+}
+
+export let addVendor = () => {
     let newVendor = {
         id: 3,
-        name: textName,
-        fullName: textFullName
+        name: state.vendorPage.newName,
+        fullName: state.vendorPage.newFullName
     }
     state.vendorPage.vendors.push(newVendor);
+    state.vendorPage.newName = '';
+    state.vendorPage.newFullName = '';
     rerenderEntireTree(state)
 }
 
@@ -94,7 +110,7 @@ export let addRam = (textVendor, textModel, textVolume) => {
         vendor: textVendor,
         model: textModel,
         volume: textVolume
-        
+
     }
     state.ramPage.rams.push(newRam);
     rerenderEntireTree(state)

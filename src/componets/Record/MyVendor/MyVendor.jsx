@@ -5,7 +5,6 @@ import Vendor from './Vendor/Vendor';
 const MyVendor = (props) => {
 
     let vendorElements = props.vendors.map((v) => {
-
         return (
             <Vendor name={v.name} fullName={v.fullName} />
         )
@@ -15,24 +14,30 @@ const MyVendor = (props) => {
     let newVendorFullName = React.createRef();
 
     let addVendor = () => {
-        let textName = newVendorName.current.value;
-        let textFullName = newVendorFullName.current.value;
-        props.addVendor(textName, textFullName);
-        newVendorName.current.value = '';
-        newVendorFullName.current.value = '';
+        props.addVendor();
+ 
     }
 
+    let onVendorNameChange = () => {
+        let textName = newVendorName.current.value;
+        props.changeNewVendor(textName);
+    }
+
+    let onVendorFullNameChange = () => {
+        let textName = newVendorFullName.current.value
+        props.changeNewFullVendors(textName);
+    }
     return (
         <div>
             <div>
                 <div className={s.main}>
                     <div className={s.item}>
                         <label>Наименование:</label>
-                        <input ref={newVendorName} />
+                        <input onChange={onVendorNameChange} ref={newVendorName} value={props.newName} />
                     </div>
                     <div className={s.item}>
                         <label>Полное наименование: </label>
-                        <input ref={newVendorFullName} />
+                        <input onChange={onVendorFullNameChange} ref={newVendorFullName} value={props.newFullName} />
                     </div>
                     <div>
                         <button onClick={addVendor}>Добавить производителя</button>

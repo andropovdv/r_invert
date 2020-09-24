@@ -16,7 +16,10 @@ const App = (props) => {
       <Navbar />
       <div className='app-wrapper-content'>
         <Route path='/record' render={() =>
-          <Record vendors={props.state.vendorPage.vendors} addVendor={props.addVendor} />} />
+          <Record vendorPage={props.state.vendorPage}
+            addVendor={props.addVendor}
+            changeNewVendor={props.changeNewVendor}
+            changeNewFullVendors={props.changeNewFullVendors} />} />
         <Route path='/mboards' render={() =>
           <MBoards state={props.state.mboardPage} addSoket={props.addSoket} />} />
         <Route path='/rams' render={() =>
