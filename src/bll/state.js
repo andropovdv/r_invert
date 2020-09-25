@@ -1,6 +1,6 @@
-import { rerenderEntireTree } from "../render";
-
-
+let rerenderEntireTree = () => {
+    console.log('state is changed')
+}
 let state = {
     vendorPage: {
         vendors: [
@@ -57,9 +57,10 @@ let state = {
             { id: '6', vendor: 'WD', model: 'Blue WD20EZAZ' },
         ]
     }
+}
 
-
-
+export const subscribe = (observer) => {
+    rerenderEntireTree = observer;
 }
 
 export let changeNewVendors = (newText) => {
@@ -67,12 +68,12 @@ export let changeNewVendors = (newText) => {
     rerenderEntireTree(state);
 }
 
-export let changeNewFullVendors =(newText) => {
+export let changeNewFullVendors = (newText) => {
     state.vendorPage.newFullName = newText;
     rerenderEntireTree(state);
 }
 
-export let addVendor = () => {
+export const addVendor = () => {
     let newVendor = {
         id: 3,
         name: state.vendorPage.newName,
@@ -84,7 +85,7 @@ export let addVendor = () => {
     rerenderEntireTree(state)
 }
 
-export let addCpu = (textVendor, textModel) => {
+export const addCpu = (textVendor, textModel) => {
     let newCpu = {
         id: 7,
         vendor: textVendor,
@@ -94,7 +95,7 @@ export let addCpu = (textVendor, textModel) => {
     rerenderEntireTree(state)
 }
 
-export let addHdd = (textVendor, textModel) => {
+export const addHdd = (textVendor, textModel) => {
     let newHdd = {
         id: 7,
         vendor: textVendor,
@@ -104,7 +105,7 @@ export let addHdd = (textVendor, textModel) => {
     rerenderEntireTree(state);
 }
 
-export let addRam = (textVendor, textModel, textVolume) => {
+export const addRam = (textVendor, textModel, textVolume) => {
     let newRam = {
         id: 7,
         vendor: textVendor,
@@ -116,7 +117,7 @@ export let addRam = (textVendor, textModel, textVolume) => {
     rerenderEntireTree(state)
 }
 
-export let addSoket = (textSoket) => {
+export const addSoket = (textSoket) => {
     let newSoket = {
         id: 5,
         soket: textSoket
