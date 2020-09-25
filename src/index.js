@@ -1,11 +1,10 @@
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import state, { subscribe } from './bll/state';
+import store from './bll/state';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import { addVendor, addCpu, addHdd, addSoket, addRam, changeNewVendors, changeNewFullVendors } from './bll/state'
 import { BrowserRouter } from 'react-router-dom';
 
 let rerenderEntireTree = (state) => {
@@ -13,13 +12,13 @@ let rerenderEntireTree = (state) => {
     <React.StrictMode>
       <BrowserRouter>
         <App state={state}
-          addVendor={addVendor}
-          addCpu={addCpu}
-          addHdd={addHdd}
-          addSoket={addSoket}
-          addRam={addRam}
-          changeNewVendor={changeNewVendors}
-          changeNewFullVendors={changeNewFullVendors} />
+          addVendor={store.addVendor.bind(store)}
+          addCpu={store.addCpu.bind(store)}
+          addHdd={store.addHdd.bind(store)}
+          addSoket={store.addSoket.bind(store)}
+          addRam={store.addRam.bind(store)}
+          changeNewVendor={store.changeNewVendors.bind(store)}
+          changeNewFullVendors={store.changeNewFullVendors.bind(store)} />
       </BrowserRouter>
     </React.StrictMode>,
     document.getElementById('root')
@@ -27,8 +26,8 @@ let rerenderEntireTree = (state) => {
 }
 
 
-rerenderEntireTree(state);
-subscribe(rerenderEntireTree);
+rerenderEntireTree(store.getState());
+store.subscribe(rerenderEntireTree);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
