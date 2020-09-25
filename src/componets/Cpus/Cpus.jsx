@@ -6,19 +6,26 @@ import CpuItem from './CpuItem/CpuItem';
 
 const Cpus = (props) => {
 
-    let cpuElements = props.cpusData.map(c => <CpuItem vendor={c.vendor} model={c.model} id={c.id} />
-
-    );
+    let cpuElements = props.cpusData.map(c => <CpuItem vendor={c.vendor} model={c.model} id={c.id} />);
 
     let newVendor = React.createRef();
     let newModel = React.createRef();
 
     let addCpu = () => {
-        let textVendor = newVendor.current.value;
-        let textModel = newModel.current.value;
-        props.addCpu(textVendor, textModel);
+        // let textVendor = newVendor.current.value;
+        // let textModel = newModel.current.value;
+        props.dispatch({ type: 'ADD-CPU' });
     }
 
+    let onVendorChange = () => {
+        let textName = newVendor.current.value;
+        props.dispatch({ type: 'TYPING-CPU-VENDOR', newText: textName });
+    }
+
+    let onModelChange = () => {
+        let textName = newModel.current.value;
+        props.dispatch({ type: 'TYPING-CPU-MODEL', newText: textName })
+    }
 
     return (
         <div className={s.cpus}>
@@ -33,11 +40,11 @@ const Cpus = (props) => {
                 <hr />
                 <div className={s.item}>
                     <label>Производитель</label>
-                    <input ref={newVendor} />
+                    <input onChange={onVendorChange} ref={newVendor} value={props.typingVendor}/>
                 </div>
                 <div className={s.item}>
                     <label>Модель</label><br />
-                    <input ref={newModel} />
+                    <input onChange={onModelChange} ref={newModel} value={props.typingModel}/>
                 </div>
                 <div>
                     <button onClick={addCpu}>Добавить</button>

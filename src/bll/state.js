@@ -16,7 +16,9 @@ let store = {
                 { id: '4', vendor: 'AMD', model: 'Ryzen 5 3600' },
                 { id: '5', vendor: 'AMD', model: 'A8 9600' },
                 { id: '6', vendor: 'INTEL', model: 'Core i3 9100F' }
-            ]
+            ],
+            typingVendor: 'text',
+            typingModel: 'text'
         },
         ramPage: {
             rams: [
@@ -56,39 +58,48 @@ let store = {
             ]
         }
     },
-    getState() {
-        return this._state;
-    },
     _callSubscriber() {
         console.log('state is changed')
     },
-    changeNewVendors(newText) {
-        this._state.vendorPage.newName = newText;
-        this._callSubscriber(this._state);
+
+    getState() {
+        return this._state;
     },
-    changeNewFullVendors(newText) {
-        this._state.vendorPage.newFullName = newText;
-        this._callSubscriber(this._state);
+    subscribe(observer) {
+        this._callSubscriber = observer;
     },
-    addVendor() {
-        let newVendor = {
-            id: 3,
-            name: this._state.vendorPage.newName,
-            fullName: this._state.vendorPage.newFullName
+    dispatch(action) {
+        if (action.type === 'ADD-VENDOR') {
+            let newVendor = {
+                id: 3,
+                name: this._state.vendorPage.newName,
+                fullName: this._state.vendorPage.newFullName
+            }
+            this._state.vendorPage.vendors.push(newVendor);
+            this._state.vendorPage.newName = '';
+            this._state.vendorPage.newFullName = '';
+            this._callSubscriber(this._state)
+        } else if (action.type === 'TYPING-VENDOR-NAME') {
+            this._state.vendorPage.newName = action.newText;
+            this._callSubscriber(this._state);
+        } else if (action.type === 'TYPING-VENDOR-FULLNAME') {
+            this._state.vendorPage.newFullName = action.newText;
+            this._callSubscriber(this._state);
+        } else if (action.type === 'ADD-CPU') {
+            let newCpu = {
+                id: 7,
+                vendor: this._state.cpuPage.typingVendor,
+                model: this._state.cpuPage.typingModel
+            }
+            this._state.cpuPage.cpusData.push(newCpu);
+            this._callSubscriber(this._state)
+        } else if (action.type === 'TYPING-CPU-VENDOR') {
+            this._state.cpuPage.typingVendor = action.newText;
+            this._callSubscriber(this._state);
+        } else if (action.type === 'TYPING-CPU-MODEL') {
+            this._state.cpuPage.typingModel = action.newText;
+            this._callSubscriber(this._state);
         }
-        this._state.vendorPage.vendors.push(newVendor);
-        this._state.vendorPage.newName = '';
-        this._state.vendorPage.newFullName = '';
-        this._callSubscriber(this._state)
-    },
-    addCpu(textVendor, textModel) {
-        let newCpu = {
-            id: 7,
-            vendor: textVendor,
-            model: textModel
-        }
-        this._state.cpuPage.cpusData.push(newCpu);
-        this._callSubscriber(this._state)
     },
     addHdd(textVendor, textModel) {
         let newHdd = {
@@ -105,7 +116,7 @@ let store = {
             vendor: textVendor,
             model: textModel,
             volume: textVolume
-    
+
         }
         this._state.ramPage.rams.push(newRam);
         this._callSubscriber(this._state)
@@ -117,9 +128,6 @@ let store = {
         }
         this._state.mboardPage.sokets.push(newSoket);
         this._callSubscriber(this._state);
-    },
-    subscribe(observer) {
-        this._callSubscriber = observer;
     }
 }
 

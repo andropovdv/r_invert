@@ -17,9 +17,7 @@ const App = (props) => {
       <div className='app-wrapper-content'>
         <Route path='/record' render={() =>
           <Record vendorPage={props.state.vendorPage}
-            addVendor={props.addVendor}
-            changeNewVendor={props.changeNewVendor}
-            changeNewFullVendors={props.changeNewFullVendors} />} />
+          dispatch={props.dispatch} />} />
         <Route path='/mboards' render={() =>
           <MBoards state={props.state.mboardPage} addSoket={props.addSoket} />} />
         <Route path='/rams' render={() =>
@@ -27,7 +25,8 @@ const App = (props) => {
         <Route path='/hdds' render={() =>
           <Hdds hdds={props.state.hddPage.hdds} addHdd={props.addHdd} />} />
         <Route path='/cpus' render={() =>
-          <Cpus cpusData={props.state.cpuPage.cpusData} addCpu={props.addCpu} />} />
+          <Cpus cpusData={props.state.cpuPage.cpusData} dispatch={props.dispatch}
+          typingVendor={props.state.cpuPage.typingVendor} typingModel={props.state.cpuPage.typingModel} />} />
       </div>
     </div>
   );

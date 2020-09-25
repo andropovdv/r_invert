@@ -12,9 +12,7 @@ const Record = (props) => {
             <MyVendor vendors={props.vendorPage.vendors}
                 newName={props.vendorPage.newName}
                 newFullName={props.vendorPage.newFullName}
-                addVendor={props.addVendor}
-                changeNewVendor={props.changeNewVendor}
-                changeNewFullVendors={props.changeNewFullVendors} />
+                dispatch={props.dispatch} />
         </div>
     )
 }

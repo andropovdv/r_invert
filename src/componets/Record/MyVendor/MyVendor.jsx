@@ -14,40 +14,39 @@ const MyVendor = (props) => {
     let newVendorFullName = React.createRef();
 
     let addVendor = () => {
-        props.addVendor();
- 
+        props.dispatch({ type: 'ADD-VENDOR' });
+
     }
 
     let onVendorNameChange = () => {
         let textName = newVendorName.current.value;
-        props.changeNewVendor(textName);
+        props.dispatch({ type: 'TYPING-VENDOR-NAME', newText: textName });
     }
 
     let onVendorFullNameChange = () => {
         let textName = newVendorFullName.current.value
-        props.changeNewFullVendors(textName);
+        const action = { type: 'TYPING-VENDOR-FULLNAME', newText: textName };
+        props.dispatch(action);
     }
     return (
         <div>
-            <div>
-                <div className={s.main}>
-                    <div className={s.item}>
-                        <label>Наименование:</label>
-                        <input onChange={onVendorNameChange} ref={newVendorName} value={props.newName} />
-                    </div>
-                    <div className={s.item}>
-                        <label>Полное наименование: </label>
-                        <input onChange={onVendorFullNameChange} ref={newVendorFullName} value={props.newFullName} />
-                    </div>
-                    <div>
-                        <button onClick={addVendor}>Добавить производителя</button>
-                    </div>
-                    <div>
-                        <i>Производители:</i>
-                    </div>
-                    <div className={s.dates}>
-                        {vendorElements}
-                    </div>
+            <div className={s.main}>
+                <div className={s.item}>
+                    <label>Наименование:</label>
+                    <input onChange={onVendorNameChange} ref={newVendorName} value={props.newName} />
+                </div>
+                <div className={s.item}>
+                    <label>Полное наименование: </label>
+                    <input onChange={onVendorFullNameChange} ref={newVendorFullName} value={props.newFullName} />
+                </div>
+                <div>
+                    <button onClick={addVendor}>Добавить производителя</button>
+                </div>
+                <div>
+                    <i>Производители:</i>
+                </div>
+                <div className={s.dates}>
+                    {vendorElements}
                 </div>
             </div>
         </div>
