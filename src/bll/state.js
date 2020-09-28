@@ -9,7 +9,9 @@ const TYPING_MB_SOKET = 'TYPING-MB-SOKET';
 const TYPING_HDD_MODEL = 'TYPING-HDD-MODEL';
 const TYPING_HDD_VENDOR = 'TYPING-HDD-VENDOR';
 const ADD_HDD = 'ADD-HDD';
-
+const TYPING_RAM_VENDOR = 'TYPING-RAM-VENDOR';
+const TYPING_RAM_MODEL = 'TYPING-RAM-MODEL';
+const ADD_RAM = 'ADD-RAM';
 
 let store = {
     _state: {
@@ -111,6 +113,7 @@ let store = {
                 model: this._state.cpuPage.typingModel
             }
             this._state.cpuPage.cpusData.push(newCpu);
+            this._state.cpuPage.typingVendor = '';
             this._callSubscriber(this._state)
         } else if (action.type === TYPING_CPU_VENDOR) {
             this._state.cpuPage.typingVendor = action.newText;
@@ -124,6 +127,7 @@ let store = {
                 soket: this._state.mboardPage.typingSoket
             }
             this._state.mboardPage.sokets.push(newSoket);
+            this._state.mboardPage.typingSoket = '';
             this._callSubscriber(this._state);
         } else if (action.type === TYPING_MB_SOKET) {
             this._state.mboardPage.typingSoket = action.newText;
@@ -141,14 +145,16 @@ let store = {
                 model: this._state.hddPage.typingModel
             }
             this._state.hddPage.hdds.push(newHdd);
+            this._state.hddPage.typingVendor = '';
+            this._state.hddPage.typingModel = '';
             this._callSubscriber(this._state);
-        } else if (action.type === 'TYPING-RAM-VENDOR') {
+        } else if (action.type === TYPING_RAM_VENDOR) {
             this._state.ramPage.typingVendor = action.newText;
             this._callSubscriber(this._state);
-        } else if (action.type === 'TYPING-RAM-MODEL') {
+        } else if (action.type === TYPING_RAM_MODEL) {
             this._state.ramPage.typingModel = action.newText;
             this._callSubscriber(this._state);
-        } else if (action.type === 'ADD-RAM') {
+        } else if (action.type === ADD_RAM) {
             let newRam = {
                 id: 7,
                 vendor: this._state.ramPage.typingVendor,
@@ -157,6 +163,9 @@ let store = {
 
             }
             this._state.ramPage.rams.push(newRam);
+            this._state.ramPage.typingModel = '';
+            this._state.ramPage.typingVendor = '';
+            this._state.ramPage.typingVolume = '';
             this._callSubscriber(this._state)
         }
 
@@ -205,6 +214,15 @@ export const typingHddVendorActionCreator = (textName) => {
 }
 export const addHddActionCreator = () => {
     return { type: ADD_HDD }
+}
+export const typingRamVendorActionCreator = (textName) => {
+    return { type: TYPING_RAM_VENDOR, newName: textName }
+}
+export const typingRamModelActionCreator = (textName) => {
+    return { type: TYPING_RAM_MODEL, newName: textName }
+}
+export const addRamActionCreator = () => {
+    return {type: ADD_RAM}
 }
 
 export default store;

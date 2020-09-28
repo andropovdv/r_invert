@@ -10,21 +10,18 @@ const Hdds = (props) => {
             <HddItem id={h.id} vendor={h.vendor} model={h.model} />
         )
     });
-
-    let newModel = React.createRef();
-    let newVendor = React.createRef();
-
+    
     let addHdd = () => {
         props.dispatch(addHddActionCreator())
     }
 
-    let onVendorChange = () => {
-        let textName = newVendor.current.value;
+    let onVendorChange = (e) => {
+        let textName = e.target.value;
         props.dispatch(typingHddVendorActionCreator(textName));
     }
 
-    let onModelChange = () => {
-        let textName = newModel.current.value;
+    let onModelChange = (e) => {
+        let textName = e.target.value;
         props.dispatch(typingHddModelActionCreator(textName));
     }
 
@@ -41,11 +38,11 @@ const Hdds = (props) => {
                 <hr />
                 <div className={s.item}>
                     <label>Производитель</label>
-                    <input onChange={onVendorChange} ref={newVendor} value={props.state.typingVendor} />
+                    <input onChange={onVendorChange} value={props.state.typingVendor} />
                 </div>
                 <div className={s.item}>
                     <label>Модель</label><br />
-                    <input onChange={onModelChange} ref={newModel} value={props.state.typingModel} />
+                    <input onChange={onModelChange} value={props.state.typingModel} />
                 </div>
                 <div>
                     <button onClick={addHdd}>Добавить</button>

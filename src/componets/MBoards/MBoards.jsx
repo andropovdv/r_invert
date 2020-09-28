@@ -22,14 +22,12 @@ debugger
         )
     })
 
-    let newSoket = React.createRef();
-
     let addSoket = () => {
         props.dispatch(addSoketActionCreator())
     }
 
-    let onSoketChange = () => {
-        let textSoket = newSoket.current.value;
+    let onSoketChange = (e) => {
+        let textSoket = e.target.value;
         props.dispatch(typingMbSoketActionCreator(textSoket))
     }
 
@@ -48,7 +46,7 @@ debugger
                 </div>
                 <div>
                     <hr />
-                    <input onChange={onSoketChange} ref={newSoket} value={props.state.typingSoket} />
+                    <input onChange={onSoketChange} value={props.state.typingSoket} />
                 </div>
                 <div>
                     <button onClick={addSoket}>Добавить</button>

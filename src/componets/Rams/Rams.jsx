@@ -1,6 +1,7 @@
 import React from 'react';
 import RamItem from './RamItem/ramItem';
 import s from './Rams.module.css';
+import { typingRamModelActionCreator, typingRamVendorActionCreator } from './../../bll/state';
 
 const Rams = (props) => {
 
@@ -10,26 +11,22 @@ const Rams = (props) => {
         )
     })
 
-    let newVendor = React.createRef();
-    let newModel = React.createRef();
-    let volume = React.createRef();
-
     let addRam = () => {
-        props.dispatch({type: 'ADD-RAM'});
+        props.dispatch({ type: 'ADD-RAM' });
     }
 
-    let onVedorChange = () => {
-        let textName = newVendor.current.value;
-        props.dispatch({ type: 'TYPING-RAM-VENDOR', newText: textName })
+    let onVedorChange = (e) => {
+        let textName = e.target.value;
+        props.dispatch(typingRamVendorActionCreator(textName))
     }
 
-    let onModelChange = () => {
-        let textName = newModel.current.value;
-        props.dispatch({ type: 'TYPING-RAM-MODEL', newText: textName })
+    let onModelChange = (e) => {
+        let textName = e.target.value;
+        props.dispatch(typingRamModelActionCreator(textName))
     }
 
-    let onVolumeChange = () => {
-        let textName = volume.current.value;
+    let onVolumeChange = (e) => {
+        let textName = e.target.value;
         props.dispatch({ type: 'TYPING-RAM-VOLUME', newText: textName })
     }
     return (
@@ -43,15 +40,15 @@ const Rams = (props) => {
                 <hr />
                 <div className={s.item}>
                     <label>Производитель</label>
-                    <input onChange={onVedorChange} ref={newVendor} value={props.state.typingVendor} />
+                    <input onChange={onVedorChange} value={props.state.typingVendor} />
                 </div>
                 <div className={s.item}>
                     <label>Модель</label><br />
-                    <input onChange={onModelChange} ref={newModel} value={props.state.typingModel} />
+                    <input onChange={onModelChange} value={props.state.typingModel} />
                 </div>
                 <div className={s.item}>
                     <label>Объем</label><br />
-                    <input onChange={onVolumeChange} ref={volume} value={props.state.typingVolume} />
+                    <input onChange={onVolumeChange} value={props.state.typingVolume} />
                 </div>
 
                 <div>

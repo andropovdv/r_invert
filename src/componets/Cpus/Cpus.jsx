@@ -9,22 +9,17 @@ const Cpus = (props) => {
 
     let cpuElements = props.state.cpusData.map(c => <CpuItem vendor={c.vendor} model={c.model} id={c.id} />);
 
-    let newVendor = React.createRef();
-    let newModel = React.createRef();
-
     let addCpu = () => {
-        // let textVendor = newVendor.current.value;
-        // let textModel = newModel.current.value;
         props.dispatch(addCpuActionCreator());
     }
 
-    let onVendorChange = () => {
-        let textName = newVendor.current.value;
+    let onVendorChange = (e) => {
+        let textName = e.target.value;
         props.dispatch(typingCpuVendorActionCreator(textName));
     }
 
-    let onModelChange = () => {
-        let textName = newModel.current.value;
+    let onModelChange = (e) => {
+        let textName = e.target.value;
         props.dispatch(typingCpuModelActionCreator(textName))
     }
 
@@ -41,11 +36,11 @@ const Cpus = (props) => {
                 <hr />
                 <div className={s.item}>
                     <label>Производитель</label>
-                    <input onChange={onVendorChange} ref={newVendor} value={props.state.typingVendor}/>
+                    <input onChange={onVendorChange} value={props.state.typingVendor} />
                 </div>
                 <div className={s.item}>
                     <label>Модель</label><br />
-                    <input onChange={onModelChange} ref={newModel} value={props.state.typingModel}/>
+                    <input onChange={onModelChange} value={props.state.typingModel} />
                 </div>
                 <div>
                     <button onClick={addCpu}>Добавить</button>

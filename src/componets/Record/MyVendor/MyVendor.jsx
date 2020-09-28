@@ -13,20 +13,17 @@ const MyVendor = (props) => {
         )
     });
 
-    let newVendorName = React.createRef();
-    let newVendorFullName = React.createRef();
-
     let addVendor = () => {
         props.dispatch(addVendorActionCreator());
     }
 
-    let onVendorNameChange = () => {
-        let textName = newVendorName.current.value;
+    let onVendorNameChange = (e) => {
+        let textName = e.target.value;
         props.dispatch(typingVendorNameActionCreator(textName));
     }
 
-    let onVendorFullNameChange = () => {
-        let textName = newVendorFullName.current.value
+    let onVendorFullNameChange = (e) => {
+        let textName = e.target.value;
         props.dispatch(typingVendorFullNameActionCreator(textName));
     }
     return (
@@ -34,11 +31,11 @@ const MyVendor = (props) => {
             <div className={s.main}>
                 <div className={s.item}>
                     <label>Наименование:</label>
-                    <input onChange={onVendorNameChange} ref={newVendorName} value={props.newName} />
+                    <input onChange={onVendorNameChange} value={props.newName} />
                 </div>
                 <div className={s.item}>
                     <label>Полное наименование: </label>
-                    <input onChange={onVendorFullNameChange} ref={newVendorFullName} value={props.newFullName} />
+                    <input onChange={onVendorFullNameChange} value={props.newFullName} />
                 </div>
                 <div>
                     <button onClick={addVendor}>Добавить производителя</button>
