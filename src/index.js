@@ -1,6 +1,6 @@
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import store from './bll/state';
+import store from './bll/store';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';

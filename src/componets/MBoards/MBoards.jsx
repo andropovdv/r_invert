@@ -2,7 +2,7 @@ import React from 'react';
 import s from './MBoards.module.css';
 import MBoardItem from './MboardItem/MboardItem';
 import MBoardSoket from './MboardSoket/MboardSoket';
-import { addSoketActionCreator, typingMbSoketActionCreator } from '../../bll/state';
+import { addSoketActionCreator, typingMbSoketActionCreator } from '../../bll/mboardReducer';
 
 const MBoards = (props) => {
 
@@ -15,7 +15,6 @@ const MBoards = (props) => {
             <MBoardItem vendor={m.vendor} model={m.model} id={m.id} />
         )
     });
-debugger
     let soketElements = props.state.sokets.map((s) => {
         return (
             <MBoardSoket soket={s.soket} />

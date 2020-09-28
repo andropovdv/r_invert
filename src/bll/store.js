@@ -1,11 +1,7 @@
-const ADD_VENDOR = 'ADD-VENDOR';
-const TYPING_VENDOR_NAME = 'TYPING-VENDOR-NAME';
-const TYPING_VENDOR_FULLNAME = 'TYPING-VENDOR-FULLNAME';
-const ADD_CPU = 'ADD-CPU';
-const TYPING_CPU_VENDOR = 'TYPING-CPU-VENDOR';
-const TYPING_CPU_MODEL = 'TYPING-CPU-MODEL'
-const ADD_SOKET = 'ADD-SOKET';
-const TYPING_MB_SOKET = 'TYPING-MB-SOKET';
+import vendorReducer from './vendorReducer';
+import cpuReducer from './cpuReducer';
+import mboardReducer from './mboardReducer';
+
 const TYPING_HDD_MODEL = 'TYPING-HDD-MODEL';
 const TYPING_HDD_VENDOR = 'TYPING-HDD-VENDOR';
 const ADD_HDD = 'ADD-HDD';
@@ -90,49 +86,13 @@ let store = {
         this._callSubscriber = observer;
     },
     dispatch(action) {
-        if (action.type === ADD_VENDOR) {
-            let newVendor = {
-                id: 3,
-                name: this._state.vendorPage.newName,
-                fullName: this._state.vendorPage.newFullName
-            }
-            this._state.vendorPage.vendors.push(newVendor);
-            this._state.vendorPage.newName = '';
-            this._state.vendorPage.newFullName = '';
-            this._callSubscriber(this._state)
-        } else if (action.type === TYPING_VENDOR_NAME) {
-            this._state.vendorPage.newName = action.newText;
-            this._callSubscriber(this._state);
-        } else if (action.type === TYPING_VENDOR_FULLNAME) {
-            this._state.vendorPage.newFullName = action.newText;
-            this._callSubscriber(this._state);
-        } else if (action.type === ADD_CPU) {
-            let newCpu = {
-                id: 7,
-                vendor: this._state.cpuPage.typingVendor,
-                model: this._state.cpuPage.typingModel
-            }
-            this._state.cpuPage.cpusData.push(newCpu);
-            this._state.cpuPage.typingVendor = '';
-            this._callSubscriber(this._state)
-        } else if (action.type === TYPING_CPU_VENDOR) {
-            this._state.cpuPage.typingVendor = action.newText;
-            this._callSubscriber(this._state);
-        } else if (action.type === TYPING_CPU_MODEL) {
-            this._state.cpuPage.typingModel = action.newText;
-            this._callSubscriber(this._state);
-        } else if (action.type === ADD_SOKET) {
-            let newSoket = {
-                id: 5,
-                soket: this._state.mboardPage.typingSoket
-            }
-            this._state.mboardPage.sokets.push(newSoket);
-            this._state.mboardPage.typingSoket = '';
-            this._callSubscriber(this._state);
-        } else if (action.type === TYPING_MB_SOKET) {
-            this._state.mboardPage.typingSoket = action.newText;
-            this._callSubscriber(this._state);
-        } else if (action.type === TYPING_HDD_VENDOR) {
+        this._state.vendorPage = vendorReducer(this._state.vendorPage, action);
+        this._state.cpuPage = cpuReducer(this._state.cpuPage, action);
+        this._state.mboardPage = mboardReducer(this._state.mboardPage, action);
+
+        this._callSubscriber(this._state)
+
+        if (action.type === TYPING_HDD_VENDOR) {
             this._state.hddPage.typingVendor = action.newText;
             this._callSubscriber(this._state);
         } else if (action.type === TYPING_HDD_MODEL) {
@@ -172,40 +132,9 @@ let store = {
     }
 }
 
-export const addVendorActionCreator = () => ({ type: ADD_VENDOR }) //короткая запись ниже наже написанного
 
-// export const addVendorActionCreator = () => {
-//     return {
-//         type: ADD_VENDOR
-//     }
-// }
 
-export const typingVendorNameActionCreator = (textName) => {
-    return {
-        type: TYPING_VENDOR_NAME, newText: textName
-    }
-}
 
-export const typingVendorFullNameActionCreator = (textName) => {
-    return {
-        type: TYPING_VENDOR_FULLNAME, newText: textName
-    }
-}
-export const addCpuActionCreator = () => {
-    return { type: ADD_CPU }
-}
-export const typingCpuVendorActionCreator = (textName) => {
-    return { type: TYPING_CPU_VENDOR, newText: textName }
-}
-export const typingCpuModelActionCreator = (textName) => {
-    return { type: TYPING_CPU_MODEL, newText: textName }
-}
-export const addSoketActionCreator = () => {
-    return { type: ADD_SOKET }
-}
-export const typingMbSoketActionCreator = (textName) => {
-    return { type: TYPING_MB_SOKET, newName: textName }
-}
 export const typingHddModelActionCreator = (textName) => {
     return { type: TYPING_HDD_MODEL, newText: textName }
 }
@@ -222,7 +151,7 @@ export const typingRamModelActionCreator = (textName) => {
     return { type: TYPING_RAM_MODEL, newName: textName }
 }
 export const addRamActionCreator = () => {
-    return {type: ADD_RAM}
+    return { type: ADD_RAM }
 }
 
 export default store;

@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './Cpus.module.css';
 import CpuItem from './CpuItem/CpuItem';
-import { addCpuActionCreator, typingCpuModelActionCreator, typingCpuVendorActionCreator } from './../../bll/state';
+import { addCpuActionCreator, typingCpuModelActionCreator, typingCpuVendorActionCreator } from '../../bll/cpuReducer';
 
 
 

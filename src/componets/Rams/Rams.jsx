@@ -1,7 +1,7 @@
 import React from 'react';
 import RamItem from './RamItem/ramItem';
 import s from './Rams.module.css';
-import { typingRamModelActionCreator, typingRamVendorActionCreator } from './../../bll/state';
+import { typingRamModelActionCreator, typingRamVendorActionCreator } from '../../bll/store';
 
 const Rams = (props) => {
 
