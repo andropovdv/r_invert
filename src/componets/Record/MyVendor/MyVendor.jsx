@@ -1,6 +1,9 @@
 import React from 'react';
+import { addVendorActionCreator, typingVendorFullNameActionCreator, typingVendorNameActionCreator } from '../../../bll/state';
 import s from './MyVendor.module.css';
 import Vendor from './Vendor/Vendor';
+
+
 
 const MyVendor = (props) => {
 
@@ -14,19 +17,17 @@ const MyVendor = (props) => {
     let newVendorFullName = React.createRef();
 
     let addVendor = () => {
-        props.dispatch({ type: 'ADD-VENDOR' });
-
+        props.dispatch(addVendorActionCreator());
     }
 
     let onVendorNameChange = () => {
         let textName = newVendorName.current.value;
-        props.dispatch({ type: 'TYPING-VENDOR-NAME', newText: textName });
+        props.dispatch(typingVendorNameActionCreator(textName));
     }
 
     let onVendorFullNameChange = () => {
         let textName = newVendorFullName.current.value
-        const action = { type: 'TYPING-VENDOR-FULLNAME', newText: textName };
-        props.dispatch(action);
+        props.dispatch(typingVendorFullNameActionCreator(textName));
     }
     return (
         <div>

@@ -3,8 +3,8 @@ import RamItem from './RamItem/ramItem';
 import s from './Rams.module.css';
 
 const Rams = (props) => {
-    
-    let RamsElements = props.rams.map((r) => {
+
+    let RamsElements = props.state.rams.map((r) => {
         return (
             <RamItem id={r.id} vendor={r.vendor} model={r.model} volume={r.volume} />
         )
@@ -15,15 +15,23 @@ const Rams = (props) => {
     let volume = React.createRef();
 
     let addRam = () => {
-        let textVendor = newVendor.current.value;
-        let textModel = newModel.current.value;
-        let textVolume = volume.current.value;
-        props.addRam(textVendor, textModel, textVolume);
-        newVendor.current.value = '';
-        newModel.current.value = '';
-        volume.current.value = '';
+        props.dispatch({type: 'ADD-RAM'});
     }
 
+    let onVedorChange = () => {
+        let textName = newVendor.current.value;
+        props.dispatch({ type: 'TYPING-RAM-VENDOR', newText: textName })
+    }
+
+    let onModelChange = () => {
+        let textName = newModel.current.value;
+        props.dispatch({ type: 'TYPING-RAM-MODEL', newText: textName })
+    }
+
+    let onVolumeChange = () => {
+        let textName = volume.current.value;
+        props.dispatch({ type: 'TYPING-RAM-VOLUME', newText: textName })
+    }
     return (
         <div className={s.rams}>
             <div className={s.ram_items}>
@@ -31,19 +39,21 @@ const Rams = (props) => {
                 {RamsElements}
             </div>
             <div>
+                <b>Добавить</b>
+                <hr />
                 <div className={s.item}>
                     <label>Производитель</label>
-                    <input ref={newVendor} />
+                    <input onChange={onVedorChange} ref={newVendor} value={props.state.typingVendor} />
                 </div>
                 <div className={s.item}>
                     <label>Модель</label><br />
-                    <input ref={newModel} />
+                    <input onChange={onModelChange} ref={newModel} value={props.state.typingModel} />
                 </div>
                 <div className={s.item}>
                     <label>Объем</label><br />
-                    <input ref={volume} />
+                    <input onChange={onVolumeChange} ref={volume} value={props.state.typingVolume} />
                 </div>
-                <hr />
+
                 <div>
                     <button onClick={addRam}>Добавить</button>
                 </div>

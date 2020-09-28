@@ -1,3 +1,16 @@
+const ADD_VENDOR = 'ADD-VENDOR';
+const TYPING_VENDOR_NAME = 'TYPING-VENDOR-NAME';
+const TYPING_VENDOR_FULLNAME = 'TYPING-VENDOR-FULLNAME';
+const ADD_CPU = 'ADD-CPU';
+const TYPING_CPU_VENDOR = 'TYPING-CPU-VENDOR';
+const TYPING_CPU_MODEL = 'TYPING-CPU-MODEL'
+const ADD_SOKET = 'ADD-SOKET';
+const TYPING_MB_SOKET = 'TYPING-MB-SOKET';
+const TYPING_HDD_MODEL = 'TYPING-HDD-MODEL';
+const TYPING_HDD_VENDOR = 'TYPING-HDD-VENDOR';
+const ADD_HDD = 'ADD-HDD';
+
+
 let store = {
     _state: {
         vendorPage: {
@@ -17,8 +30,8 @@ let store = {
                 { id: '5', vendor: 'AMD', model: 'A8 9600' },
                 { id: '6', vendor: 'INTEL', model: 'Core i3 9100F' }
             ],
-            typingVendor: 'text',
-            typingModel: 'text'
+            typingVendor: 'vendor',
+            typingModel: 'model'
         },
         ramPage: {
             rams: [
@@ -28,7 +41,10 @@ let store = {
                 { id: 4, vendor: 'CORSAIR', model: 'Vengeance LPX CMK16GX4M2B3200C16', volume: '8 Gb' },
                 { id: 5, vendor: 'CRUCIAL', model: 'CT4G4DFS8266', volume: '4 Gb' },
                 { id: 6, vendor: 'PATRIOT', model: 'Signature PSD48G266681', volume: '8 Gb' }
-            ]
+            ],
+            typingVendor: 'производитель',
+            typingModel: 'модель',
+            typingVolume: 'объем'
 
         },
         mboardPage: {
@@ -45,7 +61,8 @@ let store = {
                 { id: 2, soket: 'LGA 1200' },
                 { id: 3, soket: 'Socket R4 (LGA 2066)' },
                 { id: 4, soket: 'Socket H4 (LGA 1151)' }
-            ]
+            ],
+            typingSoket: 'soket'
         },
         hddPage: {
             hdds: [
@@ -55,7 +72,9 @@ let store = {
                 { id: '4', vendor: 'SEAGATE', model: 'Barracuda ST2000DM008' },
                 { id: '5', vendor: 'WD', model: 'Blue WD10EZRZ' },
                 { id: '6', vendor: 'WD', model: 'Blue WD20EZAZ' },
-            ]
+            ],
+            typingVendor: 'vendor',
+            typingModel: 'model'
         }
     },
     _callSubscriber() {
@@ -69,7 +88,7 @@ let store = {
         this._callSubscriber = observer;
     },
     dispatch(action) {
-        if (action.type === 'ADD-VENDOR') {
+        if (action.type === ADD_VENDOR) {
             let newVendor = {
                 id: 3,
                 name: this._state.vendorPage.newName,
@@ -79,13 +98,13 @@ let store = {
             this._state.vendorPage.newName = '';
             this._state.vendorPage.newFullName = '';
             this._callSubscriber(this._state)
-        } else if (action.type === 'TYPING-VENDOR-NAME') {
+        } else if (action.type === TYPING_VENDOR_NAME) {
             this._state.vendorPage.newName = action.newText;
             this._callSubscriber(this._state);
-        } else if (action.type === 'TYPING-VENDOR-FULLNAME') {
+        } else if (action.type === TYPING_VENDOR_FULLNAME) {
             this._state.vendorPage.newFullName = action.newText;
             this._callSubscriber(this._state);
-        } else if (action.type === 'ADD-CPU') {
+        } else if (action.type === ADD_CPU) {
             let newCpu = {
                 id: 7,
                 vendor: this._state.cpuPage.typingVendor,
@@ -93,42 +112,99 @@ let store = {
             }
             this._state.cpuPage.cpusData.push(newCpu);
             this._callSubscriber(this._state)
-        } else if (action.type === 'TYPING-CPU-VENDOR') {
+        } else if (action.type === TYPING_CPU_VENDOR) {
             this._state.cpuPage.typingVendor = action.newText;
             this._callSubscriber(this._state);
-        } else if (action.type === 'TYPING-CPU-MODEL') {
+        } else if (action.type === TYPING_CPU_MODEL) {
             this._state.cpuPage.typingModel = action.newText;
             this._callSubscriber(this._state);
-        }
-    },
-    addHdd(textVendor, textModel) {
-        let newHdd = {
-            id: 7,
-            vendor: textVendor,
-            model: textModel
-        }
-        this._state.hddPage.hdds.push(newHdd);
-        this._callSubscriber(this._state);
-    },
-    addRam(textVendor, textModel, textVolume) {
-        let newRam = {
-            id: 7,
-            vendor: textVendor,
-            model: textModel,
-            volume: textVolume
+        } else if (action.type === ADD_SOKET) {
+            let newSoket = {
+                id: 5,
+                soket: this._state.mboardPage.typingSoket
+            }
+            this._state.mboardPage.sokets.push(newSoket);
+            this._callSubscriber(this._state);
+        } else if (action.type === TYPING_MB_SOKET) {
+            this._state.mboardPage.typingSoket = action.newText;
+            this._callSubscriber(this._state);
+        } else if (action.type === TYPING_HDD_VENDOR) {
+            this._state.hddPage.typingVendor = action.newText;
+            this._callSubscriber(this._state);
+        } else if (action.type === TYPING_HDD_MODEL) {
+            this._state.hddPage.typingModel = action.newText;
+            this._callSubscriber(this._state);
+        } else if (action.type === ADD_HDD) {
+            let newHdd = {
+                id: 7,
+                vendor: this._state.hddPage.typingVendor,
+                model: this._state.hddPage.typingModel
+            }
+            this._state.hddPage.hdds.push(newHdd);
+            this._callSubscriber(this._state);
+        } else if (action.type === 'TYPING-RAM-VENDOR') {
+            this._state.ramPage.typingVendor = action.newText;
+            this._callSubscriber(this._state);
+        } else if (action.type === 'TYPING-RAM-MODEL') {
+            this._state.ramPage.typingModel = action.newText;
+            this._callSubscriber(this._state);
+        } else if (action.type === 'ADD-RAM') {
+            let newRam = {
+                id: 7,
+                vendor: this._state.ramPage.typingVendor,
+                model: this._state.ramPage.typingModel,
+                volume: this._state.ramPage.typingVolume
 
+            }
+            this._state.ramPage.rams.push(newRam);
+            this._callSubscriber(this._state)
         }
-        this._state.ramPage.rams.push(newRam);
-        this._callSubscriber(this._state)
-    },
-    addSoket(textSoket) {
-        let newSoket = {
-            id: 5,
-            soket: textSoket
-        }
-        this._state.mboardPage.sokets.push(newSoket);
-        this._callSubscriber(this._state);
+
     }
+}
+
+export const addVendorActionCreator = () => ({ type: ADD_VENDOR }) //короткая запись ниже наже написанного
+
+// export const addVendorActionCreator = () => {
+//     return {
+//         type: ADD_VENDOR
+//     }
+// }
+
+export const typingVendorNameActionCreator = (textName) => {
+    return {
+        type: TYPING_VENDOR_NAME, newText: textName
+    }
+}
+
+export const typingVendorFullNameActionCreator = (textName) => {
+    return {
+        type: TYPING_VENDOR_FULLNAME, newText: textName
+    }
+}
+export const addCpuActionCreator = () => {
+    return { type: ADD_CPU }
+}
+export const typingCpuVendorActionCreator = (textName) => {
+    return { type: TYPING_CPU_VENDOR, newText: textName }
+}
+export const typingCpuModelActionCreator = (textName) => {
+    return { type: TYPING_CPU_MODEL, newText: textName }
+}
+export const addSoketActionCreator = () => {
+    return { type: ADD_SOKET }
+}
+export const typingMbSoketActionCreator = (textName) => {
+    return { type: TYPING_MB_SOKET, newName: textName }
+}
+export const typingHddModelActionCreator = (textName) => {
+    return { type: TYPING_HDD_MODEL, newText: textName }
+}
+export const typingHddVendorActionCreator = (textName) => {
+    return { type: TYPING_HDD_VENDOR, newText: textName }
+}
+export const addHddActionCreator = () => {
+    return { type: ADD_HDD }
 }
 
 export default store;

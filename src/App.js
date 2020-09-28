@@ -17,16 +17,15 @@ const App = (props) => {
       <div className='app-wrapper-content'>
         <Route path='/record' render={() =>
           <Record vendorPage={props.state.vendorPage}
-          dispatch={props.dispatch} />} />
+            dispatch={props.dispatch} />} />
         <Route path='/mboards' render={() =>
-          <MBoards state={props.state.mboardPage} addSoket={props.addSoket} />} />
+          <MBoards state={props.state.mboardPage} dispatch={props.dispatch} />} />
         <Route path='/rams' render={() =>
-          <Rams rams={props.state.ramPage.rams} addRam={props.addRam} />} />
+          <Rams state={props.state.ramPage} dispatch={props.dispatch}/>} />
         <Route path='/hdds' render={() =>
-          <Hdds hdds={props.state.hddPage.hdds} addHdd={props.addHdd} />} />
+          <Hdds state={props.state.hddPage} dispatch={props.dispatch} />} />
         <Route path='/cpus' render={() =>
-          <Cpus cpusData={props.state.cpuPage.cpusData} dispatch={props.dispatch}
-          typingVendor={props.state.cpuPage.typingVendor} typingModel={props.state.cpuPage.typingModel} />} />
+          <Cpus state={props.state.cpuPage} dispatch={props.dispatch}/>} />
       </div>
     </div>
   );

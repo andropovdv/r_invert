@@ -1,9 +1,11 @@
 import React from 'react';
 import s from './Hdds.module.css';
 import HddItem from './HddItem/hddItem';
+import { addHddActionCreator, typingHddModelActionCreator } from '../../bll/state';
+import { typingHddVendorActionCreator } from './../../bll/state';
 
 const Hdds = (props) => {
-    let hddsElement = props.hdds.map((h) => {
+    let hddsElement = props.state.hdds.map((h) => {
         return (
             <HddItem id={h.id} vendor={h.vendor} model={h.model} />
         )
@@ -13,11 +15,17 @@ const Hdds = (props) => {
     let newVendor = React.createRef();
 
     let addHdd = () => {
-        let textVendor = newVendor.current.value;
-        let textModel = newModel.current.value;
-        props.addHdd(textVendor, textModel);
-        newVendor.current.value = '';
-        newModel.current.value = '';
+        props.dispatch(addHddActionCreator())
+    }
+
+    let onVendorChange = () => {
+        let textName = newVendor.current.value;
+        props.dispatch(typingHddVendorActionCreator(textName));
+    }
+
+    let onModelChange = () => {
+        let textName = newModel.current.value;
+        props.dispatch(typingHddModelActionCreator(textName));
     }
 
     return (
@@ -28,16 +36,16 @@ const Hdds = (props) => {
             </div>
             <div>
                 <div className={s.item}>
-                    <button><b>Добавить</b></button>
+                    <b>Добавить</b>
                 </div>
                 <hr />
                 <div className={s.item}>
                     <label>Производитель</label>
-                    <input ref={newVendor} />
+                    <input onChange={onVendorChange} ref={newVendor} value={props.state.typingVendor} />
                 </div>
                 <div className={s.item}>
                     <label>Модель</label><br />
-                    <input ref={newModel} />
+                    <input onChange={onModelChange} ref={newModel} value={props.state.typingModel} />
                 </div>
                 <div>
                     <button onClick={addHdd}>Добавить</button>

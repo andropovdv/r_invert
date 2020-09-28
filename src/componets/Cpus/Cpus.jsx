@@ -1,12 +1,13 @@
 import React from 'react';
 import s from './Cpus.module.css';
 import CpuItem from './CpuItem/CpuItem';
+import { addCpuActionCreator, typingCpuModelActionCreator, typingCpuVendorActionCreator } from './../../bll/state';
 
 
 
 const Cpus = (props) => {
 
-    let cpuElements = props.cpusData.map(c => <CpuItem vendor={c.vendor} model={c.model} id={c.id} />);
+    let cpuElements = props.state.cpusData.map(c => <CpuItem vendor={c.vendor} model={c.model} id={c.id} />);
 
     let newVendor = React.createRef();
     let newModel = React.createRef();
@@ -14,17 +15,17 @@ const Cpus = (props) => {
     let addCpu = () => {
         // let textVendor = newVendor.current.value;
         // let textModel = newModel.current.value;
-        props.dispatch({ type: 'ADD-CPU' });
+        props.dispatch(addCpuActionCreator());
     }
 
     let onVendorChange = () => {
         let textName = newVendor.current.value;
-        props.dispatch({ type: 'TYPING-CPU-VENDOR', newText: textName });
+        props.dispatch(typingCpuVendorActionCreator(textName));
     }
 
     let onModelChange = () => {
         let textName = newModel.current.value;
-        props.dispatch({ type: 'TYPING-CPU-MODEL', newText: textName })
+        props.dispatch(typingCpuModelActionCreator(textName))
     }
 
     return (
@@ -40,11 +41,11 @@ const Cpus = (props) => {
                 <hr />
                 <div className={s.item}>
                     <label>Производитель</label>
-                    <input onChange={onVendorChange} ref={newVendor} value={props.typingVendor}/>
+                    <input onChange={onVendorChange} ref={newVendor} value={props.state.typingVendor}/>
                 </div>
                 <div className={s.item}>
                     <label>Модель</label><br />
-                    <input onChange={onModelChange} ref={newModel} value={props.typingModel}/>
+                    <input onChange={onModelChange} ref={newModel} value={props.state.typingModel}/>
                 </div>
                 <div>
                     <button onClick={addCpu}>Добавить</button>

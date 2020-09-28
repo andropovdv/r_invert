@@ -2,6 +2,7 @@ import React from 'react';
 import s from './MBoards.module.css';
 import MBoardItem from './MboardItem/MboardItem';
 import MBoardSoket from './MboardSoket/MboardSoket';
+import { addSoketActionCreator, typingMbSoketActionCreator } from '../../bll/state';
 
 const MBoards = (props) => {
 
@@ -14,7 +15,7 @@ const MBoards = (props) => {
             <MBoardItem vendor={m.vendor} model={m.model} id={m.id} />
         )
     });
-
+debugger
     let soketElements = props.state.sokets.map((s) => {
         return (
             <MBoardSoket soket={s.soket} />
@@ -22,10 +23,14 @@ const MBoards = (props) => {
     })
 
     let newSoket = React.createRef();
+
     let addSoket = () => {
+        props.dispatch(addSoketActionCreator())
+    }
+
+    let onSoketChange = () => {
         let textSoket = newSoket.current.value;
-        props.addSoket(textSoket);
-        newSoket.current.value = '';
+        props.dispatch(typingMbSoketActionCreator(textSoket))
     }
 
     return (
@@ -43,7 +48,7 @@ const MBoards = (props) => {
                 </div>
                 <div>
                     <hr />
-                    <input ref={newSoket} />
+                    <input onChange={onSoketChange} ref={newSoket} value={props.state.typingSoket} />
                 </div>
                 <div>
                     <button onClick={addSoket}>Добавить</button>
