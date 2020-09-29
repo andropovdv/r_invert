@@ -2,7 +2,6 @@ import React from 'react';
 import s from './MBoards.module.css';
 import MBoardItem from './MboardItem/MboardItem';
 import MBoardSoket from './MboardSoket/MboardSoket';
-import { addSoketActionCreator, typingMbSoketActionCreator } from '../../bll/mboardReducer';
 import MBoardSoketSelect from './MboardSoket/MboardSoketSelect';
 
 const MBoards = (props) => {
@@ -11,24 +10,24 @@ const MBoards = (props) => {
     // Если функция только возвращает значение, return и фигурные скобки можно не ставить
     // let mboardsElements = mboardsData
     //     .map((mboard) => <MBoardItem vendor={mboard.vendor} model={mboard.model} id={mboard.id} />);
-    let mboardsElements = props.state.mboards.map((m) => {
+    let mboardsElements = props.mboards.map((m) => {
         return (
             <MBoardItem vendor={m.vendor} model={m.model} id={m.id} />
         )
     });
-    let soketElements = props.state.sokets.map((s) => {
+    let soketElements = props.sokets.map((s) => {
         return (
             <MBoardSoket soket={s.soket} id={s.id} />
         )
     })
-    let soketElementsSelect = props.state.sokets.map((s) => {
+    let soketElementsSelect = props.sokets.map((s) => {
         return (
             <MBoardSoketSelect soket={s.soket} id={s.id} />
         )
     })
 
     let addSoket = () => {
-        props.dispatch(addSoketActionCreator())
+        props.addSoket();
     }
 
     let onSoketChange = (e) => {
@@ -37,8 +36,7 @@ const MBoards = (props) => {
     }
     let onSelectChange = (e) => {
         let vendor = e.target.value;
-        props.dispatch(typingMbSoketActionCreator(vendor))
-        alert(vendor)
+        props.changeSoket(vendor)
     }
 
     return (
@@ -58,7 +56,7 @@ const MBoards = (props) => {
                 </div>
                 <div>
                     <hr />
-                    <input onChange={onSoketChange} value={props.state.typingSoket} />
+                    <input onChange={onSoketChange} value={props.typingSoket} />
                 </div>
                 <div>
                     <button onClick={addSoket}>Добавить</button>
@@ -67,7 +65,6 @@ const MBoards = (props) => {
                 <div>
                     <select onChange={onSelectChange}>
                         {soketElementsSelect}
-                        
                     </select>
                 </div>
 

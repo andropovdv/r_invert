@@ -1,8 +1,7 @@
 import React from 'react';
 //import s from './MboardSoket.module.css';
 
-const MBoardSoketTest = (props) => {
-    debugger;
+const MBoardSoketSelect = (props) => {
     return (
         <option value={props.soket}>
             {props.soket}
@@ -10,5 +9,4 @@ const MBoardSoketTest = (props) => {
 
     )
 }
-
-export default MBoardSoketTest;
+export default MBoardSoketSelect;

@@ -2,12 +2,12 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import './App.css';
 import Header from './componets/Header/Header';
-import MBoards from './componets/MBoards/MBoards';
 import Navbar from './componets/Navbar/Navbar';
 import Record from './componets/Record/Record';
 import Rams from './componets/Rams/Rams';
 import Hdds from './componets/Hdds/Hdds';
 import Cpus from './componets/Cpus/Cpus';
+import MBoardsContainer from './componets/MBoards/MBoardsContainer';
 
 const App = (props) => {
   return (
@@ -16,9 +16,9 @@ const App = (props) => {
       <Navbar />
       <div className='app-wrapper-content'>
         <Route path='/record' render={() =>
-          <Record vendorPage={props.state.vendorPage} dispatch={props.dispatch} />} />
+          <Record store={props.store} />} />
         <Route path='/mboards' render={() =>
-          <MBoards state={props.state.mboardPage} dispatch={props.dispatch} />} />
+          <MBoardsContainer store={props.store} />} />
         <Route path='/rams' render={() =>
           <Rams state={props.state.ramPage} dispatch={props.dispatch} />} />
         <Route path='/hdds' render={() =>

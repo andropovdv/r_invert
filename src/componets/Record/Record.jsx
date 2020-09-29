@@ -1,6 +1,7 @@
 //TODO переименовость в vendor
 import React from 'react';
-import MyVendor from './MyVendor/MyVendor';
+// import MyVendor from './MyVendor/MyVendor';
+import MyVendorContainer from './MyVendor/MyVendorContainer';
 import s from './Record.module.css';
 import VendorInfo from './VendorInfo/VendorInfo';
 
@@ -9,10 +10,7 @@ const Record = (props) => {
         <div className={s.content}>
             <VendorInfo />
 
-            <MyVendor vendors={props.vendorPage.vendors}
-                newName={props.vendorPage.newName}
-                newFullName={props.vendorPage.newFullName}
-                dispatch={props.dispatch} />
+            <MyVendorContainer store={props.store} />
         </div>
     )
 }

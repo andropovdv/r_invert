@@ -1,6 +1,4 @@
 import React from 'react';
-import { addVendorActionCreator, typingVendorFullNameActionCreator, 
-    typingVendorNameActionCreator } from '../../../bll/vendorReducer';
 import s from './MyVendor.module.css';
 import Vendor from './Vendor/Vendor';
 
@@ -14,18 +12,18 @@ const MyVendor = (props) => {
         )
     });
 
-    let addVendor = () => {
-        props.dispatch(addVendorActionCreator());
+    let onAddVendor = () => {
+        props.addVendor()
     }
 
     let onVendorNameChange = (e) => {
         let textName = e.target.value;
-        props.dispatch(typingVendorNameActionCreator(textName));
+        props.changeName(textName)
     }
 
     let onVendorFullNameChange = (e) => {
         let textName = e.target.value;
-        props.dispatch(typingVendorFullNameActionCreator(textName));
+        props.changeFullName(textName)
     }
     return (
         <div>
@@ -39,7 +37,7 @@ const MyVendor = (props) => {
                     <input onChange={onVendorFullNameChange} value={props.newFullName} />
                 </div>
                 <div>
-                    <button onClick={addVendor}>Добавить производителя</button>
+                    <button onClick={onAddVendor}>Добавить производителя</button>
                 </div>
                 <div>
                     <i>Производители:</i>
