@@ -2,7 +2,16 @@ const ADD_VENDOR = 'ADD-VENDOR';
 const TYPING_VENDOR_NAME = 'TYPING-VENDOR-NAME';
 const TYPING_VENDOR_FULLNAME = 'TYPING-VENDOR-FULLNAME';
 
-const vendorReducer = (state, action) => {
+let initialState = {
+    vendors: [
+        { id: 1, name: 'Asus', fullName: 'AsusTek Computer Inc.' },
+        { id: 2, name: 'Acer', fullName: 'Acer' }
+    ],
+    newName: 'Inventor',
+    newFullName: 'Inventor'
+}
+
+const vendorReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case ADD_VENDOR:

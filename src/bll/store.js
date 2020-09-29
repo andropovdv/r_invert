@@ -1,13 +1,8 @@
 import vendorReducer from './vendorReducer';
 import cpuReducer from './cpuReducer';
 import mboardReducer from './mboardReducer';
-
-const TYPING_HDD_MODEL = 'TYPING-HDD-MODEL';
-const TYPING_HDD_VENDOR = 'TYPING-HDD-VENDOR';
-const ADD_HDD = 'ADD-HDD';
-const TYPING_RAM_VENDOR = 'TYPING-RAM-VENDOR';
-const TYPING_RAM_MODEL = 'TYPING-RAM-MODEL';
-const ADD_RAM = 'ADD-RAM';
+import hddReducer from './hddReducer';
+import ramReducer from './ramReducer';
 
 let store = {
     _state: {
@@ -89,69 +84,17 @@ let store = {
         this._state.vendorPage = vendorReducer(this._state.vendorPage, action);
         this._state.cpuPage = cpuReducer(this._state.cpuPage, action);
         this._state.mboardPage = mboardReducer(this._state.mboardPage, action);
-
+        this._state.hddPage = hddReducer(this._state.hddPage, action);
+        this._state.ramPage = ramReducer(this._state.ramPage, action)
         this._callSubscriber(this._state)
-
-        if (action.type === TYPING_HDD_VENDOR) {
-            this._state.hddPage.typingVendor = action.newText;
-            this._callSubscriber(this._state);
-        } else if (action.type === TYPING_HDD_MODEL) {
-            this._state.hddPage.typingModel = action.newText;
-            this._callSubscriber(this._state);
-        } else if (action.type === ADD_HDD) {
-            let newHdd = {
-                id: 7,
-                vendor: this._state.hddPage.typingVendor,
-                model: this._state.hddPage.typingModel
-            }
-            this._state.hddPage.hdds.push(newHdd);
-            this._state.hddPage.typingVendor = '';
-            this._state.hddPage.typingModel = '';
-            this._callSubscriber(this._state);
-        } else if (action.type === TYPING_RAM_VENDOR) {
-            this._state.ramPage.typingVendor = action.newText;
-            this._callSubscriber(this._state);
-        } else if (action.type === TYPING_RAM_MODEL) {
-            this._state.ramPage.typingModel = action.newText;
-            this._callSubscriber(this._state);
-        } else if (action.type === ADD_RAM) {
-            let newRam = {
-                id: 7,
-                vendor: this._state.ramPage.typingVendor,
-                model: this._state.ramPage.typingModel,
-                volume: this._state.ramPage.typingVolume
-
-            }
-            this._state.ramPage.rams.push(newRam);
-            this._state.ramPage.typingModel = '';
-            this._state.ramPage.typingVendor = '';
-            this._state.ramPage.typingVolume = '';
-            this._callSubscriber(this._state)
-        }
-
+        
     }
 }
 
 
 
 
-export const typingHddModelActionCreator = (textName) => {
-    return { type: TYPING_HDD_MODEL, newText: textName }
-}
-export const typingHddVendorActionCreator = (textName) => {
-    return { type: TYPING_HDD_VENDOR, newText: textName }
-}
-export const addHddActionCreator = () => {
-    return { type: ADD_HDD }
-}
-export const typingRamVendorActionCreator = (textName) => {
-    return { type: TYPING_RAM_VENDOR, newName: textName }
-}
-export const typingRamModelActionCreator = (textName) => {
-    return { type: TYPING_RAM_MODEL, newName: textName }
-}
-export const addRamActionCreator = () => {
-    return { type: ADD_RAM }
-}
+
+
 
 export default store;

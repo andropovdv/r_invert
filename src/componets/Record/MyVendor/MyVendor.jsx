@@ -1,5 +1,6 @@
 import React from 'react';
-import { addVendorActionCreator, typingVendorFullNameActionCreator, typingVendorNameActionCreator } from '../../../bll/vendorReducer';
+import { addVendorActionCreator, typingVendorFullNameActionCreator, 
+    typingVendorNameActionCreator } from '../../../bll/vendorReducer';
 import s from './MyVendor.module.css';
 import Vendor from './Vendor/Vendor';
 

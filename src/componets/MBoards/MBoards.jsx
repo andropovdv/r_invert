@@ -3,6 +3,7 @@ import s from './MBoards.module.css';
 import MBoardItem from './MboardItem/MboardItem';
 import MBoardSoket from './MboardSoket/MboardSoket';
 import { addSoketActionCreator, typingMbSoketActionCreator } from '../../bll/mboardReducer';
+import MBoardSoketSelect from './MboardSoket/MboardSoketSelect';
 
 const MBoards = (props) => {
 
@@ -17,7 +18,12 @@ const MBoards = (props) => {
     });
     let soketElements = props.state.sokets.map((s) => {
         return (
-            <MBoardSoket soket={s.soket} />
+            <MBoardSoket soket={s.soket} id={s.id} />
+        )
+    })
+    let soketElementsSelect = props.state.sokets.map((s) => {
+        return (
+            <MBoardSoketSelect soket={s.soket} id={s.id} />
         )
     })
 
@@ -26,8 +32,13 @@ const MBoards = (props) => {
     }
 
     let onSoketChange = (e) => {
-        let textSoket = e.target.value;
-        props.dispatch(typingMbSoketActionCreator(textSoket))
+        // let textSoket = e.target.value;
+        // props.dispatch(typingMbSoketActionCreator(textSoket))
+    }
+    let onSelectChange = (e) => {
+        let vendor = e.target.value;
+        props.dispatch(typingMbSoketActionCreator(vendor))
+        alert(vendor)
     }
 
     return (
@@ -42,6 +53,8 @@ const MBoards = (props) => {
                 </div>
                 <div>
                     {soketElements}
+                    {/* выподающий список */}
+                    {/* <select>{soketElements}</select> */}
                 </div>
                 <div>
                     <hr />
@@ -50,6 +63,14 @@ const MBoards = (props) => {
                 <div>
                     <button onClick={addSoket}>Добавить</button>
                 </div>
+                {/* test */}
+                <div>
+                    <select onChange={onSelectChange}>
+                        {soketElementsSelect}
+                        
+                    </select>
+                </div>
+
             </div>
             <hr />
 

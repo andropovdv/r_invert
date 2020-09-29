@@ -2,7 +2,19 @@ const ADD_CPU = 'ADD-CPU';
 const TYPING_CPU_VENDOR = 'TYPING-CPU-VENDOR';
 const TYPING_CPU_MODEL = 'TYPING-CPU-MODEL'
 
-const cpuReducer = (state, action) => {
+let initialState = {
+    cpusData: [
+        { id: '1', vendor: 'AMD', model: 'Ryzen 5 2600' },
+        { id: '2', vendor: 'INTEL', model: 'Core i5 9400F' },
+        { id: '3', vendor: 'AMD', model: 'Ryzen 7 2700' },
+        { id: '4', vendor: 'AMD', model: 'Ryzen 5 3600' },
+        { id: '5', vendor: 'AMD', model: 'A8 9600' },
+        { id: '6', vendor: 'INTEL', model: 'Core i3 9100F' }
+    ],
+    typingVendor: 'vendor',
+    typingModel: 'model'
+}
+const cpuReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_CPU:
             let newCpu = {
@@ -12,6 +24,7 @@ const cpuReducer = (state, action) => {
             }
             state.cpusData.push(newCpu);
             state.typingVendor = '';
+            state.typingModel = '';
             return state;
         case TYPING_CPU_VENDOR:
             state.typingVendor = action.newText;

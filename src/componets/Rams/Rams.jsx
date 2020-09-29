@@ -1,7 +1,8 @@
 import React from 'react';
 import RamItem from './RamItem/ramItem';
 import s from './Rams.module.css';
-import { typingRamModelActionCreator, typingRamVendorActionCreator } from '../../bll/store';
+import { typingRamModelActionCreator, typingRamVendorActionCreator } from '../../bll/ramReducer';
+import { typingRamVolumeActionCreator } from './../../bll/ramReducer';
 
 const Rams = (props) => {
 
@@ -27,7 +28,7 @@ const Rams = (props) => {
 
     let onVolumeChange = (e) => {
         let textName = e.target.value;
-        props.dispatch({ type: 'TYPING-RAM-VOLUME', newText: textName })
+        props.dispatch(typingRamVolumeActionCreator(textName))
     }
     return (
         <div className={s.rams}>

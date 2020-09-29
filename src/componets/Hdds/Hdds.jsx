@@ -1,8 +1,8 @@
 import React from 'react';
 import s from './Hdds.module.css';
 import HddItem from './HddItem/hddItem';
-import { addHddActionCreator, typingHddModelActionCreator } from '../../bll/store';
-import { typingHddVendorActionCreator } from '../../bll/store';
+import { addHddActionCreator, typingHddModelActionCreator } from '../../bll/hddReducer';
+import { typingHddVendorActionCreator } from '../../bll/hddReducer';
 
 const Hdds = (props) => {
     let hddsElement = props.state.hdds.map((h) => {

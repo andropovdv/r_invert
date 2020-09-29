@@ -6,6 +6,10 @@ const MBoardSoket = (props) => {
         <div className={s.item}>
             {props.soket}
         </div>
+        // вывод выподающим списком
+        // <option value={props.id}>
+        //     {props.soket}
+        // </option>
     )
 }
 

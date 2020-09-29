@@ -16,16 +16,15 @@ const App = (props) => {
       <Navbar />
       <div className='app-wrapper-content'>
         <Route path='/record' render={() =>
-          <Record vendorPage={props.state.vendorPage}
-            dispatch={props.dispatch} />} />
+          <Record vendorPage={props.state.vendorPage} dispatch={props.dispatch} />} />
         <Route path='/mboards' render={() =>
           <MBoards state={props.state.mboardPage} dispatch={props.dispatch} />} />
         <Route path='/rams' render={() =>
-          <Rams state={props.state.ramPage} dispatch={props.dispatch}/>} />
+          <Rams state={props.state.ramPage} dispatch={props.dispatch} />} />
         <Route path='/hdds' render={() =>
           <Hdds state={props.state.hddPage} dispatch={props.dispatch} />} />
         <Route path='/cpus' render={() =>
-          <Cpus state={props.state.cpuPage} dispatch={props.dispatch}/>} />
+          <Cpus state={props.state.cpuPage} dispatch={props.dispatch} />} />
       </div>
     </div>
   );
