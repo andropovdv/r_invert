@@ -4,10 +4,10 @@ import './App.css';
 import Header from './componets/Header/Header';
 import Navbar from './componets/Navbar/Navbar';
 import Record from './componets/Record/Record';
-import Rams from './componets/Rams/Rams';
-import Hdds from './componets/Hdds/Hdds';
-import Cpus from './componets/Cpus/Cpus';
 import MBoardsContainer from './componets/MBoards/MBoardsContainer';
+import CpusContainer from './componets/Cpus/CpusContainer';
+import HddsContainer from './componets/Hdds/HddsContainer';
+import RamsContainer from './componets/Rams/RamsContainer';
 
 const App = (props) => {
   return (
@@ -16,15 +16,25 @@ const App = (props) => {
       <Navbar />
       <div className='app-wrapper-content'>
         <Route path='/record' render={() =>
+          <Record />} />
+        <Route path='/mboards' render={() =>
+          <MBoardsContainer />} />
+        <Route path='/rams' render={() =>
+          <RamsContainer />} />
+        <Route path='/hdds' render={() =>
+          <HddsContainer />} />
+        <Route path='/cpus' render={() =>
+          <CpusContainer />} />
+        {/* <Route path='/record' render={() =>
           <Record store={props.store} />} />
         <Route path='/mboards' render={() =>
           <MBoardsContainer store={props.store} />} />
         <Route path='/rams' render={() =>
-          <Rams state={props.state.ramPage} dispatch={props.dispatch} />} />
+          <RamsContainer store={props.store} />} />
         <Route path='/hdds' render={() =>
-          <Hdds state={props.state.hddPage} dispatch={props.dispatch} />} />
+          <HddsContainer store={props.store} />} />
         <Route path='/cpus' render={() =>
-          <Cpus state={props.state.cpuPage} dispatch={props.dispatch} />} />
+          <CpusContainer store={props.store} />} /> */}
       </div>
     </div>
   );

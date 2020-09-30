@@ -1,50 +1,59 @@
 import React from 'react';
 import s from './Cpus.module.css';
 import CpuItem from './CpuItem/CpuItem';
-import { addCpuActionCreator, typingCpuModelActionCreator, typingCpuVendorActionCreator } from '../../bll/cpuReducer';
+import VendorSelect from '../Record/MyVendor/Vendor/VendorSelect';
 
 
 
 const Cpus = (props) => {
 
-    let cpuElements = props.state.cpusData.map(c => <CpuItem vendor={c.vendor} model={c.model} id={c.id} />);
+    let cpuElements = props.cpusData
+        .map(c => <CpuItem vendor={c.vendor} model={c.model} id={c.id} />);
+
+    let vendorsElement = props.vendors.map(v => <VendorSelect vendor={v.name} />)
 
     let addCpu = () => {
-        props.dispatch(addCpuActionCreator());
+        props.addCpu();
     }
 
     let onVendorChange = (e) => {
         let textName = e.target.value;
-        props.dispatch(typingCpuVendorActionCreator(textName));
+        props.changeVendor(textName);
     }
 
     let onModelChange = (e) => {
         let textName = e.target.value;
-        props.dispatch(typingCpuModelActionCreator(textName))
+        props.changeModel(textName);
     }
-
+    debugger
     return (
         <div className={s.cpus}>
             <div className={s.cpu_items}>
                 <div><h4>Процесоры</h4></div>
-                {cpuElements}
+                
+                <table border="1">{cpuElements}</table>
             </div>
             <div className={s.cpu_add}>
                 <div className={s.item}>
                     <b>Добавить</b>
                 </div>
                 <hr />
-                <div className={s.item}>
+                <div>
+                    {/* TODO посмотреть реализацию react - select */}
                     <label>Производитель</label>
-                    <input onChange={onVendorChange} value={props.state.typingVendor} />
+                    <select onChange={onVendorChange}>
+                        <option selected={true}>Выберите:</option>
+                        {vendorsElement}
+                    </select>
                 </div>
                 <div className={s.item}>
                     <label>Модель</label><br />
-                    <input onChange={onModelChange} value={props.state.typingModel} />
+                    <input onChange={onModelChange} value={props.typingModel} />
                 </div>
                 <div>
                     <button onClick={addCpu}>Добавить</button>
                 </div>
+
 
             </div>
         </div>

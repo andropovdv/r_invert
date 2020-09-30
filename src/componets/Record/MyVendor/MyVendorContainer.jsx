@@ -1,4 +1,5 @@
-import React from 'react';
+//import React from 'react';
+import { connect } from 'react-redux';
 import {
     addVendorActionCreator, typingVendorFullNameActionCreator,
     typingVendorNameActionCreator
@@ -6,32 +7,30 @@ import {
 import MyVendor from './MyVendor';
 
 
-
-const MyVendorContainer = (props) => {
-
-    let state = props.store.getState()
-
-    let addVendor = () => {
-        props.store.dispatch(addVendorActionCreator());
+let mapsStateToProps = (state) => {
+    return {
+        vendors: state.vendorPage.vendors,
+        newName: state.vendorPage.newName,
+        newFullName: state.vendorPage.newFullName
     }
-
-    let onVendorNameChange = (textName) => {
-        props.store.dispatch(typingVendorNameActionCreator(textName));
-    }
-
-    let onVendorFullNameChange = (textName) => {
-        props.store.dispatch(typingVendorFullNameActionCreator(textName));
-    }
-    return (
-        <MyVendor changeFullName={onVendorFullNameChange}
-            changeName={onVendorNameChange}
-            addVendor={addVendor} 
-            vendors = {state.vendorPage.vendors}
-            newName = {state.vendorPage.newName}
-            newFullName = {state.vendorPage.newFullName}/>
-    )
 }
 
+let mapsDispatchToProps = (dispatch) => {
+    return {
+        changeFullName: (textName) => {
+            dispatch(typingVendorFullNameActionCreator(textName));
+        },
+        changeName: (textName) => {
+            dispatch(typingVendorNameActionCreator(textName));
+        },
+        addVendor: () => {
+            dispatch(addVendorActionCreator());
+        }
+    }
+}
+debugger;
+
+const MyVendorContainer = connect(mapsStateToProps, mapsDispatchToProps)(MyVendor);
 
 
 export default MyVendorContainer;

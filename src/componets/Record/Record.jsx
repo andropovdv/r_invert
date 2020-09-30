@@ -10,7 +10,8 @@ const Record = (props) => {
         <div className={s.content}>
             <VendorInfo />
 
-            <MyVendorContainer store={props.store} />
+            <MyVendorContainer />
+            {/* <MyVendorContainer store={props.store} /> */}
         </div>
     )
 }

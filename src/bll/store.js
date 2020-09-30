@@ -23,7 +23,7 @@ let store = {
                 { id: '5', vendor: 'AMD', model: 'A8 9600' },
                 { id: '6', vendor: 'INTEL', model: 'Core i3 9100F' }
             ],
-            typingVendor: 'vendor',
+            typingVendor: '',
             typingModel: 'model'
         },
         ramPage: {

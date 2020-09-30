@@ -11,7 +11,7 @@ let initialState = {
         { id: '5', vendor: 'AMD', model: 'A8 9600' },
         { id: '6', vendor: 'INTEL', model: 'Core i3 9100F' }
     ],
-    typingVendor: 'vendor',
+    typingVendor: '',
     typingModel: 'model'
 }
 const cpuReducer = (state = initialState, action) => {
@@ -23,11 +23,14 @@ const cpuReducer = (state = initialState, action) => {
                 model: state.typingModel
             }
             state.cpusData.push(newCpu);
-            state.typingVendor = '';
             state.typingModel = '';
             return state;
         case TYPING_CPU_VENDOR:
-            state.typingVendor = action.newText;
+            if (action.newText !== 'Выберите') {
+                state.typingVendor = action.newText;
+            } else {
+                state.typingVendor = '';
+            }
             return state;
         case TYPING_CPU_MODEL:
             state.typingModel = action.newText;

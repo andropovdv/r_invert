@@ -5,7 +5,7 @@ import Vendor from './Vendor/Vendor';
 
 
 const MyVendor = (props) => {
-
+debugger;
     let vendorElements = props.vendors.map((v) => {
         return (
             <Vendor name={v.name} fullName={v.fullName} />

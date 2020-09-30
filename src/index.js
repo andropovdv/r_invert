@@ -6,14 +6,20 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux'
 
 let rerenderEntireTree = (state) => {
   ReactDOM.render(
     <React.StrictMode>
       <BrowserRouter>
-        <App state={state}
-          store={store}
-          dispatch={store.dispatch.bind(store)} />
+
+        <Provider store={store}>
+          <App />
+          {/* <App state={state}
+              store={store}
+              dispatch={store.dispatch.bind(store)} /> */}
+        </Provider>
+
       </BrowserRouter>
     </React.StrictMode>,
     document.getElementById('root')

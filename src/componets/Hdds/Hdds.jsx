@@ -1,28 +1,26 @@
 import React from 'react';
 import s from './Hdds.module.css';
 import HddItem from './HddItem/hddItem';
-import { addHddActionCreator, typingHddModelActionCreator } from '../../bll/hddReducer';
-import { typingHddVendorActionCreator } from '../../bll/hddReducer';
 
 const Hdds = (props) => {
-    let hddsElement = props.state.hdds.map((h) => {
+    let hddsElement = props.hdds.map((h) => {
         return (
             <HddItem id={h.id} vendor={h.vendor} model={h.model} />
         )
     });
     
     let addHdd = () => {
-        props.dispatch(addHddActionCreator())
+        props.addHdd();
     }
 
     let onVendorChange = (e) => {
         let textName = e.target.value;
-        props.dispatch(typingHddVendorActionCreator(textName));
+        props.changeVendor(textName);
     }
 
     let onModelChange = (e) => {
         let textName = e.target.value;
-        props.dispatch(typingHddModelActionCreator(textName));
+        props.changeModel(textName);
     }
 
     return (
@@ -38,11 +36,11 @@ const Hdds = (props) => {
                 <hr />
                 <div className={s.item}>
                     <label>Производитель</label>
-                    <input onChange={onVendorChange} value={props.state.typingVendor} />
+                    <input onChange={onVendorChange} value={props.typingVendor} />
                 </div>
                 <div className={s.item}>
                     <label>Модель</label><br />
-                    <input onChange={onModelChange} value={props.state.typingModel} />
+                    <input onChange={onModelChange} value={props.typingModel} />
                 </div>
                 <div>
                     <button onClick={addHdd}>Добавить</button>

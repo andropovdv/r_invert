@@ -8,6 +8,12 @@
     color: darkblue;
 }
 
+select {
+    width: 200px;
+}
 
+input {
+    width: 200px;
+}
 
 /* .cpu_adds {} */

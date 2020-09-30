@@ -1,34 +1,32 @@
 import React from 'react';
 import RamItem from './RamItem/ramItem';
 import s from './Rams.module.css';
-import { typingRamModelActionCreator, typingRamVendorActionCreator } from '../../bll/ramReducer';
-import { typingRamVolumeActionCreator } from './../../bll/ramReducer';
 
 const Rams = (props) => {
 
-    let RamsElements = props.state.rams.map((r) => {
+    let RamsElements = props.rams.map((r) => {
         return (
             <RamItem id={r.id} vendor={r.vendor} model={r.model} volume={r.volume} />
         )
     })
 
     let addRam = () => {
-        props.dispatch({ type: 'ADD-RAM' });
+        props.addRam();
     }
 
     let onVedorChange = (e) => {
         let textName = e.target.value;
-        props.dispatch(typingRamVendorActionCreator(textName))
+        props.changeVendor(textName)
     }
 
     let onModelChange = (e) => {
         let textName = e.target.value;
-        props.dispatch(typingRamModelActionCreator(textName))
+        props.changeModel(textName)
     }
 
     let onVolumeChange = (e) => {
         let textName = e.target.value;
-        props.dispatch(typingRamVolumeActionCreator(textName))
+        props.changeVolume(textName)
     }
     return (
         <div className={s.rams}>
@@ -41,15 +39,15 @@ const Rams = (props) => {
                 <hr />
                 <div className={s.item}>
                     <label>Производитель</label>
-                    <input onChange={onVedorChange} value={props.state.typingVendor} />
+                    <input onChange={onVedorChange} value={props.typingVendor} />
                 </div>
                 <div className={s.item}>
                     <label>Модель</label><br />
-                    <input onChange={onModelChange} value={props.state.typingModel} />
+                    <input onChange={onModelChange} value={props.typingModel} />
                 </div>
                 <div className={s.item}>
                     <label>Объем</label><br />
-                    <input onChange={onVolumeChange} value={props.state.typingVolume} />
+                    <input onChange={onVolumeChange} value={props.typingVolume} />
                 </div>
 
                 <div>
