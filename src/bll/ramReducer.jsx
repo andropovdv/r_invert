@@ -20,16 +20,19 @@ let initialState = {
 
 const ramReducer = (state = initialState, action) => {
     switch (action.type) {
-        case TYPING_RAM_VENDOR:
-            state.typingVendor = action.newText;
-            return state;
-        case TYPING_RAM_MODEL:
-            state.typingModel = action.newText;
-            return state;
+        case TYPING_RAM_VENDOR:{
+            let copyState = {...state};
+            copyState.typingVendor = action.newText;
+            return copyState;}
+        case TYPING_RAM_MODEL:{
+            let copyState = {...state};
+            copyState.typingModel = action.newText;
+            return copyState;}
         case TYPING_RAM_VOLUME:
-            state.typingVolume = action.newText;
-            return state;
-        case ADD_RAM:
+            let copyState = {...state};
+            copyState.typingVolume = action.newText;
+            return copyState;
+        case ADD_RAM:{
             let newRam = {
                 id: 7,
                 vendor: state.typingVendor,
@@ -37,11 +40,13 @@ const ramReducer = (state = initialState, action) => {
                 volume: state.typingVolume
 
             }
-            state.rams.push(newRam);
-            state.typingModel = '';
-            state.typingVendor = '';
-            state.typingVolume = '';
-            return state;
+            let copyState = {...state};
+            copyState.rams = [...state.rams]
+            copyState.rams.push(newRam);
+            copyState.typingModel = '';
+            copyState.typingVendor = '';
+            copyState.typingVolume = '';
+            return copyState;}
         default:
             return state;
     }

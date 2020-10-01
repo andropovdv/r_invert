@@ -1,30 +1,27 @@
-import React from 'react';
+//import React from 'react';
+import { connect } from 'react-redux';
 import { addSoketActionCreator, typingMbSoketActionCreator } from '../../bll/mboardReducer';
 import MBoards from './MBoards';
 
-const MBoardsContainer = (props) => {
-
-    let state = props.store.getState();
-    let addSoket = () => {
-        props.store.dispatch(addSoketActionCreator())
+let mapsStateToProps = (state) => {
+    return {
+        mboards: state.mboardPage.mboards,
+        sokets: state.mboardPage.sokets,
+        typingSoket: state.mboardPage.typingSoket
     }
-
-    // let onSoketChange = (e) => {
-    //     let textSoket = e.target.value;
-    //     props.dispatch(typingMbSoketActionCreator(textSoket))
-    // }
-
-    let onSelectChange = (vendor) => {
-        props.store.dispatch(typingMbSoketActionCreator(vendor))
-        alert(vendor)
-    }
-
-    return (
-        <MBoards addSoket={addSoket} changeSoket={onSelectChange}
-            mboards={state.mboardPage.mboards}
-            sokets={state.mboardPage.sokets}
-            typingSoket={state.mboardPage.typingSoket} />
-    )
 }
+
+let mapsDispatchToProps = (dispatch) => {
+    return {
+        addSoket: () => {
+            dispatch(addSoketActionCreator());
+        },
+        changeSoket: (vendor) => {
+            dispatch(typingMbSoketActionCreator(vendor))
+        }
+    }
+}
+
+const MBoardsContainer = connect(mapsStateToProps, mapsDispatchToProps)(MBoards)
 
 export default MBoardsContainer;

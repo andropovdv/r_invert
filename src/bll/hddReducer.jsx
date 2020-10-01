@@ -18,22 +18,26 @@ let initialState = {
 const hddReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case TYPING_HDD_VENDOR:
-            state.typingVendor = action.newText;
-            return state;
-        case TYPING_HDD_MODEL:
-            state.typingModel = action.newText;
-            return state;
-        case ADD_HDD:
+        case TYPING_HDD_VENDOR:{
+            let copyState = {...state}
+            copyState.typingVendor = action.newText;
+            return copyState;}
+        case TYPING_HDD_MODEL:{
+            let copyState = {...state}
+            copyState.typingModel = action.newText;
+            return copyState;}
+        case ADD_HDD:{
             let newHdd = {
                 id: 7,
                 vendor: state.typingVendor,
                 model: state.typingModel
             }
-            state.hdds.push(newHdd);
-            state.typingVendor = '';
-            state.typingModel = '';
-            return state;
+            let copyState = {...state};
+            copyState.hdds = [...state.hdds]
+            copyState.hdds.push(newHdd);
+            copyState.typingVendor = '';
+            copyState.typingModel = '';
+            return copyState;}
         default:
             return state;
 

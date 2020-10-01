@@ -4,7 +4,6 @@ import { addCpuActionCreator, typingCpuModelActionCreator, typingCpuVendorAction
     from '../../bll/cpuReducer';
 import Cpus from './Cpus';
 
-debugger
 let mapsStateToProps = (state) => {
     return {
         cpusData: state.cpuPage.cpusData,

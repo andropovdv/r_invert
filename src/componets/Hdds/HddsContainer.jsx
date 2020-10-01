@@ -1,29 +1,31 @@
-import React from 'react';
+import { connect } from 'react-redux';
 import { addHddActionCreator, typingHddModelActionCreator } from '../../bll/hddReducer';
 import { typingHddVendorActionCreator } from '../../bll/hddReducer';
 import Hdds from './Hdds';
 
-const HddsContainer = (props) => {
-
-let state = props.store.getState();
-
-    let addHdd = () => {
-        props.store.dispatch(addHddActionCreator())
+let mapsStateToProps = (state) => {
+    return {
+        hdds: state.hddPage.hdds,
+        typingVendor: state.hddPage.typingVendor,
+        typingModel: state.hddPage.typingModel
     }
-
-    let onVendorChange = (text) => {
-        props.store.dispatch(typingHddVendorActionCreator(text));
-    }
-
-    let onModelChange = (text) => {
-        props.store.dispatch(typingHddModelActionCreator(text));
-    }
-debugger;
-    return (
-        <Hdds addHdd={addHdd} changeVendor={onVendorChange} changeModel={onModelChange}
-        hdds={state.hddPage.hdds} typingVendor={state.hddPage.typingVendor} 
-        typingModel={state.hddPage.typingModel} />
-    )
 }
+
+let mapsDispatchToProps = (dispatch) => {
+    return {
+        addHdd: () => {
+            dispatch(addHddActionCreator());
+        },
+        changeVendor: (text) => {
+            dispatch(typingHddVendorActionCreator(text));
+        },
+        changeModel: (text) => {
+            dispatch(typingHddModelActionCreator(text));
+        }
+    }
+}
+
+
+const HddsContainer = connect(mapsStateToProps, mapsDispatchToProps)(Hdds);
 
 export default HddsContainer;
