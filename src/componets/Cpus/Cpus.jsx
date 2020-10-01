@@ -2,6 +2,8 @@ import React from 'react';
 import s from './Cpus.module.css';
 import CpuItem from './CpuItem/CpuItem';
 import VendorSelect from '../Record/MyVendor/Vendor/VendorSelect';
+import ReactTable from 'react-table-v6'
+import 'react-table-v6/react-table.css'
 
 
 
@@ -9,6 +11,18 @@ const Cpus = (props) => {
 
     let cpuElements = props.cpusData
         .map(c => <CpuItem vendor={c.vendor} model={c.model} id={c.id} />);
+
+    const columns = [
+        {
+            Header: 'Vendor',
+            accessor: 'vendor', // String-based value accessors!
+            width: 150,
+        },
+        {
+            Header: 'Model',
+            accessor: 'model',
+            width: 300
+        }]
 
     let vendorsElement = props.vendors.map(v => <VendorSelect vendor={v.name} />)
 
@@ -30,8 +44,18 @@ const Cpus = (props) => {
         <div className={s.cpus}>
             <div className={s.cpu_items}>
                 <div><h4>Процесоры</h4></div>
-                
-                <table border="1">{cpuElements}</table>
+                <ReactTable
+                    resizable={false}
+                    // minWidth={50}
+                    // pageSize={5}
+                    data={props.cpusData}
+                    columns={columns}
+                    className="-striped -highlight"
+                    style={{
+                        height: "400px",
+                        width: "700px"
+                      }} />
+                {/* <table border="1">{cpuElements}</table> */}
             </div>
             <div className={s.cpu_add}>
                 <div className={s.item}>
