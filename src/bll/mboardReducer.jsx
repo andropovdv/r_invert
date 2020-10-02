@@ -19,21 +19,20 @@ let initialState = {
     typingSoket: 'soket'
 }
 const mboardReducer = (state = initialState, action) => {
+
+
     switch (action.type) {
-        case ADD_SOKET:{
-            let newSoket = {
-                id: 5,
-                soket: state.typingSoket
-            }
-            let copyState = {...state}
-            copyState.sokets = [...state.sokets]
-            copyState.sokets.push(newSoket);
-            copyState.typingSoket = '';
-            return copyState;}
-        case TYPING_MB_SOKET:{
-            let copyState = {...state}
-            copyState.typingSoket = action.newText;
-            return copyState;}
+        case ADD_SOKET:
+            let sok = state.typingSoket
+            return {
+                ...state,
+                typingSoket: '',
+                sokets: [...state.sokets, { id: 5, soket: sok }]
+            };
+        case TYPING_MB_SOKET:
+            return {
+                ...state, typingSoket: action.newText
+            };
         default:
             return state;
 

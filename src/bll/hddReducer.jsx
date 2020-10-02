@@ -1,3 +1,5 @@
+import store from "./reduxStore";
+
 const TYPING_HDD_MODEL = 'TYPING-HDD-MODEL';
 const TYPING_HDD_VENDOR = 'TYPING-HDD-VENDOR';
 const ADD_HDD = 'ADD-HDD';
@@ -18,26 +20,22 @@ let initialState = {
 const hddReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case TYPING_HDD_VENDOR:{
-            let copyState = {...state}
-            copyState.typingVendor = action.newText;
-            return copyState;}
-        case TYPING_HDD_MODEL:{
-            let copyState = {...state}
-            copyState.typingModel = action.newText;
-            return copyState;}
-        case ADD_HDD:{
+        case TYPING_HDD_VENDOR:
+            return { ...state, typingVendor: action.newText };
+        case TYPING_HDD_MODEL:
+            return { ...state, typingModel: action.newText };
+        case ADD_HDD:
             let newHdd = {
                 id: 7,
                 vendor: state.typingVendor,
                 model: state.typingModel
             }
-            let copyState = {...state};
-            copyState.hdds = [...state.hdds]
-            copyState.hdds.push(newHdd);
-            copyState.typingVendor = '';
-            copyState.typingModel = '';
-            return copyState;}
+            return {
+                ...store,
+                typingVendor: '',
+                typingModel: '',
+                hdds: [...state.hdds, newHdd]
+            };
         default:
             return state;
 

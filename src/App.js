@@ -8,6 +8,7 @@ import MBoardsContainer from './componets/MBoards/MBoardsContainer';
 import CpusContainer from './componets/Cpus/CpusContainer';
 import HddsContainer from './componets/Hdds/HddsContainer';
 import RamsContainer from './componets/Rams/RamsContainer';
+import UsersContainer from './componets/Users/UsersContainer';
 
 const App = (props) => {
   return (
@@ -15,26 +16,12 @@ const App = (props) => {
       <Header />
       <Navbar />
       <div className='app-wrapper-content'>
-        <Route path='/record' render={() =>
-          <Record />} />
-        <Route path='/mboards' render={() =>
-          <MBoardsContainer />} />
-        <Route path='/rams' render={() =>
-          <RamsContainer />} />
-        <Route path='/hdds' render={() =>
-          <HddsContainer />} />
-        <Route path='/cpus' render={() =>
-          <CpusContainer />} />
-        {/* <Route path='/record' render={() =>
-          <Record store={props.store} />} />
-        <Route path='/mboards' render={() =>
-          <MBoardsContainer store={props.store} />} />
-        <Route path='/rams' render={() =>
-          <RamsContainer store={props.store} />} />
-        <Route path='/hdds' render={() =>
-          <HddsContainer store={props.store} />} />
-        <Route path='/cpus' render={() =>
-          <CpusContainer store={props.store} />} /> */}
+        <Route path='/record' render={() => <Record />} />
+        <Route path='/mboards' render={() => <MBoardsContainer />} />
+        <Route path='/rams' render={() => <RamsContainer />} />
+        <Route path='/hdds' render={() => <HddsContainer />} />
+        <Route path='/cpus' render={() => <CpusContainer />} />
+        <Route path='/users' render={() => <UsersContainer/>} />
       </div>
     </div>
   );

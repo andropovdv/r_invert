@@ -12,17 +12,17 @@ const MBoards = (props) => {
     //     .map((mboard) => <MBoardItem vendor={mboard.vendor} model={mboard.model} id={mboard.id} />);
     let mboardsElements = props.mboards.map((m) => {
         return (
-            <MBoardItem vendor={m.vendor} model={m.model} id={m.id} />
+            <MBoardItem vendor={m.vendor} model={m.model} id={m.id} key={m.id}/>
         )
     });
     let soketElements = props.sokets.map((s) => {
         return (
-            <MBoardSoket soket={s.soket} id={s.id} />
+            <MBoardSoket soket={s.soket} id={s.id} key={s.id}/>
         )
     })
     let soketElementsSelect = props.sokets.map((s) => {
         return (
-            <MBoardSoketSelect soket={s.soket} id={s.id} />
+            <MBoardSoketSelect soket={s.soket} id={s.id} key={s.id} />
         )
     })
 

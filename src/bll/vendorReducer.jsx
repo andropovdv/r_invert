@@ -15,27 +15,20 @@ const vendorReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case ADD_VENDOR: {
-            let newVendor = {
-                id: 3,
-                name: state.newName,
-                fullName: state.newFullName
-            }
-            let stateCopy = { ...state }
-            stateCopy.vendors = [...state.vendors]
-            stateCopy.vendors.push(newVendor);
-            stateCopy.newName = '';
-            stateCopy.newFullName = '';
-            return stateCopy;
+            let t1 = state.newName
+            let t2 = state.newFullName
+            return {
+                ...state,
+                newName: '',
+                newFullName: '',
+                vendors: [...state.vendors, {id: 3, name: t1, fullName: t2}]
+            };
         }
-        case TYPING_VENDOR_NAME: {
-            let stateCopy = { ...state }
-            stateCopy.newName = action.newText;
-            return stateCopy;
-        }
+        case TYPING_VENDOR_NAME:
+            return { ...state, newName: action.newText };
+
         case TYPING_VENDOR_FULLNAME: {
-            let stateCopy = { ...state }
-            stateCopy.newFullName = action.newText;
-            return stateCopy;
+            return { ...state, newFullName: action.newText };
         }
         default:
             return state;

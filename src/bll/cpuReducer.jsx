@@ -16,29 +16,29 @@ let initialState = {
 }
 const cpuReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_CPU:{
+        case ADD_CPU:
             let newCpu = {
                 id: 7,
                 vendor: state.typingVendor,
                 model: state.typingModel
             }
-            let copyState = {...state};
-            copyState.cpusData = [...state.cpusData];
-            copyState.cpusData.push(newCpu);
-            copyState.typingModel = '';
-            return copyState;}
-        case TYPING_CPU_VENDOR:{
-            let copyState = {...state};
+            return {
+                ...state,
+                typingModel: '',
+                cpusData: [...state.cpusData, newCpu]
+            };
+        case TYPING_CPU_VENDOR:
+            let copyState = { ...state };
             if (action.newText !== 'Выберите') {
                 copyState.typingVendor = action.newText;
             } else {
                 copyState.typingVendor = '';
             }
-            return copyState;}
-        case TYPING_CPU_MODEL:{
-            let copyState = {...state};
-            copyState.typingModel = action.newText;
-            return copyState;}
+            return copyState;
+
+        case TYPING_CPU_MODEL: {
+            return { ...state, typingModel: action.newText };
+        }
         default:
             return state;
     }
