@@ -1,4 +1,3 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import Users from './Users';
 import { activUserAC, unactivUserAC, setUsersAC } from './../../bll/usersReducer';
@@ -11,10 +10,10 @@ let mapsStateToProps = (state) => {
 
 let mapsDispatchToProps = (dispatch) => {
     return {
-        activUser: (userId) => {
+        followed: (userId) => {
             dispatch(activUserAC(userId))
         },
-        unactivUser: (userId) => {
+        unfollowed: (userId) => {
             dispatch(unactivUserAC(userId))
         },
         setUsers: (users) => {

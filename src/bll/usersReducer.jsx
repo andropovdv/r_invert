@@ -3,7 +3,7 @@ const UNACTIV_USER = 'UNACTIV-USER';
 const SET_USERS = 'SET-USERS';
 
 let initialState = {
-    users: [
+    users: []
     //     {
     //         id: 1, photoUrl: 'https://i03.fotocdn.net/s119/11a097ff366bfb24/user_l/2713047325.jpg', 
     //         activUser: false, fullName: 'Дмитрий', status: 'in work',
@@ -19,9 +19,9 @@ let initialState = {
     //         activUser: false, fullName: 'Таня', status: 'in work',
     //         location: { city: 'Moscow', country: 'Russia' }
     //     }
-    ]
-}
 
+}
+debugger
 const usersReducer = (state = initialState, action) => {
 
     switch (action.type) {
@@ -30,7 +30,7 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 users: state.users.map((u) => {
                     if (u.id === action.userId) {
-                        return { ...u, activUser: true }
+                        return { ...u, followed: true }
                     }
                     return u;
                 })
@@ -46,7 +46,7 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 users: state.users.map((u) => {
                     if (u.id === action.userId) {
-                        return { ...u, activUser: false }
+                        return { ...u, followed: false }
                     }
                     return u;
                 })
@@ -58,7 +58,7 @@ const usersReducer = (state = initialState, action) => {
     }
 }
 
-export const activUserAC = (userId) => ({ type: ACTIV_USER , userId})
+export const activUserAC = (userId) => ({ type: ACTIV_USER, userId })
 export const unactivUserAC = (userId) => ({ type: UNACTIV_USER, userId })
 export const setUsersAC = (users) => ({ type: SET_USERS, users })
 
