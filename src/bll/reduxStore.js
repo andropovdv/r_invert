@@ -5,6 +5,7 @@ import mboardReducer from './mboardReducer';
 import hddReducer from './hddReducer';
 import ramReducer from './ramReducer';
 import usersReducer from './usersReducer';
+import cpuReducerExp from './cpuReducerExp';
 
 
 let reducers = combineReducers({
@@ -13,7 +14,8 @@ let reducers = combineReducers({
     mboardPage: mboardReducer,
     hddPage: hddReducer,
     ramPage: ramReducer,
-    userPage: usersReducer
+    userPage: usersReducer,
+    cpuPageExp: cpuReducerExp
 })
 
 let store = createStore(reducers);

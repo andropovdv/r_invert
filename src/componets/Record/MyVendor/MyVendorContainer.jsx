@@ -28,7 +28,6 @@ let mapsDispatchToProps = (dispatch) => {
         }
     }
 }
-debugger;
 
 const MyVendorContainer = connect(mapsStateToProps, mapsDispatchToProps)(MyVendor);
 

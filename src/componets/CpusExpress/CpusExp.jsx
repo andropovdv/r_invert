@@ -1,6 +1,5 @@
 import React from 'react';
 import s from './CpusExp.module.css';
-import CpuItem from './CpuItemExp/CpuItemExp';
 import VendorSelect from '../Record/MyVendor/Vendor/VendorSelect';
 import ReactTable from 'react-table-v6'
 import 'react-table-v6/react-table.css'
@@ -9,13 +8,13 @@ import Axios from 'axios';
 
 
 const Cpus = (props) => {
-    Axios.get("http://localhost:4000/cpus/").then(response => {
-        debugger
-        let test = response.data.result;
-    })
 
-    let cpuElements = props.cpusData
-        .map(c => <CpuItem vendor={c.vendor} model={c.model} id={c.id} />);
+    if (props.cpusDataExp.length === 0) {
+        Axios.get("http://localhost:4000/cpus/").then(response => {
+            debugger
+            props.setCpus(response.data.result)
+        })
+    }
 
     const columns = [
         {
@@ -53,7 +52,8 @@ const Cpus = (props) => {
                     resizable={false}
                     // minWidth={50}
                     // pageSize={5}
-                    data={props.cpusData}
+                    showPagination={false}
+                    data={props.cpusDataExp}
                     columns={columns}
                     className="-striped -highlight"
                     style={{

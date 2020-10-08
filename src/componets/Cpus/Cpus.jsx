@@ -1,6 +1,5 @@
 import React from 'react';
 import s from './Cpus.module.css';
-import CpuItem from './CpuItem/CpuItem';
 import VendorSelect from '../Record/MyVendor/Vendor/VendorSelect';
 import ReactTable from 'react-table-v6'
 import 'react-table-v6/react-table.css'
@@ -8,9 +7,6 @@ import 'react-table-v6/react-table.css'
 
 
 const Cpus = (props) => {
-
-    let cpuElements = props.cpusData
-        .map(c => <CpuItem vendor={c.vendor} model={c.model} id={c.id} />);
 
     const columns = [
         {

@@ -1,20 +1,21 @@
 const ADD_CPU = 'ADD-CPU';
 const TYPING_CPU_VENDOR = 'TYPING-CPU-VENDOR';
-const TYPING_CPU_MODEL = 'TYPING-CPU-MODEL'
+const TYPING_CPU_MODEL = 'TYPING-CPU-MODEL';
+const SET_CPUS = 'SET-CPUS';
 
 let initialState = {
-    cpusData: [
-        { id: '1', vendor: 'AMD', model: 'Ryzen 5 2600' },
-        { id: '2', vendor: 'INTEL', model: 'Core i5 9400F' },
-        { id: '3', vendor: 'AMD', model: 'Ryzen 7 2700' },
-        { id: '4', vendor: 'AMD', model: 'Ryzen 5 3600' },
-        { id: '5', vendor: 'AMD', model: 'A8 9600' },
-        { id: '6', vendor: 'INTEL', model: 'Core i3 9100F' }
+    cpusDataExp: [
+        // { id: '1', vendor: 'AMD', model: 'Ryzen 5 2600' },
+        // { id: '2', vendor: 'INTEL', model: 'Core i5 9400F' },
+        // { id: '3', vendor: 'AMD', model: 'Ryzen 7 2700' },
+        // { id: '4', vendor: 'AMD', model: 'Ryzen 5 3600' },
+        // { id: '5', vendor: 'AMD', model: 'A8 9600' },
+        // { id: '6', vendor: 'INTEL', model: 'Core i3 9100F' }
     ],
     typingVendor: '',
     typingModel: 'model'
 }
-const cpuReducer = (state = initialState, action) => {
+const cpuReducerExp = (state = initialState, action) => {
     switch (action.type) {
         case ADD_CPU:
             let newCpu = {
@@ -25,7 +26,7 @@ const cpuReducer = (state = initialState, action) => {
             return {
                 ...state,
                 typingModel: '',
-                cpusData: [...state.cpusData, newCpu]
+                cpusDataExp: [...state.cpusDataExp, newCpu]
             };
         case TYPING_CPU_VENDOR:
             let copyState = { ...state };
@@ -38,6 +39,10 @@ const cpuReducer = (state = initialState, action) => {
 
         case TYPING_CPU_MODEL: {
             return { ...state, typingModel: action.newText };
+        }
+        case SET_CPUS: {
+            debugger
+            return { ...state, cpusDataExp: [...state.cpusDataExp, ...action.cpusData] }
         }
         default:
             return state;
@@ -54,5 +59,7 @@ export const typingCpuVendorActionCreator = (textName) => {
 export const typingCpuModelActionCreator = (textName) => {
     return { type: TYPING_CPU_MODEL, newText: textName }
 }
+export const setCpusAC = (cpuSql) => ({ type: SET_CPUS, cpusData: cpuSql })
 
-export default cpuReducer;
+
+export default cpuReducerExp;

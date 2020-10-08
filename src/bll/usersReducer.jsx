@@ -21,7 +21,6 @@ let initialState = {
     //     }
 
 }
-debugger
 const usersReducer = (state = initialState, action) => {
 
     switch (action.type) {

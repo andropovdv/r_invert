@@ -1,12 +1,15 @@
 //import React from 'react';
 import { connect } from 'react-redux';
-import { addCpuActionCreator, typingCpuModelActionCreator, typingCpuVendorActionCreator }
+import {
+    addCpuActionCreator, setCpusAC, typingCpuModelActionCreator,
+    typingCpuVendorActionCreator
+}
     from '../../bll/cpuReducerExp';
 import CpusExp from './CpusExp';
 
 let mapsStateToProps = (state) => {
     return {
-        cpusData: state.cpuPage.cpusData,
+        cpusDataExp: state.cpuPageExp.cpusDataExp,
         typingVendor: state.cpuPage.typingVendor,
         typingModel: state.cpuPage.typingModel,
         vendors: state.vendorPage.vendors
@@ -23,6 +26,9 @@ let mapsDispatchToProps = (dispatch) => {
         },
         changeModel: (text) => {
             dispatch(typingCpuModelActionCreator(text))
+        },
+        setCpus: (cpuSql) => {
+            dispatch(setCpusAC(cpuSql))
         }
     }
 }
