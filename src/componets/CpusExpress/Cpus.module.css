@@ -1,0 +1,19 @@
+.cpus {
+    display: grid;
+    grid-template-columns: 9fr 3fr;
+}
+
+.cpu_items a {
+    text-decoration: none;
+    color: darkblue;
+}
+
+select {
+    width: 200px;
+}
+
+input {
+    width: 200px;
+}
+
+/* .cpu_adds {} */
