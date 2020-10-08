@@ -1,8 +1,8 @@
 //import React from 'react';
 import { connect } from 'react-redux';
 import { addCpuActionCreator, typingCpuModelActionCreator, typingCpuVendorActionCreator }
-    from '../../bll/cpuReducer';
-import Cpus from './Cpus';
+    from '../../bll/cpuReducerExp';
+import CpusExp from './CpusExp';
 
 let mapsStateToProps = (state) => {
     return {
@@ -27,6 +27,6 @@ let mapsDispatchToProps = (dispatch) => {
     }
 }
 
-const CpusContainer = connect(mapsStateToProps, mapsDispatchToProps)(Cpus);
+const CpusContainerExp = connect(mapsStateToProps, mapsDispatchToProps)(CpusExp);
 
-export default CpusContainer;
+export default CpusContainerExp;

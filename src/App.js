@@ -9,6 +9,7 @@ import CpusContainer from './componets/Cpus/CpusContainer';
 import HddsContainer from './componets/Hdds/HddsContainer';
 import RamsContainer from './componets/Rams/RamsContainer';
 import UsersContainer from './componets/Users/UsersContainer';
+import CpusContainerExp from './componets/CpusExpress/CpusContainerExp';
 
 const App = (props) => {
   return (
@@ -22,6 +23,7 @@ const App = (props) => {
         <Route path='/hdds' render={() => <HddsContainer />} />
         <Route path='/cpus' render={() => <CpusContainer />} />
         <Route path='/users' render={() => <UsersContainer/>} />
+        <Route path='/exp' render={() => <CpusContainerExp/>} />
       </div>
     </div>
   );

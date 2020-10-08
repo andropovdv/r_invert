@@ -1,13 +1,18 @@
 import React from 'react';
-import s from './Cpus.module.css';
-import CpuItem from './CpuItem/CpuItem';
+import s from './CpusExp.module.css';
+import CpuItem from './CpuItemExp/CpuItemExp';
 import VendorSelect from '../Record/MyVendor/Vendor/VendorSelect';
 import ReactTable from 'react-table-v6'
 import 'react-table-v6/react-table.css'
+import Axios from 'axios';
 
 
 
 const Cpus = (props) => {
+    Axios.get("http://localhost:4000/cpus/").then(response => {
+        debugger
+        let test = response.data.result;
+    })
 
     let cpuElements = props.cpusData
         .map(c => <CpuItem vendor={c.vendor} model={c.model} id={c.id} />);
@@ -54,7 +59,7 @@ const Cpus = (props) => {
                     style={{
                         height: "400px",
                         width: "700px"
-                      }} />
+                    }} />
                 {/* <table border="1">{cpuElements}</table> */}
             </div>
             <div className={s.cpu_add}>
