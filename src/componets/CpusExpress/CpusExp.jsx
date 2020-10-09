@@ -20,12 +20,12 @@ const Cpus = (props) => {
         {
             Header: 'Vendor',
             accessor: 'vendor', // String-based value accessors!
-            width: 150,
+            width: 150
         },
         {
             Header: 'Model',
             accessor: 'model',
-            width: 300
+            width: 300,
         }]
 
     let vendorsElement = props.vendors.map(v => <VendorSelect vendor={v.name} />)
@@ -49,6 +49,19 @@ const Cpus = (props) => {
             <div className={s.cpu_items}>
                 <div><h4>Процесоры</h4></div>
                 <ReactTable
+                    getTdProps={(state, rowInfo, column, instance) => {
+                        return {
+                            onClick: (e, handleOriginal) => {
+                                //TODO передача выбора
+                                console.log('value', rowInfo.original)
+                                if (handleOriginal) {
+                                    handleOriginal();
+                                }
+                            }
+                        };
+                    }}
+
+
                     resizable={false}
                     // minWidth={50}
                     // pageSize={5}
