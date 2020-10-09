@@ -22,8 +22,8 @@ const App = (props) => {
         <Route path='/rams' render={() => <RamsContainer />} />
         <Route path='/hdds' render={() => <HddsContainer />} />
         <Route path='/cpus' render={() => <CpusContainer />} />
-        <Route path='/users' render={() => <UsersContainer/>} />
-        <Route path='/exp' render={() => <CpusContainerExp/>} />
+        <Route path='/users' render={() => <UsersContainer />} />
+        <Route path='/exp' render={() => <CpusContainerExp />} />
       </div>
     </div>
   );
