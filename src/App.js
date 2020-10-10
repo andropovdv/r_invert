@@ -23,7 +23,7 @@ const App = (props) => {
         <Route path='/hdds' render={() => <HddsContainer />} />
         <Route path='/cpus' render={() => <CpusContainer />} />
         <Route path='/users' render={() => <UsersContainer />} />
-        <Route path='/exp' render={() => <CpusContainerExp />} />
+        <Route path='/cpussql' render={() => <CpusContainerExp />} />
       </div>
     </div>
   );

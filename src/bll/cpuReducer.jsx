@@ -17,7 +17,8 @@ let initialState = {
 const cpuReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_CPU:
-            let newCpu = {
+            debugger;
+            let newCpuN = {
                 id: 7,
                 vendor: state.typingVendor,
                 model: state.typingModel
@@ -25,7 +26,7 @@ const cpuReducer = (state = initialState, action) => {
             return {
                 ...state,
                 typingModel: '',
-                cpusData: [...state.cpusData, newCpu]
+                cpusData: [...state.cpusData, newCpuN]
             };
         case TYPING_CPU_VENDOR:
             let copyState = { ...state };

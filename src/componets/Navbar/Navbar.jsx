@@ -24,7 +24,7 @@ const Navbar = () => {
                 <NavLink to="/Cpus" activeClassName={s.activeLink}>Процессор</NavLink>
             </div>
             <div className={s.item}>
-                <NavLink to="/Exp" activeClassName={s.activeLink}>Процессор(sql)</NavLink>
+                <NavLink to="/Cpussql" activeClassName={s.activeLink}>Процессор(sql)</NavLink>
             </div>
             <div className={s.item}>
                 <NavLink to="/Users" activeClassName={s.activeLink}>Пользователи(API)</NavLink>

@@ -38,7 +38,7 @@ const MBoards = (props) => {
         let vendor = e.target.value;
         props.changeSoket(vendor)
     }
-
+debugger
     return (
         <div className={s.mboards}>
             <div className={s.mboard_items}>

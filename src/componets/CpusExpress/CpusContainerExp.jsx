@@ -1,38 +1,38 @@
 //import React from 'react';
 import { connect } from 'react-redux';
 import {
-    addCpuActionCreator, setCpusAC, typingCpuModelActionCreator,
-    typingCpuVendorActionCreator
+    addCpuAC, setCpusAC, typingCpuModelAC, typingCpuVendorAC
 }
-    from '../../bll/cpuReducerExp';
-import CpusExp from './CpusExp';
+    from '../../bll/CReducer';
+import CpusExpC from './CpusExpC';
 
 let mapsStateToProps = (state) => {
     return {
         cpusDataExp: state.cpuPageExp.cpusDataExp,
-        typingVendor: state.cpuPage.typingVendor,
-        typingModel: state.cpuPage.typingModel,
+        typingVendorExp: state.cpuPageExp.typingVendorExp,
+        typingModelExp: state.cpuPageExp.typingModelExp,
         vendors: state.vendorPage.vendors
     }
 }
-
 let mapsDispatchToProps = (dispatch) => {
     return {
-        addCpu: () => {
-            dispatch(addCpuActionCreator());
+        addCpuExp: () => {
+            dispatch(addCpuAC());
         },
-        changeVendor: (text) => {
-            dispatch(typingCpuVendorActionCreator(text));
+        changeVendorExp: (text) => {
+            dispatch(typingCpuVendorAC(text));
         },
-        changeModel: (text) => {
-            dispatch(typingCpuModelActionCreator(text))
+        changeModelExp: (text) => {
+            dispatch(typingCpuModelAC(text))
         },
-        setCpus: (cpuSql) => {
+        setCpusExp: (cpuSql) => {
             dispatch(setCpusAC(cpuSql))
         }
     }
 }
+debugger;
 
-const CpusContainerExp = connect(mapsStateToProps, mapsDispatchToProps)(CpusExp);
+// const CpusContainerExp = connect(mapsStateToProps, mapsDispatchToProps)(CpusExpC);
+const CpusContainerExp = connect(mapsStateToProps, mapsDispatchToProps)(CpusExpC)
 
 export default CpusContainerExp;

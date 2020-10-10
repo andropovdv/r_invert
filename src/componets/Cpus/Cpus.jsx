@@ -7,7 +7,7 @@ import 'react-table-v6/react-table.css'
 
 
 const Cpus = (props) => {
-
+debugger;
     const columns = [
         {
             Header: 'Vendor',
@@ -20,7 +20,7 @@ const Cpus = (props) => {
             width: 300
         }]
 
-    let vendorsElement = props.vendors.map(v => <VendorSelect vendor={v.name} />)
+    let vendorsElement = props.vendors.map(v => <VendorSelect key={v.id} vendor={v.name} />)
 
     let addCpu = () => {
         props.addCpu();
@@ -35,7 +35,6 @@ const Cpus = (props) => {
         let textName = e.target.value;
         props.changeModel(textName);
     }
-    debugger
     return (
         <div className={s.cpus}>
             <div className={s.cpu_items}>
@@ -50,7 +49,7 @@ const Cpus = (props) => {
                     style={{
                         height: "400px",
                         width: "700px"
-                      }} />
+                    }} />
                 {/* <table border="1">{cpuElements}</table> */}
             </div>
             <div className={s.cpu_add}>

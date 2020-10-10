@@ -24,6 +24,7 @@ const mboardReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_SOKET:
             let sok = state.typingSoket
+            debugger
             return {
                 ...state,
                 typingSoket: '',

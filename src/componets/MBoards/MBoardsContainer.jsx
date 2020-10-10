@@ -10,7 +10,6 @@ let mapsStateToProps = (state) => {
         typingSoket: state.mboardPage.typingSoket
     }
 }
-
 let mapsDispatchToProps = (dispatch) => {
     return {
         addSoket: () => {
