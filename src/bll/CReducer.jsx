@@ -20,6 +20,7 @@ let initialState = {
 const CReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_CPU_EXP:
+            //FIXME не обновляеся таблица
             let newCpuS = {
                 // id: 7,
                 vendor: state.typingVendorExp,
@@ -27,15 +28,15 @@ const CReducer = (state = initialState, action) => {
             }
             let newCpu = {
                 id: 7,
-                vendor: state.typingVendor,
-                model: state.typingModel
+                vendor: state.typingVendorExp,
+                model: state.typingModelExp
             }
             debugger;
-            Axios.post('http://localhost:4000/cpus/', newCpuS);
+            let res = Axios.post('http://localhost:4000/cpus/', newCpuS);
             debugger
             return {
                 ...state,
-                typingModel: '',
+                typingModelExp: '',
                 cpusDataExp: [...state.cpusDataExp, newCpu]
 
             };
