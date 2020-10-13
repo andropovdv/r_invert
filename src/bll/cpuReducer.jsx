@@ -17,7 +17,6 @@ let initialState = {
 const cpuReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_CPU:
-            debugger;
             let newCpuN = {
                 id: 7,
                 vendor: state.typingVendor,

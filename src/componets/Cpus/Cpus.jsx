@@ -7,7 +7,6 @@ import 'react-table-v6/react-table.css'
 
 
 const Cpus = (props) => {
-debugger;
     const columns = [
         {
             Header: 'Vendor',

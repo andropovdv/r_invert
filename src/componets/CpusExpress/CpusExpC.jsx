@@ -3,23 +3,35 @@ import s from './CpusExp.module.css';
 import VendorSelect from '../Record/MyVendor/Vendor/VendorSelect';
 import ReactTable from 'react-table-v6'
 import 'react-table-v6/react-table.css'
-import Axios from 'axios';
+// import Axios from 'axios';
 
 class CpusExpC extends React.Component {
 
     constructor(props) {
         super(props);
 
-        Axios.get("http://localhost:4000/cpus/").then(response => {
-            props.setCpusExp(response.data.result)
-        });
-        // this.addCpuExp = this.addCpuExp.bind(this);
-        // this.onVendorChangeExp = this.onVendorChangeExp.bind(this);
-        // this.onModelChangeExp = this.onModelChangeExp.bind(this);
+        // Axios.get("http://localhost:4000/cpus/").then(response => {
+        //     props.setCpusExp(response.data.result)
+        // });
+    }
+
+    componentDidMount() {
+        this.props.getCpus('http://localhost:4000/cpus/');
     }
 
 
 
+    pushCpus = () => {
+        let url = 'http://localhost:4000/cpus/';
+        let model = this.props.typingModelExp;
+        let vendor = this.props.typingVendorExp;
+        let pushData = {
+            model: model,
+            vendor: vendor
+        }
+        debugger;
+        this.props.pushCpus(url, pushData);
+    }
     addCpuExp = () => {
         this.props.addCpuExp();
     }
@@ -34,7 +46,7 @@ class CpusExpC extends React.Component {
         this.props.changeModelExp(textName);
     }
 
-   vendorsElement = this.props.vendors.map(v => <VendorSelect key={v.id} vendor={v.name} />)
+    vendorsElement = this.props.vendors.map(v => <VendorSelect key={v.id} vendor={v.name} />)
 
     render() {
         return (
@@ -96,7 +108,7 @@ class CpusExpC extends React.Component {
                         <input onChange={this.onModelChangeExp} value={this.props.typingModelExp} />
                     </div>
                     <div>
-                        <button onClick={this.addCpuExp}>Добавить</button>
+                        <button onClick={this.pushCpus}>Добавить</button>
                     </div>
 
 

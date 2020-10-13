@@ -1,13 +1,15 @@
 //import React from 'react';
 import { connect } from 'react-redux';
 import {
-    addCpuAC, setCpusAC, typingCpuModelAC, typingCpuVendorAC
+    addCpuAC, getCpusDataAC, pushCpusDataAC, setCpusAC, typingCpuModelAC, typingCpuVendorAC
 }
-    from '../../bll/CReducer';
+    from '../../bll/cpuEpxReducer';
 import CpusExpC from './CpusExpC';
 
 let mapsStateToProps = (state) => {
+    debugger
     return {
+        // cpusDataExp: state.cpuPageExp.item,
         cpusDataExp: state.cpuPageExp.cpusDataExp,
         typingVendorExp: state.cpuPageExp.typingVendorExp,
         typingModelExp: state.cpuPageExp.typingModelExp,
@@ -27,10 +29,15 @@ let mapsDispatchToProps = (dispatch) => {
         },
         setCpusExp: (cpuSql) => {
             dispatch(setCpusAC(cpuSql))
+        },
+        getCpus: (url) => {
+            dispatch(getCpusDataAC(url))
+        },
+        pushCpus: (url, pushData) => {
+            dispatch(pushCpusDataAC(url, pushData))
         }
     }
 }
-debugger;
 
 // const CpusContainerExp = connect(mapsStateToProps, mapsDispatchToProps)(CpusExpC);
 const CpusContainerExp = connect(mapsStateToProps, mapsDispatchToProps)(CpusExpC)
