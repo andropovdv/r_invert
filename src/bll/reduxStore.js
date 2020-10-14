@@ -1,11 +1,12 @@
-import { combineReducers, createStore } from 'redux';
+import { applyMiddleware, combineReducers, createStore } from 'redux';
 import vendorReducer from './vendorReducer';
 import cpuReducer from './cpuReducer';
 import mboardReducer from './mboardReducer';
 import hddReducer from './hddReducer';
 import ramReducer from './ramReducer';
 import usersReducer from './usersReducer';
-import CReducer from './CReducer';
+import CReducer from './cpuEpxReducer';
+import thunk from 'redux-thunk';
 
 
 let reducers = combineReducers({
@@ -18,6 +19,6 @@ let reducers = combineReducers({
     cpuPageExp: CReducer,
 })
 
-let store = createStore(reducers);
+let store = createStore(reducers, applyMiddleware(thunk));
 
 export default store;

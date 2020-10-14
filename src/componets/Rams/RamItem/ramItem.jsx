@@ -3,7 +3,6 @@ import s from './ramItem.module.css'
 import { NavLink } from 'react-router-dom';
 
 const RamItem = (props) => {
-    debugger;
     let path = "/Rams/" + props.id;
     return (
         // <tr className={s.item}>
