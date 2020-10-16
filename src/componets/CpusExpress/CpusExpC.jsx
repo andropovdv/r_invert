@@ -22,14 +22,6 @@ class CpusExpC extends React.Component {
         debugger;
         this.props.pushCpus(url, pushData);
     }
-    addCpuExp = () => {
-        this.props.addCpuExp();
-        debugger
-        Axios.get("http://localhost:4000/cpus/").then(response => {
-            this.props.setCpusExp(response.data.result)
-        });
-        debugger
-    }
 
     onVendorChangeExp = (e) => {
         let textName = e.target.value;
