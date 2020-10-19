@@ -19,7 +19,6 @@ class CpusExpC extends React.Component {
             model: model,
             vendor: vendor
         }
-        debugger;
         this.props.pushCpus(url, pushData);
     }
 

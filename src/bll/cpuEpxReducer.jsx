@@ -14,24 +14,6 @@ let initialState = {
 
 const CReducer = (state = initialState, action) => {
     switch (action.type) {
-        // case ADD_CPU_EXP:
-        //     let newCpuS = {
-        //         // id: 7,
-        //         vendor: state.typingVendorExp,
-        //         model: state.typingModelExp
-        //     }
-        //     Axios.post(`http://localhost:4000/cpus`, newCpuS)
-        //         .then(res => {
-        //             let newCpuM = {
-        //                 id_cpu: res.data,
-        //                 vendor: state.typingVendorExp,
-        //                 model: state.typingModelExp
-        //             }
-        //             debugger
-        //             // addCpuSuccess(state, newCpuM);
-        //         })
-        //     debugger
-        //     return state;
         case TYPING_CPU_VENDOR_EXP:
             let copyState = { ...state };
             if (action.newText !== 'Выберите') {
@@ -53,7 +35,6 @@ const CReducer = (state = initialState, action) => {
                 vendor: state.typingVendorExp,
                 model: state.typingModelExp
             }
-            debugger;
             return {
                 ...state,
                 typingModelExp: '',
@@ -82,7 +63,6 @@ export const getCpusAC = (item) => {
 }
 
 export const pushCpusAC = (last_id) => {
-    debugger
     return { type: PUSH_CPUS_FROM_API_SUCCES, last_id }
 }
 

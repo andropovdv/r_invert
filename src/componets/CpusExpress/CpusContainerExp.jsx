@@ -7,7 +7,6 @@ import {
 import CpusExpC from './CpusExpC';
 
 let mapsStateToProps = (state) => {
-    debugger
     return {
         cpusDataExp: state.cpuPageExp.cpusDataExp,
         typingVendorExp: state.cpuPageExp.typingVendorExp,

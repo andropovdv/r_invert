@@ -31,9 +31,7 @@ const CReducer = (state = initialState, action) => {
                 vendor: state.typingVendorExp,
                 model: state.typingModelExp
             }
-            debugger;
             let res = Axios.post('http://localhost:4000/cpus/', newCpuS);
-            debugger
             return {
                 ...state,
                 typingModelExp: '',
@@ -53,7 +51,6 @@ const CReducer = (state = initialState, action) => {
             return { ...state, typingModelExp: action.newText };
         }
         case SET_CPUS_EXP: {
-            debugger
             return { ...state, cpusDataExp: [...action.cpusData] }
             // return { ...state, cpusDataExp: [...state.cpusDataExp, ...action.cpusData] }
         }
