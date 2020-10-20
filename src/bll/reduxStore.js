@@ -7,10 +7,11 @@ import ramReducer from './ramReducer';
 import usersReducer from './usersReducer';
 import CReducer from './cpuEpxReducer';
 import thunk from 'redux-thunk';
+import vendorLReducer from './vendorLReducer';
 
 
 let reducers = combineReducers({
-    vendorPage: vendorReducer,
+    vendorPage: vendorLReducer,
     cpuPage: cpuReducer,
     mboardPage: mboardReducer,
     hddPage: hddReducer,
@@ -20,5 +21,7 @@ let reducers = combineReducers({
 })
 
 let store = createStore(reducers, applyMiddleware(thunk));
+
+window.store = store;
 
 export default store;

@@ -5,13 +5,13 @@ import MyVendorContainer from './MyVendor/MyVendorContainer';
 import s from './Record.module.css';
 import VendorInfo from './VendorInfo/VendorInfo';
 
-const Record = (props) => {
+const RecordL = (props) => {
     return (
         <div className={s.content}>
-            <VendorInfo />
+            <VendorInfo profile={props.profile} />
             <MyVendorContainer />
         </div>
     )
 }
 
-export default Record;
+export default RecordL;

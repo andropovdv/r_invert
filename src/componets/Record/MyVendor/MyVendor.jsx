@@ -59,7 +59,7 @@ class MyVendor extends React.Component {
                                 <th>Full Name</th>
                                 <th></th><th></th>
                             </tbody>
-                            {this.props.vendors.map(v => <Vendor name={v.name} fullName={v.fullName} />)}
+                            {this.props.vendors.map(v => <Vendor name={v.name} fullName={v.full_name} />)}
                         </table>
                     </div>
                 </div>
