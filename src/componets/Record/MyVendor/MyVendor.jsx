@@ -3,52 +3,69 @@ import s from './MyVendor.module.css';
 import Vendor from './Vendor/Vendor';
 
 
+class MyVendor extends React.Component {
 
-const MyVendor = (props) => {
-    let vendorElements = props.vendors.map((v) => {
+    componentDidMount() {
+        this.props.getVendors('http://localhost:4000/vendors');
+    }
+
+    pushVendor = () => {
+        let url = 'http://localhost:4000/vendors';
+        let name = this.props.newName;
+        let full_name = this.props.newFullName;
+        let pushData = {
+            name: name,
+            full_name: full_name
+        }
+        this.props.pushVendors(url, pushData);
+    }
+
+    onVendorNameChange = (e) => {
+        let textName = e.target.value;
+        this.props.changeName(textName)
+    }
+
+    onVendorFullNameChange = (e) => {
+        let textName = e.target.value;
+        this.props.changeFullName(textName)
+    }
+
+
+
+    // vendorElements = this.props.vendors.map(v =><Vendor name={v.name} fullName={v.fullName} />)
+
+    render() {
         return (
-            <Vendor name={v.name} fullName={v.fullName} />
-        )
-    });
-
-    let onAddVendor = () => {
-        props.addVendor()
-    }
-
-    let onVendorNameChange = (e) => {
-        let textName = e.target.value;
-        props.changeName(textName)
-    }
-
-    let onVendorFullNameChange = (e) => {
-        let textName = e.target.value;
-        props.changeFullName(textName)
-    }
-    return (
-        <div>
-            <div className={s.main}>
-                <div className={s.item}>
-                    <label>Наименование:</label>
-                    <input onChange={onVendorNameChange} value={props.newName} />
-                </div>
-                <div className={s.item}>
-                    <label>Полное наименование: </label>
-                    <input onChange={onVendorFullNameChange} value={props.newFullName} />
-                </div>
-                <div>
-                    <button onClick={onAddVendor}>Добавить производителя</button>
-                </div>
-                <div>
-                    <i>Производители:</i>
-                </div>
-                <div className={s.dates}>
-                    {vendorElements}
+            <div>
+                <div className={s.main}>
+                    <div className={s.item}>
+                        <label>Наименование:</label>
+                        <input onChange={this.onVendorNameChange} value={this.props.newName} />
+                    </div>
+                    <div className={s.item}>
+                        <label>Полное наименование: </label>
+                        <input onChange={this.onVendorFullNameChange} value={this.props.newFullName} />
+                    </div>
+                    <div>
+                        <button onClick={this.pushVendor}>Добавить производителя</button>
+                    </div>
+                    <div>
+                        <i>Производители:</i>
+                    </div>
+                    <div className={s.dates}>
+                        <table className={s.table2}>
+                            <tbody>
+                                <th>Name</th>
+                                <th>Full Name</th>
+                                <th></th><th></th>
+                            </tbody>
+                            {this.props.vendors.map(v => <Vendor name={v.name} fullName={v.fullName} />)}
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
-
-
 
 export default MyVendor;

@@ -1,10 +1,11 @@
 //import React from 'react';
 import { connect } from 'react-redux';
 import {
-    addVendorActionCreator, typingVendorFullNameActionCreator,
+    getVendorsDataAC, typingVendorFullNameActionCreator,
     typingVendorNameActionCreator
 } from '../../../bll/vendorReducer';
 import MyVendor from './MyVendor';
+import { pushVendorsDataAC } from '../../../bll/vendorReducer';
 
 
 let mapsStateToProps = (state) => {
@@ -23,8 +24,11 @@ let mapsDispatchToProps = (dispatch) => {
         changeName: (textName) => {
             dispatch(typingVendorNameActionCreator(textName));
         },
-        addVendor: () => {
-            dispatch(addVendorActionCreator());
+        getVendors: (url) => {
+            dispatch(getVendorsDataAC(url));
+        },
+        pushVendors: (url, pushDate) => {
+            dispatch(pushVendorsDataAC(url, pushDate))
         }
     }
 }

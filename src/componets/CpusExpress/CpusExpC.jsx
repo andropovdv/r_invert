@@ -8,7 +8,9 @@ import 'react-table-v6/react-table.css'
 class CpusExpC extends React.Component {
 
     componentDidMount() {
+        debugger
         this.props.getCpus('http://localhost:4000/cpus/');
+        this.props.getVendors('http://localhost:4000/vendors')
     }
 
     pushCpus = () => {
@@ -32,7 +34,7 @@ class CpusExpC extends React.Component {
         this.props.changeModelExp(textName);
     }
 
-    vendorsElement = this.props.vendors.map(v => <VendorSelect key={v.id} vendor={v.name} />)
+    // vendorsElement = this.props.vendors.map(v => <VendorSelect key={v.id} vendor={v.name} />)
 
     render() {
         return (
@@ -86,7 +88,7 @@ class CpusExpC extends React.Component {
                         <label>Производитель</label>
                         <select onChange={this.onVendorChangeExp}>
                             <option selected={true}>Выберите:</option>
-                            {this.vendorsElement}
+                            {this.props.vendors.map(v => <VendorSelect key={v.id} vendor={v.name} />)}
                         </select>
                     </div>
                     <div className={s.item}>

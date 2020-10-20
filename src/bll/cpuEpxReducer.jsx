@@ -66,7 +66,12 @@ export const pushCpusAC = (last_id) => {
     return { type: PUSH_CPUS_FROM_API_SUCCES, last_id }
 }
 
-export function getCpusDataAC(url) {
+// export function getCpusDataAC(url) {
+//     return (dispatch) => {
+//         Axios.get(url).then((res) => dispatch(getCpusAC(res.data)))
+//     }
+// }
+export let getCpusDataAC = (url) => {
     return (dispatch) => {
         Axios.get(url).then((res) => dispatch(getCpusAC(res.data)))
     }
