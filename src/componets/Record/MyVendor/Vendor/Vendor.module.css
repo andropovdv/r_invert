@@ -32,3 +32,8 @@
 .table2 tr:hover td {
     color: #6699ff;
 }
+
+.redBtn {
+    background: red;
+    color: black;
+}
