@@ -6,18 +6,19 @@ import hddReducer from './hddReducer';
 import ramReducer from './ramReducer';
 import usersReducer from './usersReducer';
 import CReducer from './cpuEpxReducer';
+import ProfileReducer from './ProfileReducer'
 import thunk from 'redux-thunk';
-import vendorLReducer from './vendorLReducer';
 
 
 let reducers = combineReducers({
-    vendorPage: vendorLReducer,
+    vendorPage: vendorReducer,
     cpuPage: cpuReducer,
     mboardPage: mboardReducer,
     hddPage: hddReducer,
     ramPage: ramReducer,
     userPage: usersReducer,
     cpuPageExp: CReducer,
+    profilePage: ProfileReducer
 })
 
 let store = createStore(reducers, applyMiddleware(thunk));

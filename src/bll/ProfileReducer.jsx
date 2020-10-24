@@ -14,7 +14,7 @@ let initialState = {
     profile: null
 }
 
-const vendorLReducer = (state = initialState, action) => {
+const ProfileReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case TYPING_VENDOR_NAME:
@@ -29,7 +29,7 @@ const vendorLReducer = (state = initialState, action) => {
             let push_vendor = {
                 id_vendor: action.last_id,
                 name: state.newName,
-                fullName: state.newFullName
+                full_name: state.newFullName
             }
             return {
                 ...state,
@@ -81,4 +81,4 @@ export const pushVendorsDataAC = (url, pushData) => {
 
 export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile})
 
-export default vendorLReducer;
+export default ProfileReducer;
