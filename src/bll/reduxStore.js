@@ -8,6 +8,7 @@ import usersReducer from './usersReducer';
 import CReducer from './cpuEpxReducer';
 import ProfileReducer from './ProfileReducer'
 import thunk from 'redux-thunk';
+import authReducer from './authReducer';
 
 
 let reducers = combineReducers({
@@ -18,7 +19,8 @@ let reducers = combineReducers({
     ramPage: ramReducer,
     userPage: usersReducer,
     cpuPageExp: CReducer,
-    profilePage: ProfileReducer
+    profilePage: ProfileReducer,
+    auth: authReducer
 })
 
 let store = createStore(reducers, applyMiddleware(thunk));

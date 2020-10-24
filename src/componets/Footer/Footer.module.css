@@ -1,0 +1,18 @@
+.header {
+    grid-area: f;
+    text-align: center;
+    background-color: lightgrey;
+}
+
+.section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 2px solid black;
+    font-size: 3em; */
+}
+
+.loginBlock {
+    padding: 5px;
+    float: left;
+}

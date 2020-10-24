@@ -11,6 +11,7 @@ import RamsContainer from './componets/Rams/RamsContainer';
 import UsersContainer from './componets/Users/UsersContainer';
 import CpusContainerExp from './componets/CpusExpress/CpusContainerExp';
 import ProfileContainer from './componets/Profile/ProfileContainer';
+import FooterContainer from './componets/Footer/FooterContainer';
 
 const App = (props) => {
   return (
@@ -19,7 +20,7 @@ const App = (props) => {
       <Navbar />
       <div className='app-wrapper-content'>
         <Route path='/Record' render={() => <Record />} />
-        <Route path='/profile/:userId?' render={() => <ProfileContainer/>} />
+        <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
         <Route path='/mboards' render={() => <MBoardsContainer />} />
         <Route path='/rams' render={() => <RamsContainer />} />
         <Route path='/hdds' render={() => <HddsContainer />} />
@@ -27,6 +28,7 @@ const App = (props) => {
         <Route path='/users' render={() => <UsersContainer />} />
         <Route path='/cpussql' render={() => <CpusContainerExp />} />
       </div>
+      <FooterContainer />
     </div>
   );
 }

@@ -8,7 +8,6 @@ import 'react-table-v6/react-table.css'
 class CpusExpC extends React.Component {
 
     componentDidMount() {
-        debugger
         this.props.getCpus('http://localhost:4000/cpus/');
         this.props.getVendors('http://localhost:4000/vendors')
     }
