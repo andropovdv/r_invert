@@ -4,7 +4,7 @@ import Axios from 'axios';
 const TYPING_VENDOR_NAME = 'TYPING-VENDOR-NAME';
 const TYPING_VENDOR_FULLNAME = 'TYPING-VENDOR-FULLNAME';
 const GET_VENDORS_API = 'GET_VENDORS_API';
-const PUSH_VENDOR_API = 'const PUSH_VENDOR_API';
+// const PUSH_VENDOR_API = 'const PUSH_VENDOR_API';
 
 let initialState = {
     vendors: [],
@@ -23,19 +23,19 @@ const vendorReducer = (state = initialState, action) => {
         case GET_VENDORS_API: {
             return { ...state, vendors: [...action.item.result] };
         }
-        case PUSH_VENDOR_API: {
-            let push_vendor = {
-                id_vendor: action.last_id,
-                name: state.newName,
-                fullName: state.newFullName
-            }
-            return {
-                ...state,
-                newName: '',
-                newFullName: '',
-                vendors: [...state.vendors, push_vendor]
-            };
-        }
+        // case PUSH_VENDOR_API: {
+        //     let push_vendor = {
+        //         id_vendor: action.last_id,
+        //         name: state.newName,
+        //         fullName: state.newFullName
+        //     }
+        //     return {
+        //         ...state,
+        //         newName: '',
+        //         newFullName: '',
+        //         vendors: [...state.vendors, push_vendor]
+        //     };
+        // }
         default:
             return state;
     }
@@ -63,13 +63,14 @@ export let getVendorsDataAC = (url) => {
     }
 }
 
-export const pushVendorsAC = (last_id) => {
-    return { type: PUSH_VENDOR_API, last_id }
-}
+// export const pushVendorsAC = (last_id) => {
+//     return { type: PUSH_VENDOR_API, last_id }
+// }
 
 export const pushVendorsDataAC = (url, pushData) => {
     return (dispatch) => {
-        Axios.post(url, pushData).then((res) => dispatch(pushVendorsAC(res.data)));
+        Axios.post(url, pushData).then((res) => dispatch(getVendorsDataAC(url)));
+        // Axios.post(url, pushData).then((res) => dispatch(pushVendorsAC(res.data)));
     }
 }
 

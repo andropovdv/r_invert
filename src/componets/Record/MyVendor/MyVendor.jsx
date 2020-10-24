@@ -18,6 +18,7 @@ class MyVendor extends React.Component {
             full_name: full_name
         }
         this.props.pushVendors(url, pushData);
+        // this.props.getVendors(url);
     }
 
     onVendorNameChange = (e) => {
