@@ -7,7 +7,6 @@ class MyVendor extends React.Component {
 
     componentDidMount() {
         this.props.getVendors('http://localhost:4000/vendors');
-        debugger
     }
 
     pushVendor = () => {
@@ -33,38 +32,51 @@ class MyVendor extends React.Component {
     }
 
 
-
     // vendorElements = this.props.vendors.map(v =><Vendor name={v.name} fullName={v.fullName} />)
 
     render() {
+        debugger
         return (
             <div>
                 <div className={s.main}>
                     <div className={s.item}>
                         <label>Наименование:</label>
-                        <input onChange={this.onVendorNameChange} value={this.props.newName} />
+                        <input disabled={this.props.isEdit} onChange={this.onVendorNameChange} value={this.props.newName} placeholder='Наименование' />
                     </div>
                     <div className={s.item}>
                         <label>Полное наименование: </label>
-                        <input onChange={this.onVendorFullNameChange} value={this.props.newFullName} />
+                        <input disabled={this.props.isEdit} onChange={this.onVendorFullNameChange} value={this.props.newFullName} placeholder='Полное наименование' />
                     </div>
                     <div>
-                        <button onClick={this.pushVendor}>Добавить производителя</button>
+                        <button onClick={this.pushVendor}>Записать</button>
+                        <button onClick={this.props.pressOffEditVendor}>Отмена</button>
                     </div>
                     <div>
                         <i>Производители:</i>
                     </div>
-                    <div className={s.dates}>
-                        <div>
-                            Выбрано: {this.props.selectVendor}
-                        </div>
+                    <div disabled={!this.props.isEdit} className={s.dates}>
+
+                        {/* <div>
+                            {this.props.vendors.filter(id => id.id_vendor === this.props.sVendor).map(filteredId => (
+                                <>
+                                    Выбрано: {this.props.sVendor}, {filteredId.name}
+                                </>
+                            ))}
+                        </div> */}
                         <table className={s.table2}>
                             <tbody>
                                 <th>Name</th>
                                 <th>Full Name</th>
                                 <th></th><th></th>
                             </tbody>
-                            {this.props.vendors.map(v => <Vendor id_vendor={v.id_vendor} name={v.name} fullName={v.full_name} selectVendor={this.props.selectVendor}/>)}
+                            {this.props.vendors.map(v =>
+                                <Vendor
+                                    id_vendor={v.id_vendor}
+                                    name={v.name}
+                                    fullName={v.full_name}
+                                    sVendor={this.props.sVendor}
+                                    selectVendor={this.props.selectVendor}
+                                    pressOnEditVendor={this.props.pressOnEditVendor} />)}
                         </table>
                     </div>
                 </div>

@@ -1,12 +1,13 @@
 //import React from 'react';
 import { connect } from 'react-redux';
 import {
-    getVendorsDataAC, typingVendorFullNameActionCreator,
+    getVendorsDataAC, pressOffEditVendor, typingVendorFullNameActionCreator,
     typingVendorNameActionCreator
 } from '../../../bll/vendorReducer';
 import MyVendor from './MyVendor';
 import { pushVendorsDataAC } from '../../../bll/vendorReducer';
 import { selectVendor } from '../../../bll/vendorReducer';
+import { pressOnEditVendor } from '../../../bll/vendorReducer';
 
 
 let mapsStateToProps = (state) => {
@@ -14,7 +15,8 @@ let mapsStateToProps = (state) => {
         vendors: state.vendorPage.vendors,
         newName: state.vendorPage.newName,
         newFullName: state.vendorPage.newFullName,
-        selectVendor: state.vendorPage.selectVendor
+        sVendor: state.vendorPage.sVendor,
+        isEdit: state.vendorPage.isEdit
     }
 }
 
@@ -32,8 +34,14 @@ let mapsDispatchToProps = (dispatch) => {
         pushVendors: (url, pushDate) => {
             dispatch(pushVendorsDataAC(url, pushDate))
         },
-        selectVendor: (id_vendor) => {
-            dispatch(selectVendor(id_vendor))
+        selectVendor: (id_vendor, name, fullName) => {
+            dispatch(selectVendor(id_vendor, name, fullName))
+        },
+        pressOnEditVendor: () => {
+            dispatch(pressOnEditVendor())
+        },
+        pressOffEditVendor: () => {
+            dispatch(pressOffEditVendor())
         } 
     }
 }
