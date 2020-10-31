@@ -4,12 +4,14 @@ import Axios from 'axios';
 const TYPING_VENDOR_NAME = 'TYPING-VENDOR-NAME';
 const TYPING_VENDOR_FULLNAME = 'TYPING-VENDOR-FULLNAME';
 const GET_VENDORS_API = 'GET_VENDORS_API';
+const SELECT_VENDOR = 'SELECT_VENDOR';
 // const PUSH_VENDOR_API = 'const PUSH_VENDOR_API';
 
 let initialState = {
     vendors: [],
     newName: 'Inventor',
-    newFullName: 'Inventor'
+    newFullName: 'Inventor',
+    selectVendor: null
 }
 
 const vendorReducer = (state = initialState, action) => {
@@ -22,6 +24,9 @@ const vendorReducer = (state = initialState, action) => {
         }
         case GET_VENDORS_API: {
             return { ...state, vendors: [...action.item.result] };
+        }
+        case SELECT_VENDOR: {
+            return { ...state, selectVendor: action.id_vendor };
         }
         // case PUSH_VENDOR_API: {
         //     let push_vendor = {
@@ -41,6 +46,9 @@ const vendorReducer = (state = initialState, action) => {
     }
 }
 
+export const selectVendor = (id_vendor) => ({
+    type: SELECT_VENDOR, id_vendor: id_vendor
+})
 export const typingVendorNameActionCreator = (textName) => {
     return {
         type: TYPING_VENDOR_NAME, newText: textName

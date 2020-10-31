@@ -7,6 +7,7 @@ class MyVendor extends React.Component {
 
     componentDidMount() {
         this.props.getVendors('http://localhost:4000/vendors');
+        debugger
     }
 
     pushVendor = () => {
@@ -54,13 +55,16 @@ class MyVendor extends React.Component {
                         <i>Производители:</i>
                     </div>
                     <div className={s.dates}>
+                        <div>
+                            Выбрано: {this.props.selectVendor}
+                        </div>
                         <table className={s.table2}>
                             <tbody>
                                 <th>Name</th>
                                 <th>Full Name</th>
                                 <th></th><th></th>
                             </tbody>
-                            {this.props.vendors.map(v => <Vendor name={v.name} fullName={v.full_name} />)}
+                            {this.props.vendors.map(v => <Vendor id_vendor={v.id_vendor} name={v.name} fullName={v.full_name} selectVendor={this.props.selectVendor}/>)}
                         </table>
                     </div>
                 </div>

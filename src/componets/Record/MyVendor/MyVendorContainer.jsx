@@ -6,13 +6,15 @@ import {
 } from '../../../bll/vendorReducer';
 import MyVendor from './MyVendor';
 import { pushVendorsDataAC } from '../../../bll/vendorReducer';
+import { selectVendor } from '../../../bll/vendorReducer';
 
 
 let mapsStateToProps = (state) => {
     return {
         vendors: state.vendorPage.vendors,
         newName: state.vendorPage.newName,
-        newFullName: state.vendorPage.newFullName
+        newFullName: state.vendorPage.newFullName,
+        selectVendor: state.vendorPage.selectVendor
     }
 }
 
@@ -29,7 +31,10 @@ let mapsDispatchToProps = (dispatch) => {
         },
         pushVendors: (url, pushDate) => {
             dispatch(pushVendorsDataAC(url, pushDate))
-        }
+        },
+        selectVendor: (id_vendor) => {
+            dispatch(selectVendor(id_vendor))
+        } 
     }
 }
 

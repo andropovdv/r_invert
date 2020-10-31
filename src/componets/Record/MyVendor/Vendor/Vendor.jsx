@@ -13,7 +13,7 @@ import React from 'react';
 
 const Vendor = (props) => {
     return (
-        <tr>
+        <tr onClick={() => {alert(props.id_vendor)}}>
             <td>{props.name}</td>
             <td>{props.fullName}</td>
             <td><button>Edit</button></td>
