@@ -13,14 +13,21 @@ export const userAPI = {
             .then(response => {
                 return response.data
             });
+    },
+    follow(userId) {
+        return instance.post(`follow/${userId}`)
+    },
+    unfollow(userId) {
+        return instance.delete(`follow/${userId}`)
     }
+
 }
 
 export const authMe = () => {
     return instance.get('auth/me')
 }
 
-export const getProfile = (userId) => {
+export const getProfileApi = (userId) => {
     return instance.get(`profile/` + userId,)
 }
 

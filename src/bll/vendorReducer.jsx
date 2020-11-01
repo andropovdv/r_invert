@@ -75,6 +75,8 @@ export const pressOffEditVendor = () => ({
 export const selectVendor = (id_vendor, name, fullName) => ({
     type: SELECT_VENDOR, id_vendor: id_vendor, name: name, fullName: fullName
 })
+
+
 export const typingVendorNameActionCreator = (textName) => {
     return {
         type: TYPING_VENDOR_NAME, newText: textName

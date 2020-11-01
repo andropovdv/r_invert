@@ -1,5 +1,6 @@
 // import Axios from "axios";
 import Axios from 'axios';
+import { getProfileApi } from '../api/api';
 
 const TYPING_VENDOR_NAME = 'TYPING-VENDOR-NAME';
 const TYPING_VENDOR_FULLNAME = 'TYPING-VENDOR-FULLNAME';
@@ -76,6 +77,14 @@ export const pushVendorsAC = (last_id) => {
 export const pushVendorsDataAC = (url, pushData) => {
     return (dispatch) => {
         Axios.post(url, pushData).then((res) => dispatch(pushVendorsAC(res.data)));
+    }
+}
+
+export const getProfile = (userId) => {
+    return (dispatch) => {
+        getProfileApi(userId).then(response => {
+            dispatch(setUserProfile(response.data));
+        })
     }
 }
 
