@@ -1,14 +1,15 @@
-//import React from 'react';
+// import React from 'react';
 import { connect } from 'react-redux';
 import { addSoketActionCreator, typingMbSoketActionCreator } from '../../bll/mboardReducer';
 import MBoards from './MBoards';
+// import { Redirect } from 'react-router-dom';
+import { withAuthRedirect } from '../hoc/withAuthRedirect';
 
 let mapsStateToProps = (state) => {
     return {
         mboards: state.mboardPage.mboards,
         sokets: state.mboardPage.sokets,
-        typingSoket: state.mboardPage.typingSoket,
-        isAuth: state.auth.isAuth
+        typingSoket: state.mboardPage.typingSoket
     }
 }
 let mapsDispatchToProps = (dispatch) => {
@@ -22,6 +23,8 @@ let mapsDispatchToProps = (dispatch) => {
     }
 }
 
-const MBoardsContainer = connect(mapsStateToProps, mapsDispatchToProps)(MBoards)
+let AuthRedirectComponent = withAuthRedirect(MBoards)
+
+const MBoardsContainer = connect(mapsStateToProps, mapsDispatchToProps)(AuthRedirectComponent)
 
 export default MBoardsContainer;

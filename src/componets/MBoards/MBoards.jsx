@@ -3,7 +3,7 @@ import s from './MBoards.module.css';
 import MBoardItem from './MboardItem/MboardItem';
 import MBoardSoket from './MboardSoket/MboardSoket';
 import MBoardSoketSelect from './MboardSoket/MboardSoketSelect';
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 
 const MBoards = (props) => {
 
@@ -40,7 +40,7 @@ const MBoards = (props) => {
         props.changeSoket(vendor)
     }
 
-    if (!props.isAuth) return <Redirect to={'/login'} />
+    // if (!props.isAuth) return <Redirect to={'/login'} />
 
     return (
         <div className={s.mboards}>

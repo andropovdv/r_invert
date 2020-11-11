@@ -4,6 +4,7 @@ import { activUserAC, unactivUserAC, setCurrentPage, getUsers, follow, unfollow 
     from './../../bll/usersReducer';
 import Users from './Users';
 import Preloader from '../Common/Preloader/Preloader';
+import { withAuthRedirect } from '../hoc/withAuthRedirect';
 
 class UsersContainer extends React.Component {
 
@@ -49,12 +50,13 @@ let mapsStateToProps = (state) => {
 
 
 
-export default connect(mapsStateToProps, {
-    followed: activUserAC,
-    unfollowed: unactivUserAC,
-    setCurrentPage,
-    getUsers,
-    follow,
-    unfollow
-})(UsersContainer);
+export default withAuthRedirect(
+    connect(mapsStateToProps, {
+        followed: activUserAC,
+        unfollowed: unactivUserAC,
+        setCurrentPage,
+        getUsers,
+        follow,
+        unfollow
+    })(UsersContainer));
 
