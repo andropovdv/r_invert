@@ -35,7 +35,6 @@ class MyVendor extends React.Component {
     // vendorElements = this.props.vendors.map(v =><Vendor name={v.name} fullName={v.fullName} />)
 
     render() {
-        debugger
         return (
             <div>
                 <div className={s.main}>

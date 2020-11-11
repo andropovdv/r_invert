@@ -30,11 +30,9 @@ const vendorReducer = (state = initialState, action) => {
             return { ...state, vendors: [...action.item.result] };
         }
         case IS_EDIT_ON: {
-            debugger
             return { ...state, isEdit: false };
         }
         case IS_EDIT_OFF: {
-            debugger
             return { ...state, isEdit: true };
         }
         case SELECT_VENDOR: {

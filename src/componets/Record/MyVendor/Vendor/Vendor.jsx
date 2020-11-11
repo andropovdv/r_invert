@@ -3,7 +3,6 @@ import s from './Vendor.module.css'
 
 
 const Vendor = (props) => {
-    debugger
     return (
         <tr className={props.sVendor === props.id_vendor && s.selectedPage} onClick={
             () => { props.selectVendor(props.id_vendor, props.name, props.fullName) }}>
