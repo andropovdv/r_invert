@@ -7,7 +7,8 @@ let mapsStateToProps = (state) => {
     return {
         mboards: state.mboardPage.mboards,
         sokets: state.mboardPage.sokets,
-        typingSoket: state.mboardPage.typingSoket
+        typingSoket: state.mboardPage.typingSoket,
+        isAuth: state.auth.isAuth
     }
 }
 let mapsDispatchToProps = (dispatch) => {

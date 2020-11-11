@@ -12,6 +12,7 @@ import UsersContainer from './componets/Users/UsersContainer';
 import CpusContainerExp from './componets/CpusExpress/CpusContainerExp';
 import ProfileContainer from './componets/Profile/ProfileContainer';
 import FooterContainer from './componets/Footer/FooterContainer';
+import LoginPage from './componets/Login/Login';
 
 const App = (props) => {
   return (
@@ -27,6 +28,7 @@ const App = (props) => {
         <Route path='/cpus' render={() => <CpusContainer />} />
         <Route path='/users' render={() => <UsersContainer />} />
         <Route path='/cpussql' render={() => <CpusContainerExp />} />
+        <Route path='/login' render={() => <LoginPage />} />
       </div>
       <FooterContainer />
     </div>

@@ -3,6 +3,7 @@ import s from './MBoards.module.css';
 import MBoardItem from './MboardItem/MboardItem';
 import MBoardSoket from './MboardSoket/MboardSoket';
 import MBoardSoketSelect from './MboardSoket/MboardSoketSelect';
+import { Redirect } from 'react-router-dom';
 
 const MBoards = (props) => {
 
@@ -12,12 +13,12 @@ const MBoards = (props) => {
     //     .map((mboard) => <MBoardItem vendor={mboard.vendor} model={mboard.model} id={mboard.id} />);
     let mboardsElements = props.mboards.map((m) => {
         return (
-            <MBoardItem vendor={m.vendor} model={m.model} id={m.id} key={m.id}/>
+            <MBoardItem vendor={m.vendor} model={m.model} id={m.id} key={m.id} />
         )
     });
     let soketElements = props.sokets.map((s) => {
         return (
-            <MBoardSoket soket={s.soket} id={s.id} key={s.id}/>
+            <MBoardSoket soket={s.soket} id={s.id} key={s.id} />
         )
     })
     let soketElementsSelect = props.sokets.map((s) => {
@@ -38,6 +39,9 @@ const MBoards = (props) => {
         let vendor = e.target.value;
         props.changeSoket(vendor)
     }
+
+    if (!props.isAuth) return <Redirect to={'/login'} />
+
     return (
         <div className={s.mboards}>
             <div className={s.mboard_items}>
