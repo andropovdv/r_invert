@@ -1,9 +1,7 @@
-//TODO переименовость в vendor
 import React from 'react';
 import Profile from './Profile';
-// import Axios from 'axios';
 import { connect } from 'react-redux';
-import { setUserProfile } from '../../bll/ProfileReducer';
+// import { setUserProfile } from '../../bll/ProfileReducer';
 import { withRouter } from 'react-router-dom';
 import { getProfile } from '../../bll/ProfileReducer';
 
@@ -32,4 +30,4 @@ let mapsStateToProps = (state) => ({
 
 let WithUrlDataContainerComponent = withRouter(ProfileContainer);
 
-export default connect(mapsStateToProps, { setUserProfile, getProfile })(WithUrlDataContainerComponent);
+export default connect(mapsStateToProps, {getProfile })(WithUrlDataContainerComponent);
