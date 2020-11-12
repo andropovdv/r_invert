@@ -1,18 +1,20 @@
 // import Axios from "axios";
 import Axios from 'axios';
-import { getProfileApi } from '../api/api';
+import { ProfileAPI } from '../api/api';
 
 const TYPING_VENDOR_NAME = 'TYPING-VENDOR-NAME';
 const TYPING_VENDOR_FULLNAME = 'TYPING-VENDOR-FULLNAME';
 const GET_VENDORS_API = 'GET_VENDORS_API';
 const PUSH_VENDOR_API = 'const PUSH_VENDOR_API';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
+const SET_STATUS = 'SET_STATUS';
 
 let initialState = {
     vendors: [],
     newName: 'Inventor',
     newFullName: 'Inventor',
-    profile: null
+    profile: null,
+    status: ''
 }
 
 const ProfileReducer = (state = initialState, action) => {
@@ -40,9 +42,12 @@ const ProfileReducer = (state = initialState, action) => {
             };
         }
         case SET_USER_PROFILE: {
-            return {...state, profile: action.profile}
+            return { ...state, profile: action.profile }
         }
-            
+        case SET_STATUS: {
+            return { ...state, status: action.status }
+        }
+
         default:
             return state;
     }
@@ -82,12 +87,30 @@ export const pushVendorsDataAC = (url, pushData) => {
 
 export const getProfile = (userId) => {
     return (dispatch) => {
-        getProfileApi(userId).then(response => {
+        ProfileAPI.getProfile(userId).then(response => {
             dispatch(setUserProfile(response.data));
         })
     }
 }
+export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile })
 
-export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile})
+export const getStatus = (userId) => {
+    return (dispatch) => {
+        ProfileAPI.getStatus(userId).then(response => {
+            dispatch(setStatus(response.data));
+        })
+    }
+}
+export const setStatus = (status) => ({ type: SET_STATUS, status })
+
+export const updateStatus = (status) => {
+    return (dispatch) => {
+        ProfileAPI.updateStatus(status).then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(setStatus(status));
+            }
+        })
+    }
+}
 
 export default ProfileReducer;

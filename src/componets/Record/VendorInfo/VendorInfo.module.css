@@ -3,3 +3,9 @@
     padding-bottom: 10px;
     font-weight: bold;
 }
+
+.comment {
+    font-size: small;
+    padding-bottom: 10px;
+    font-weight: lighter;
+}

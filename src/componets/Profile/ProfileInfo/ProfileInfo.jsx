@@ -10,10 +10,11 @@ const ProfileInfo = (props) => {
     return (
         <div className={s.info}>
             Справочник: Тест Пользователей !!!! Временно !!!
-            <dir>
-                <img src={props.profile.photos.large} alt='Test' width="50" />
-            </dir>
-            <ProfileStatus status={'Статус - как есть'}/>
+            <div>
+                <img src={props.profile.photos.large} alt='Test' width="50" /><br></br>
+                <span><b>{props.profile.fullName}</b></span>
+            </div>
+            <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
         </div>
     )
 }
