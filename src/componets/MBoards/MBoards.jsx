@@ -3,6 +3,7 @@ import s from './MBoards.module.css';
 import MBoardItem from './MboardItem/MboardItem';
 import MBoardSoket from './MboardSoket/MboardSoket';
 import MBoardSoketSelect from './MboardSoket/MboardSoketSelect';
+import { Field, reduxForm } from 'redux-form';
 // import { Redirect } from 'react-router-dom';
 
 const MBoards = (props) => {
@@ -21,26 +22,15 @@ const MBoards = (props) => {
             <MBoardSoket soket={s.soket} id={s.id} key={s.id} />
         )
     })
-    let soketElementsSelect = props.sokets.map((s) => {
-        return (
-            <MBoardSoketSelect soket={s.soket} id={s.id} key={s.id} />
-        )
-    })
+    // let soketElementsSelect = props.sokets.map((s) => {
+    //     return (
+    //         <MBoardSoketSelect soket={s.soket} id={s.id} key={s.id} />
+    //     )
+    // })
 
-    let addSoket = () => {
-        props.addSoket();
+    let addNewSoket = (values) => {
+        props.addSoket(values.newSoket);
     }
-
-    let onSoketChange = (e) => {
-        // let textSoket = e.target.value;
-        // props.dispatch(typingMbSoketActionCreator(textSoket))
-    }
-    let onSelectChange = (e) => {
-        let vendor = e.target.value;
-        props.changeSoket(vendor)
-    }
-
-    // if (!props.isAuth) return <Redirect to={'/login'} />
 
     return (
         <div className={s.mboards}>
@@ -49,33 +39,52 @@ const MBoards = (props) => {
                 {mboardsElements}
             </div>
             <div className={s.mb_adds}>
-                <div className={s.item}>
+                <div className={s.item}> 
                     <h4>Разъемы:</h4>
                 </div>
                 <div>
                     {soketElements}
-                    {/* выподающий список */}
-                    {/* <select>{soketElements}</select> */}
                 </div>
-                <div>
-                    <hr />
-                    <input onChange={onSoketChange} value={props.typingSoket} />
-                </div>
-                <div>
-                    <button onClick={addSoket}>Добавить</button>
-                </div>
-                {/* test */}
-                <div>
-                    <select onChange={onSelectChange}>
-                        {soketElementsSelect}
-                    </select>
-                </div>
-
+                {/* FORM */}
+                <AddSoketFormRedux onSubmit={addNewSoket} {...props}/>
             </div>
             <hr />
 
         </div>
     )
 }
+
+const AddSoketForm = (props) => {
+
+    let soketElementsSelect = props.sokets.map((s) => {
+        return (
+            <MBoardSoketSelect soket={s.soket} id={s.id} key={s.id} />
+        )
+    })
+
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <div>
+                <div>
+                    <hr />
+                    <Field component="input" name="typingSoket" />
+                    {/* <input onChange={onSoketChange} value={props.typingSoket} /> */}
+                </div>
+                <div>
+                    <button>Добавить</button>
+                </div>
+                <div>
+                    <Field name="newSoket" component="select">
+                        <option />
+                        {soketElementsSelect}
+                        {/* TODO а нафига. если можно мапом сделать здесь */}
+                    </Field>
+                </div>
+            </div>
+        </form>
+    )
+}
+
+const AddSoketFormRedux = reduxForm({ form: "addSoketForm" })(AddSoketForm)
 
 export default MBoards;

@@ -84,4 +84,5 @@ class MyVendor extends React.Component {
     }
 }
 
+
 export default MyVendor;

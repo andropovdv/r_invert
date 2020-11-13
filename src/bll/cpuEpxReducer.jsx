@@ -30,6 +30,7 @@ const CReducer = (state = initialState, action) => {
             return { ...state, cpusDataExp: [...action.item.result] }
         }
         case PUSH_CPUS_FROM_API_SUCCES: {
+            debugger;
             let push_cpu = {
                 id_cpu: action.last_id,
                 vendor: state.typingVendorExp,
@@ -79,7 +80,8 @@ export let getCpusDataAC = (url) => {
 
 export const pushCpusDataAC = (url, pushData) => {
     return (dispatch) => {
-        Axios.post(url, pushData).then((res) => dispatch(pushCpusAC(res.data)))
+        Axios.post(url, pushData).then((res) => dispatch(getCpusDataAC(url)))
+        // Axios.post(url, pushData).then((res) => dispatch(pushCpusAC(res.data)))
     }
 }
 

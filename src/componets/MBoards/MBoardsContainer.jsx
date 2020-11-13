@@ -10,16 +10,12 @@ let mapsStateToProps = (state) => {
     return {
         mboards: state.mboardPage.mboards,
         sokets: state.mboardPage.sokets,
-        typingSoket: state.mboardPage.typingSoket
     }
 }
 let mapsDispatchToProps = (dispatch) => {
     return {
-        addSoket: () => {
-            dispatch(addSoketActionCreator());
-        },
-        changeSoket: (vendor) => {
-            dispatch(typingMbSoketActionCreator(vendor))
+        addSoket: (typingSoket) => {
+            dispatch(addSoketActionCreator(typingSoket));
         }
     }
 }
@@ -31,6 +27,6 @@ let mapsDispatchToProps = (dispatch) => {
 // const MBoardsContainer = connect(mapsStateToProps, mapsDispatchToProps)(AuthRedirectComponent)
 
 export default compose(
-    connect(mapsStateToProps, mapsDispatchToProps),
-    withAuthRedirect
+    connect(mapsStateToProps, mapsDispatchToProps)
+    // withAuthRedirect
 )(MBoards);

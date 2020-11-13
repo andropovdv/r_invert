@@ -1,5 +1,4 @@
 const ADD_SOKET = 'ADD-SOKET';
-const TYPING_MB_SOKET = 'TYPING-MB-SOKET';
 
 let initialState = {
     mboards: [
@@ -15,23 +14,17 @@ let initialState = {
         { id: 2, soket: 'LGA 1200' },
         { id: 3, soket: 'Socket R4 (LGA 2066)' },
         { id: 4, soket: 'Socket H4 (LGA 1151)' }
-    ],
-    typingSoket: 'soket'
+    ]
 }
 const mboardReducer = (state = initialState, action) => {
 
 
     switch (action.type) {
         case ADD_SOKET:
-            let sok = state.typingSoket
+            let sok = action.typingSoket
             return {
                 ...state,
-                typingSoket: '',
                 sokets: [...state.sokets, { id: 5, soket: sok }]
-            };
-        case TYPING_MB_SOKET:
-            return {
-                ...state, typingSoket: action.newText
             };
         default:
             return state;
@@ -39,11 +32,8 @@ const mboardReducer = (state = initialState, action) => {
     }
 }
 
-export const addSoketActionCreator = () => {
-    return { type: ADD_SOKET }
-}
-export const typingMbSoketActionCreator = (textName) => {
-    return { type: TYPING_MB_SOKET, newText: textName }
+export const addSoketActionCreator = (typingSoket) => {
+    return { type: ADD_SOKET, typingSoket }
 }
 
 export default mboardReducer;
