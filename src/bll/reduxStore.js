@@ -9,6 +9,7 @@ import CReducer from './cpuEpxReducer';
 import ProfileReducer from './ProfileReducer'
 import thunkMiddleware from 'redux-thunk';
 import authReducer from './authReducer';
+import { reducer as formReducer } from 'redux-form'
 
 
 let reducers = combineReducers({
@@ -20,7 +21,8 @@ let reducers = combineReducers({
     userPage: usersReducer,
     cpuPageExp: CReducer,
     profilePage: ProfileReducer,
-    auth: authReducer
+    auth: authReducer,
+    form: formReducer
 })
 
 let store = createStore(reducers, applyMiddleware(thunkMiddleware));
