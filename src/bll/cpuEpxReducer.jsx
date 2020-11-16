@@ -30,7 +30,6 @@ const CReducer = (state = initialState, action) => {
             return { ...state, cpusDataExp: [...action.item.result] }
         }
         case PUSH_CPUS_FROM_API_SUCCES: {
-            debugger;
             let push_cpu = {
                 id_cpu: action.last_id,
                 vendor: state.typingVendorExp,

@@ -1,4 +1,5 @@
 import Axios from 'axios';
+import { vendorAPI } from '../api/dal';
 
 const TYPING_VENDOR_NAME = 'TYPING-VENDOR-NAME';
 const TYPING_VENDOR_FULLNAME = 'TYPING-VENDOR-FULLNAME';
@@ -93,7 +94,7 @@ export const getVendorsAC = (item) => {
 
 export let getVendorsDataAC = (url) => {
     return (dispatch) => {
-        Axios.get(url).then((res) => dispatch(getVendorsAC(res.data)));
+        vendorAPI.getVendors().then((res) => dispatch(getVendorsAC(res.data)));
     }
 }
 
