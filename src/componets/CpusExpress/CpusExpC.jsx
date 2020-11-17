@@ -6,6 +6,8 @@ import 'react-table-v6/react-table.css'
 import { Field, reduxForm } from 'redux-form';
 import ScrollVendorContainer from '../ScrollComponent/ScrollVendor/ScrollVendorContainer';
 // import Axios from 'axios';
+import { InputArea } from '../Common/FormsControls/FormsControls';
+import { maxLengthCreator, required } from '../../Utils/Validarors/validators';
 
 class CpusExpC extends React.Component {
 
@@ -96,17 +98,20 @@ class CpusExpC extends React.Component {
 
 
 }
+const maxLength10 = maxLengthCreator(10);
+
 
 const AddCpuForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
                 <label>Производитель</label>
-                <Field name="newVendor" component={ScrollVendorContainer}/>
+                <Field name="newVendor" component={ScrollVendorContainer} />
             </div>
             <div className={s.item}>
                 <label>Модель</label><br />
-                <Field name="newModel" component="input" />
+                <Field name="newModel" component={InputArea} placeholder={"Model"}
+                    validate={[required, maxLength10]} />
             </div>
             <div>
                 <button>Добавить</button>
