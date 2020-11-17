@@ -13,7 +13,7 @@ const Footer = (props) => {
 
             </div>
             <div>
-                <ScrollVendorContainer />
+                {/* <ScrollVendorContainer /> */}
             </div>
         </header>
     )

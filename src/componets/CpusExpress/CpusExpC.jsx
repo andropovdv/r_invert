@@ -11,7 +11,7 @@ class CpusExpC extends React.Component {
 
     componentDidMount() {
         this.props.getCpus('http://localhost:4000/cpus/');
-        this.props.getVendors()
+        // this.props.getVendors()
     }
 
     pushCpus = (values) => {
@@ -102,12 +102,7 @@ const AddCpuForm = (props) => {
         <form onSubmit={props.handleSubmit}>
             <div>
                 <label>Производитель</label>
-                <Field name="newVendor" component={ScrollVendorContainer}>
-                    {/* <ScrollVendorContainer /> */}
-                    {/* <option />
-                    {props.vendors.map(v => <VendorSelect key={v.id} vendor={v.name} />)} */}
-                </Field>
-
+                <Field name="newVendor" component={ScrollVendorContainer}/>
             </div>
             <div className={s.item}>
                 <label>Модель</label><br />

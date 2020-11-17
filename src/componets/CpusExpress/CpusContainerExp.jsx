@@ -31,9 +31,6 @@ let mapsDispatchToProps = (dispatch) => {
         },
         pushCpus: (url, pushData) => {
             dispatch(pushCpusDataAC(url, pushData))
-        },
-        getVendors: (url) => {
-            dispatch(getVendorsDataAC(url))
         }
     }
 }

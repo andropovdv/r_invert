@@ -8,6 +8,8 @@ const SELECT_VENDOR = 'SELECT_VENDOR';
 const IS_EDIT_ON = 'IS_EDIT_ON';
 const IS_EDIT_OFF = 'IS_EDIT_OFF';
 
+const VENDOR_IS_FETCHING = 'VENDOR_IS_FETCHING';
+
 // const PUSH_VENDOR_API = 'const PUSH_VENDOR_API';
 
 let initialState = {
@@ -16,7 +18,9 @@ let initialState = {
     newFullName: '',
     sVendor: null,
     rowState: false,
-    isEdit: true
+    isEdit: true,
+    isFetching: true,
+    value: null
 }
 
 const vendorReducer = (state = initialState, action) => {
@@ -28,7 +32,11 @@ const vendorReducer = (state = initialState, action) => {
             return { ...state, newFullName: action.newText };
         }
         case GET_VENDORS_API: {
-            return { ...state, vendors: [...action.item.result] };
+            return {
+                ...state,
+                vendors: [...action.item.result],
+                startSelect: action.item.result[0].name
+            };
         }
         case IS_EDIT_ON: {
             return { ...state, isEdit: false };
@@ -47,6 +55,8 @@ const vendorReducer = (state = initialState, action) => {
                 newFullName: action.fullName
             };
         }
+        case VENDOR_IS_FETCHING:
+            return { ...state, isFetching: action.isFetching };
         // case PUSH_VENDOR_API: {
         //     let push_vendor = {
         //         id_vendor: action.last_id,
@@ -89,12 +99,17 @@ export const typingVendorFullNameActionCreator = (textName) => {
 }
 
 export const getVendorsAC = (item) => {
+    debugger
     return { type: GET_VENDORS_API, item }
 }
 
 export let getVendorsDataAC = (url) => {
     return (dispatch) => {
-        vendorAPI.getVendors().then((res) => dispatch(getVendorsAC(res.data)));
+        dispatch(toggleIsFetching(true));
+        vendorAPI.getVendors().then(res => {
+            dispatch(toggleIsFetching(false));
+            dispatch(getVendorsAC(res.data));
+        });
     }
 }
 
@@ -108,5 +123,7 @@ export const pushVendorsDataAC = (url, pushData) => {
         // Axios.post(url, pushData).then((res) => dispatch(pushVendorsAC(res.data)));
     }
 }
+
+export const toggleIsFetching = (isFetching) => ({ type: VENDOR_IS_FETCHING, isFetching })
 
 export default vendorReducer;

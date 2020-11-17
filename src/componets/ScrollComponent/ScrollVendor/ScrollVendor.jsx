@@ -2,8 +2,9 @@ import React from 'react';
 
 
 const ScrollVendor = (props) => {
+    debugger
     return (
-            <option value={props.vendor}>
+            <option key={props.index} value={props.vendor}>
                 {props.vendor}
             </option>
     )

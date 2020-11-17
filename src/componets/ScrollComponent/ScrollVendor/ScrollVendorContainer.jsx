@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ScrollVendor from './ScrollVendor';
 import { getVendorsDataAC } from '../../../bll/vendorReducer';
+import Preloader from '../../Common/Preloader/Preloader';
 
 class ScrollVendorContainer extends React.Component {
 
@@ -9,19 +10,30 @@ class ScrollVendorContainer extends React.Component {
         this.props.getVendorsDataAC();
     }
 
+
     render() {
-        const { input } = this.props;
+        const { input, defaultValue } = this.props;
+        debugger
+        let testArray = this.props.vendors.map((v) => <li>v.id_vendors</li>)
+
         return (
-            <select {...input}>
-                {this.props.vendors.map(v => <ScrollVendor key={v.id} vendor={v.name} />)}
-            </select>
+            <div>
+                {this.props.isFetching ? <Preloader /> : null}
+                <select {...input}>
+                    {/* <option value="Default" disabled selected>выбирите</option> */}
+                    {this.props.vendors.map(v => <ScrollVendor index={v.id_vendor} vendor={v.name} />)}
+                </select>
+
+            </div>
         )
     }
 }
 
 
 const mapsStateToProps = (state) => ({
-    vendors: state.vendorPage.vendors
+    vendors: state.vendorPage.vendors,
+    isFetching: state.vendorPage.isFetching,
+    startSelect: state.vendorPage.startSelect
 })
 
 

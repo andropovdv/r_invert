@@ -1,6 +1,7 @@
 import React from 'react';
 import s from './Hdds.module.css';
 import HddItem from './HddItem/hddItem';
+import ScrollVendorContainer from '../ScrollComponent/ScrollVendor/ScrollVendorContainer';
 
 const Hdds = (props) => {
     let hddsElement = props.hdds.map((h) => {
@@ -45,6 +46,8 @@ const Hdds = (props) => {
                 <div>
                     <button onClick={addHdd}>Добавить</button>
                 </div>
+                <hr/>
+                <ScrollVendorContainer />
             </div>
         </div>
     )
