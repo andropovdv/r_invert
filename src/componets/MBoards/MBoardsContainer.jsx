@@ -1,8 +1,7 @@
 // import React from 'react';
 import { connect } from 'react-redux';
-import { addSoketActionCreator, typingMbSoketActionCreator } from '../../bll/mboardReducer';
+import { addSoketActionCreator } from '../../bll/mboardReducer';
 import MBoards from './MBoards';
-// import { Redirect } from 'react-router-dom';
 import { withAuthRedirect } from '../hoc/withAuthRedirect';
 import { compose } from 'redux';
 
@@ -27,6 +26,6 @@ let mapsDispatchToProps = (dispatch) => {
 // const MBoardsContainer = connect(mapsStateToProps, mapsDispatchToProps)(AuthRedirectComponent)
 
 export default compose(
-    connect(mapsStateToProps, mapsDispatchToProps)
-    // withAuthRedirect
+    connect(mapsStateToProps, mapsDispatchToProps),
+    withAuthRedirect
 )(MBoards);

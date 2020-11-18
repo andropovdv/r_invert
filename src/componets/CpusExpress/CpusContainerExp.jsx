@@ -5,7 +5,6 @@ import {
 }
     from '../../bll/cpuEpxReducer';
 import CpusExpC from './CpusExpC';
-import { getVendorsDataAC } from '../../bll/vendorReducer';
 
 let mapsStateToProps = (state) => {
     return {

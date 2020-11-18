@@ -1,11 +1,9 @@
 import React from 'react';
 import s from './CpusExp.module.css';
-import VendorSelect from '../Record/MyVendor/Vendor/VendorSelect';
 import ReactTable from 'react-table-v6'
 import 'react-table-v6/react-table.css'
 import { Field, reduxForm } from 'redux-form';
 import ScrollVendorContainer from '../ScrollComponent/ScrollVendor/ScrollVendorContainer';
-// import Axios from 'axios';
 import { InputArea } from '../Common/FormsControls/FormsControls';
 import { maxLengthCreator, required } from '../../Utils/Validarors/validators';
 

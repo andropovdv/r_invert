@@ -4,6 +4,8 @@ import React from 'react';
 import MyVendorContainer from './MyVendor/MyVendorContainer';
 import s from './Record.module.css';
 import VendorInfo from './VendorInfo/VendorInfo';
+import { compose } from 'redux';
+import { withAuthRedirect } from '../hoc/withAuthRedirect';
 
 const Record = (props) => {
     return (
@@ -14,4 +16,8 @@ const Record = (props) => {
     )
 }
 
-export default Record;
+// export default Record;
+
+export default compose(
+    withAuthRedirect
+)(Record);
