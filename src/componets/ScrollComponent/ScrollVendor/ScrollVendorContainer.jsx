@@ -13,7 +13,6 @@ class ScrollVendorContainer extends React.Component {
 
     render() {
         const { input } = this.props;
-        debugger
         // let testArray = this.props.vendors.map((v) => <li>v.id_vendors</li>)
 
         return (

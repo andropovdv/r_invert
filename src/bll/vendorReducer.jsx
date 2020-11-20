@@ -99,7 +99,6 @@ export const typingVendorFullNameActionCreator = (textName) => {
 }
 
 export const getVendorsAC = (item) => {
-    debugger
     return { type: GET_VENDORS_API, item }
 }
 
