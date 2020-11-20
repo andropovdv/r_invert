@@ -1,20 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { activUserAC, unactivUserAC, setCurrentPage, getUsers, follow, unfollow }
+import { activUserAC, unactivUserAC, setCurrentPage, requestUsers, follow, unfollow }
     from './../../bll/usersReducer';
 import Users from './Users';
 import Preloader from '../Common/Preloader/Preloader';
 import { withAuthRedirect } from '../hoc/withAuthRedirect';
 import { compose } from 'redux';
+import {
+    getGetPageSize, getUsers, getTotalUsersCount,
+    getCurrentPage, getIsFetching, getFollowingIsProgress
+} from '../../bll/usersSelectors';
 
 class UsersContainer extends React.Component {
 
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize);
+        this.props.requestUsers(this.props.currentPage, this.props.pageSize);
     }
 
     onPageChanged = (pageNumber) => {
-        this.props.getUsers(pageNumber, this.props.pageSize);
+        this.props.requestUsers(pageNumber, this.props.pageSize);
     }
 
     render() {
@@ -38,14 +42,25 @@ class UsersContainer extends React.Component {
 }
 
 
+// let mapsStateToProps = (state) => {
+//     return {
+//         users: state.userPage.users,
+//         pageSize: state.userPage.pageSize,
+//         totalUsersCount: state.userPage.totalUsersCount,
+//         currentPage: state.userPage.currentPage,
+//         isFetching: state.userPage.isFetching,
+//         followingIsProgress: state.userPage.followingIsProgress
+//     }
+// }
+
 let mapsStateToProps = (state) => {
     return {
-        users: state.userPage.users,
-        pageSize: state.userPage.pageSize,
-        totalUsersCount: state.userPage.totalUsersCount,
-        currentPage: state.userPage.currentPage,
-        isFetching: state.userPage.isFetching,
-        followingIsProgress: state.userPage.followingIsProgress
+        users: getUsers(state),
+        pageSize: getGetPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        followingIsProgress: getFollowingIsProgress(state)
     }
 }
 
@@ -54,7 +69,7 @@ export default compose(
         followed: activUserAC,
         unfollowed: unactivUserAC,
         setCurrentPage,
-        getUsers,
+        requestUsers,
         follow,
         unfollow
     }),

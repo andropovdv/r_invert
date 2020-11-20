@@ -37,6 +37,7 @@ export const authAPI = {
 
 export const ProfileAPI = {
     getProfile(userId) {
+        debugger
         return instance.get(`profile/` + userId)
     },
     getStatus(userId) {

@@ -86,6 +86,7 @@ export const pushVendorsDataAC = (url, pushData) => {
 }
 
 export const getProfile = (userId) => {
+    debugger
     return (dispatch) => {
         ProfileAPI.getProfile(userId).then(response => {
             dispatch(setUserProfile(response.data));
