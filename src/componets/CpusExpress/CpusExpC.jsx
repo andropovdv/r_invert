@@ -9,6 +9,10 @@ import { maxLengthCreator, required } from '../../Utils/Validarors/validators';
 
 class CpusExpC extends React.Component {
 
+    state = {
+        isModalOpen: false
+    };
+
     componentDidMount() {
         this.props.getCpus('http://localhost:4000/cpus/');
         // this.props.getVendors()
@@ -37,6 +41,15 @@ class CpusExpC extends React.Component {
     onModelChangeExp = (e) => {
         let textName = e.target.value;
         this.props.changeModelExp(textName);
+    }
+
+    openModal = () => {
+        debugger
+        this.setState({ isModalOpen: true });
+    }
+
+    closeModal = () => {
+        this.setState({ isModalOpen: false });
     }
 
     // vendorsElement = this.props.vendors.map(v => <VendorSelect key={v.id} vendor={v.name} />)
@@ -89,13 +102,43 @@ class CpusExpC extends React.Component {
                     <hr />
                     <AddCpuFormRedux onSubmit={this.pushCpus} {...this.props} />
                     {/* FORMS */}
+                    <div>
+                        <button onClick={this.openModal}>Модальное</button>
+                        <Modal
+                            isOpen={this.state.isModalOpen}
+                            onClose={this.closeModal}
+                        >
+                            <AddCpuFormRedux onSubmit={this.pushCpus} {...this.props} />
+                            
+                        </Modal>
+                    </div>
                 </div>
             </div>
         )
     }
-
-
 }
+
+class Modal extends React.Component {
+    render() {
+        if (this.props.isOpen === false) return null;
+
+        return (
+            <div>
+                <div className={s.modal}>{this.props.children}</div>
+                <div className={s.bg} onClick={(e) => this.close(e)} />
+            </div>
+        );
+    }
+
+    close(e) {
+        e.preventDefault();
+
+        if (this.props.onClose) {
+            this.props.onClose();
+        }
+    }
+}
+
 const maxLength10 = maxLengthCreator(10);
 
 
